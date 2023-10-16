@@ -27,7 +27,7 @@ ViteExpress.config({ printViteDevServerHost: true });
   app.post("/api/deleteplaylist", deletePlayList)
   //Get playlist Songs
 
-  app.get("/api/playlistsongs", playlistSong)
+  app.get("/api/playlistsongs/:id", playlistSong)
   
   //Add new Song
   app.post("/api/addnewsong", addNewSong)
