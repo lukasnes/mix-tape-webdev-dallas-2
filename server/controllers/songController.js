@@ -1,3 +1,7 @@
-//playlistSong function to return which playlist we're queuering for
-//returns songs in playlist
+const playlistSong = async (req, res) => {};
 
+const addNewSong = async (req, res) => {};
+
+const deleteSong = async (req, res) => {};
+
+export { playlistSong, addNewSong, deleteSong };

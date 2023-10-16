@@ -2,7 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import ViteExpress from "vite-express";
 import axios from "axios";
-
+import { addPlaylist, deletePlayList } from "./controllers/playlistController";
+import { playlistSong, addNewSong, deleteSong } from "./controllers/songController";
+import { login, logout, loginRequired } from "./controllers/authController";
 const app = express();
 const port = "8000";
 
@@ -24,27 +26,26 @@ console.log(res)
 })
 
 //Add PlayList
-  app.post("/api/addplaylist", async (req,res)=>{
-
-  })
+  app.post("/api/addplaylist",loginRequired, addPlaylist)
 
   //Delete Playlist
 
-  app.post("/api/deleteplaylist", async (req,res)=>{
-
-  })
+  app.post("/api/deleteplaylist", deletePlayList)
   //Get playlist Songs
-  app.get("/api/playlistsongs", async (req,res)=>{
 
-  })
+  app.get("/api/playlistsongs", playlistSong)
+  
   //Add new Song
-  app.post("/api/addnewsong", async (req,res)=>{
+  app.post("/api/addnewsong", addNewSong)
 
-  })
   //Delete Song
-  app.post("/api/deletesong", async(req,res)=>{
+  app.post("/api/deletesong", deleteSong)
 
-  })
+  //Login
+  app.post("/api/login", login)
+
+  //Logout
+  app.post("/api/logout", logout)
 
 
 
