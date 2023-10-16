@@ -1,12 +1,12 @@
 import { Song } from "../../database/model.js";
 
 const playlistSong = async (req, res) => {
-    try {
+     
         const songs = await Song.findAll({ where: { playlistId: +req.params.id }});
         res.status(200).json(songs);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+    
+     
+    
 };
 
 const addNewSong = async (req, res) => {
