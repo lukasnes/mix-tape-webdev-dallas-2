@@ -1,4 +1,5 @@
 import express from "express";
+import session from "express-session"
 import morgan from "morgan";
 import ViteExpress from "vite-express";
 import axios from "axios";
@@ -17,13 +18,6 @@ app.use(
 );
 
 ViteExpress.config({ printViteDevServerHost: true });
-
-
-const url = ""
-//API URL
-axios.get(url).then((res) =>{
-console.log(res)
-})
 
 //Add PlayList
   app.post("/api/addplaylist",loginRequired, addPlaylist)
