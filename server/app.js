@@ -2,10 +2,20 @@ import express from "express";
 import session from "express-session"
 import morgan from "morgan";
 import ViteExpress from "vite-express";
-import axios from "axios";
-import { addPlaylist, deletePlayList } from "./controllers/playlistController.js";
-import { playlistSong, addNewSong, deleteSong } from "./controllers/songController.js";
-import { login, logout, loginRequired } from "./controllers/authController.js";
+
+import { 
+  getPlaylist,
+  addPlaylist, 
+  deletePlayList, 
+} from "./controllers/playlistController.js";
+
+import { playlistSong, 
+    addNewSong, 
+    deleteSong } from "./controllers/songController.js";
+// import { login, 
+//   logout, 
+//   loginRequired } from "./controllers/authController.js";
+
 const app = express();
 const port = "8000";
 
@@ -19,27 +29,40 @@ app.use(
 
 ViteExpress.config({ printViteDevServerHost: true });
 
+
+//getApiData
+const getApiData = async (req, res) =>{
+  const { data } = await axios.get('')
+  console.log(data)
+  res.status(200).send(data)
+}
+
+//
+app.get('/api/playlists', getPlaylist)
+
+//Get playlist Songs
+app.get("/api/playlistsongs", playlistSong)
+
 //Add PlayList
-  app.post("/api/addplaylist",loginRequired, addPlaylist)
+app.post("/api/addplaylist", addPlaylist)
 
-  //Delete Playlist
+//Delete Playlist
+app.post("/api/deleteplaylist", deletePlayList)
+ 
 
-  app.post("/api/deleteplaylist", deletePlayList)
-  //Get playlist Songs
 
-  app.get("/api/playlistsongs", playlistSong)
-  
+
   //Add new Song
   app.post("/api/addnewsong", addNewSong)
 
   //Delete Song
   app.post("/api/deletesong", deleteSong)
 
-  //Login
-  app.post("/api/login", login)
+  // //Login
+  // app.post("/api/login", login)
 
-  //Logout
-  app.post("/api/logout", logout)
+  // //Logout
+  // app.post("/api/logout", logout)
 
 
 
