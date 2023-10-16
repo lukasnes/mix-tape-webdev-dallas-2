@@ -3,9 +3,16 @@ import { useLoaderData } from "react-router-dom";
 const Playlist = () => {
   let playlist = useLoaderData();
 
-  const playlistRow = () => {
-
-    return 
+  const playlistRows = () => {
+    let playlistData = playlist.map()
+    return (
+      <div>
+        <p id='timeStamp'></p>
+        <p>{playlistData}</p>
+        <button className="rowButton"> edit </button>
+        <button className="rowButton"> delete </button>
+      </div>
+    )
   }
 
   return  <>
@@ -25,8 +32,8 @@ const Playlist = () => {
             </header>
 
             <main>
-              <div id='playlistList'>
-                {playlistRow()}
+              <div id='playlistContainer'>
+                {playlistRows}
               </div>
             </main>
 
