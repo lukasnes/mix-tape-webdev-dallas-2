@@ -57,13 +57,14 @@ app.post('api/playlists', editPlaylist)
 //Delete Playlist
 app.post("/api/deleteplaylist", deletePlayList)
  
+app.get("/api/playlistsongs/:id", playlistSong)
+  
 
-
+//Add new Song
+app.post("/api/addnewsong", addNewSong)
 
 //Get playlist Songs
 app.get("/api/playlistsongs", playlistSong)
-
-
 
 //Add new Song
 app.post("/api/addnewsong", addNewSong)
