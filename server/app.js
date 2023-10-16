@@ -49,14 +49,14 @@ app.post("/api/addplaylist", addPlaylist)
 //Delete Playlist
 app.post("/api/deleteplaylist", deletePlayList)
  
+app.get("/api/playlistsongs/:id", playlistSong)
+  
 
+//Add new Song
+app.post("/api/addnewsong", addNewSong)
 
-
-  //Add new Song
-  app.post("/api/addnewsong", addNewSong)
-
-  //Delete Song
-  app.post("/api/deletesong", deleteSong)
+//Delete Song
+app.post("/api/deletesong", deleteSong)
 
   // //Login
   // app.post("/api/login", login)
