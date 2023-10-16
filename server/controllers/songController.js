@@ -12,7 +12,7 @@ const playlistSong = async (req, res) => {
 const addNewSong = async (req, res) => {
     try {
         const newSong = req.body;
-        const createdSong = await Song.createSong(newSong);
+        const createdSong = await Song.findByPk({ where: {}});
         res.status(201).json(createdSong);
     } catch (error) {
         res.status(500).json({ message: error.message });
