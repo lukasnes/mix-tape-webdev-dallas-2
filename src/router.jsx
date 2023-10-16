@@ -1,6 +1,6 @@
 import {createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 import Songs from "./Pages/Songs.jsx";
-import Playlist from "./Pages/Playlist.jsx";
+import Playlist from "./Pages/Playlist/Playlist.jsx";
 import Root from "./Root.jsx";
 import axios from "axios";
 

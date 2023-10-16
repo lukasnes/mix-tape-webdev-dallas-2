@@ -1,19 +1,22 @@
 import { useLoaderData } from "react-router-dom";
+import './playlist.css'
 
 const Playlist = () => {
-  let playlist = useLoaderData();
+  let {playlists} = useLoaderData();
+  console.log(playlists)
 
-  const playlistRows = () => {
-    let playlistData = playlist.map()
-    return (
-      <div>
-        <p id='timeStamp'></p>
-        <p>{playlistData}</p>
-        <button className="rowButton"> edit </button>
-        <button className="rowButton"> delete </button>
-      </div>
-    )
-  }
+
+    let playlistData = playlists.map((pl) => {
+      return (
+        <div className="displayRow">
+          <p id='timeStamp'> {pl.createdAt} </p>
+          <p> {pl.name} </p>
+          <button className="rowButton"> edit </button>
+          <button className="rowButton"> delete </button>
+        </div>
+      )
+    })
+  
 
   return  <>
             <header>
@@ -33,7 +36,7 @@ const Playlist = () => {
 
             <main>
               <div id='playlistContainer'>
-                {playlistRows}
+                {playlistData}
               </div>
             </main>
 
