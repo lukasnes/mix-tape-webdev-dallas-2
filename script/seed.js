@@ -1,7 +1,7 @@
 // create 3 playlists, 5 of the same song
 
-
-import { Playlist, PlaylistSong, db } from '../database/model.js'
+// import util from 'util'
+import { Playlist, Song, db } from '../database/model.js'
 
 console.log('Syncing Database...')
 
@@ -11,7 +11,7 @@ console.log('Seeding database...')
 
 // const samplePlaylist = []
 
-for(let i = 0; i < 10; i++){
+for(let i = 0; i < 3; i++){
     const playlist = await Playlist.create({
         name:`samplePlaylist${i}`
     })
@@ -53,8 +53,9 @@ for(let i = 0; i < 10; i++){
     ];
 
 for (const songData of sampleSongs){
-    const song = await PlaylistSong.create(songData)
-    await playlist.addPlaylistSong(song)
+    const song = await playlist.createSong(songData)
+    console.log(song)
+
 }
 
 
