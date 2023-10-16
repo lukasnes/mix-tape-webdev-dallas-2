@@ -1,4 +1,7 @@
-import { Mixtape, db } from "../database/model";
+// create 3 playlists, 5 of the same song
+
+
+import { Playlist, PlaylistSong, db } from '../database/model.js'
 
 console.log('Syncing Database...')
 
@@ -6,22 +9,23 @@ await db.sync ({force: true})
 
 console.log('Seeding database...')
 
-const sampleMixtape = []
+// const samplePlaylist = []
 
 for(let i = 0; i < 10; i++){
-    let mixtape = await Mixtape.create({
-        mixtape_name:`sampleMixTape${i}`
+    const playlist = await Playlist.create({
+        name:`samplePlaylist${i}`
     })
 
-    sampleMixtape.push(mixtape)
+    // samplePlaylist.push(playlist)
     
-    const sampleSong = [
+    const sampleSongs = [
         {
-            album: "Thriller",
-            artist: "Michael Jackson",
-            name: "Billie Jean",
-            position: 1
+            album: "Hotel California",
+            artist: "Eagles",
+            name: "Hotel California",
+            position: 1,
         },
+        
         {
             album: "Nevermind",
             artist: "Nirvana",
@@ -35,10 +39,10 @@ for(let i = 0; i < 10; i++){
             position: 3
         },
         {
-            album: "The Dark Side of the Moon",
-            artist: "Pink Floyd",
-            name: "Money",
-            position: 4
+            album: "Purple Haze",
+            artist: "Jimi Hendrix",
+            name: "Purple Haze",
+            position: 4,
         },
         {
             album: "Rumours",
@@ -47,4 +51,15 @@ for(let i = 0; i < 10; i++){
             position: 5
         }
     ];
+
+for (const songData of sampleSongs){
+    const song = await PlaylistSong.create(songData)
+    await playlist.addPlaylistSong(song)
 }
+
+
+}
+
+
+await db.close()
+console.log('Finished seeding database!')
