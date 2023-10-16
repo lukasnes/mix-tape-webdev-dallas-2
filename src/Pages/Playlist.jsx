@@ -13,9 +13,9 @@ const Playlist = () => {
 
               <div id='tapeMain'>
                 <div id='window'>
-                  <button class="windowButtons" id='topButton'> Top </button>
-                  <button class="windowButtons" id='loginButton'> Login </button>
-                  <button class="windowButtons" id='friendsButton'> Friends </button>
+                  <button className="windowButtons" id='topButton'> Top </button>
+                  <button className="windowButtons" id='loginButton'> Login </button>
+                  <button className="windowButtons" id='friendsButton'> Friends </button>
                 </div>
                 <div id='tapeBottom'>
                   <div></div>
@@ -26,7 +26,7 @@ const Playlist = () => {
 
             <main>
               <div id='playlistList'>
-                {playlistRow}
+                {playlistRow()}
               </div>
             </main>
 
