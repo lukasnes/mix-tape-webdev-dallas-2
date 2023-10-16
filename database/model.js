@@ -48,19 +48,19 @@ Song.init(
                 unique: true
             },
             album:{
-                type: DataTypes.CHAR,
+                type: DataTypes.STRING,
 
             },
             artist: {
-                type: DataTypes.CHAR,
+                type: DataTypes.STRING,
 
             },
             name: {
-                type: DataTypes.CHAR,
+                type: DataTypes.STRING,
 
             },
             position: {
-                type: DataTypes.CHAR,
+                type: DataTypes.INTEGER,
             },
         },
         
