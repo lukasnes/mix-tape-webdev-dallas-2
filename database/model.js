@@ -6,26 +6,26 @@ import connectToDB from './db.js'
 
 export const db = await connectToDB('postgresql:///mixtape')
 
-export class Mixtape extends Model {
-    [util.inspect.custome]() {
+export class Playlist extends Model {
+    [util.inspect.custom]() {
         return this.toJSON()
     }
 }
 
-export class MixtapeSong extends Model {
-     [util.inspect.custome]() {
+export class PlaylistSong extends Model {
+     [util.inspect.custom]() {
         return this.toJSON()
     }
 }
 
 
-Mixtape.init(
+Playlist.init(
     {
-        mixtapeId: {
+        playlistId: {
             type: DataTypes.INTEGER,
             autoIncrement:true,
-            unique:true,
             primaryKey: true,
+            unique:true,
         },
         name: {
             type: DataTypes.STRING,
@@ -33,15 +33,15 @@ Mixtape.init(
         }
     },
     {
-        modelName: 'mixtape',
+        modelName: 'playlist',
         sequelize: db,
         timestamps: true
     }
 )
 
-MixtapeSong.init(
+PlaylistSong.init(
     {
-        mixtapeSongId: {
+        playlistSongId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -74,5 +74,18 @@ MixtapeSong.init(
         }
 )
 
-Mixtape.hasMany(MixtapeSong, { foreignKey: 'mixtapeId'})
-MixtapeSong.belongsTo(Mixtape, {foreignKey: 'mixtapeId'})
+Playlist.hasMany(PlaylistSong, { foreignKey: 'playlistId'})
+PlaylistSong.belongsTo(Playlist, {foreignKey: 'playlistId'})
+
+// await db.sync({ force: true })
+
+// const testMixtape = await Playlist.create({ name: 'joe mix' })
+
+// console.log(testMixtape)
+
+// const testStock = await Stock.create({ stockId: '1', stockSymbol: 'AAPL'})
+
+// console.log(testStock)   
+
+
+// await db.close()
