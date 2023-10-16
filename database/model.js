@@ -1,4 +1,4 @@
-import {Model, DataTypes} from 'sequelize'
+import { Model, DataTypes } from 'sequelize'
 import util from 'util'
 import connectToDB from './db.js'
 
@@ -12,7 +12,7 @@ export class Playlist extends Model {
     }
 }
 
-export class PlaylistSong extends Model {
+export class Song extends Model {
      [util.inspect.custom]() {
         return this.toJSON()
     }
@@ -39,17 +39,13 @@ Playlist.init(
     }
 )
 
-PlaylistSong.init(
+Song.init(
     {
-        playlistSongId: {
-            type: DataTypes.INTEGER,
-            autoIncrement: true,
-            primaryKey: true,
-            unique: true
-        },
             songId:{
-                type:DataTypes.INTEGER,
-                unique:true,
+                type: DataTypes.INTEGER,
+                autoIncrement: true,
+                primaryKey: true,
+                unique: true
             },
             album:{
                 type: DataTypes.CHAR,
@@ -69,13 +65,13 @@ PlaylistSong.init(
         },
         
         {
-            modelName: 'mixtape',
+            modelName: 'song',
             sequelize: db,
         }
 )
 
-Playlist.hasMany(PlaylistSong, { foreignKey: 'playlistId'})
-PlaylistSong.belongsTo(Playlist, {foreignKey: 'playlistId'})
+Playlist.hasMany(Song, { foreignKey: 'playlistId'})
+Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
 // await db.sync({ force: true })
 
