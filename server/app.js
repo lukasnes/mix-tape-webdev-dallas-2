@@ -2,9 +2,9 @@ import express from "express";
 import morgan from "morgan";
 import ViteExpress from "vite-express";
 import axios from "axios";
-import { addPlaylist, deletePlayList } from "./controllers/playlistController";
-import { playlistSong, addNewSong, deleteSong } from "./controllers/songController";
-import { login, logout, loginRequired } from "./controllers/authController";
+import { addPlaylist, deletePlayList } from "./controllers/playlistController.js";
+import { playlistSong, addNewSong, deleteSong } from "./controllers/songController.js";
+import { login, logout, loginRequired } from "./controllers/authController.js";
 const app = express();
 const port = "8000";
 
