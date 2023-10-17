@@ -4,6 +4,8 @@ import morgan from "morgan";
 import ViteExpress from "vite-express";
 import axios from 'axios'
 
+//user variable that grabs user info 
+
 
 import { 
   getPlaylist,

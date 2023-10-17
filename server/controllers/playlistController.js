@@ -1,5 +1,10 @@
 //get playlist function and return them
-import axios from 'axios'
+// import axios from 'axios'
+
+//add playlist endpoint creates a pL w/ name of "New Playlist"
+
+//getplaylist data 
+
 import { Playlist } from "../../database/model.js"
 
 let userId = 1; 
@@ -11,11 +16,11 @@ const getPlaylist = async (req, res) => {
 
 
 const addPlaylist = async (req, res) => {
-    const { name } = req.body
+    // const { name } = req.body
     
      const newPlaylist = await Playlist.create(
         {
-         name:name
+         name:'New Playlist'
         }
     )
     res.status(201).json(newPlaylist)
@@ -23,7 +28,24 @@ const addPlaylist = async (req, res) => {
 
 
 const editPlaylist = async (req,res) => {
-    
+    const {
+        playlistId,
+        playlistname
+    } = req.body
+
+    const playlist = await Playlist.findOne(
+        {
+            where:
+            { playlistId:playlistId }
+        }
+        
+        )
+        playlist.name = playlistname
+        await playlist.save()
+
+ 
+    res.status(200).json(playlist)
+
 }
 
 const deletePlayList = async (req, res) => {
@@ -31,14 +53,13 @@ const deletePlayList = async (req, res) => {
     const playlist = await Playlist.findOne(
         {
             where:
-            {playlistId:playlistId}
+            { playlistId:playlistId }
         }
     )
     await playlist.destroy()
 
     const playlists = await Playlist.findAll()
     res.status(200).json(playlists)
-
 
 };
 
