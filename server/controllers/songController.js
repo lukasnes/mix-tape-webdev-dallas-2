@@ -1,7 +1,7 @@
 import { Playlist, Song } from "../../database/model.js";
 
 const playlistSong = async (req, res) => {
-    const playlist = await Playlist.findOne({ where: { playlistId:+req.params.id }, include: { model: Song, attributes: ['name', 'artist', 'album', 'position', 'songId'] }});
+    const playlist = await Playlist.findOne({ where: { playlistId:+req.params.id }, include: { model: Song, attributes: ['name', 'artist', 'album', 'position', 'songId', 'preview', 'imgUrl'] }});
     res.status(200).json(playlist);
 }
 
