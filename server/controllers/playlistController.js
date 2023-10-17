@@ -5,7 +5,7 @@
 
 //getplaylist data 
 
-import { Playlist } from "../../database/model.js"
+import { User, Playlist,  } from "../../database/model.js"
 
 let userId = 1; 
 
@@ -17,8 +17,15 @@ const getPlaylist = async (req, res) => {
 
 const addPlaylist = async (req, res) => {
     // const { name } = req.body
+    const user = await User.findOne(
+        {
+            where: {
+                userId: userId
+            }
+        }
+    )
     
-     const newPlaylist = await Playlist.create(
+     const newPlaylist = await user.createPlaylist(
         {
          name:'New Playlist'
         }
