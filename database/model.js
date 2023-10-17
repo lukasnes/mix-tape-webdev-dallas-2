@@ -6,6 +6,14 @@ import connectToDB from './db.js'
 
 export const db = await connectToDB('postgresql:///mixtape')
 
+
+// export class User extends Model {
+//     [util.inspect.custom](){
+//         return this.toJSON()
+//     }
+// }
+
+
 export class Playlist extends Model {
     [util.inspect.custom]() {
         return this.toJSON()
@@ -18,6 +26,33 @@ export class Song extends Model {
     }
 }
 
+// User.init(
+//     {
+//         userId: {
+//             type: DataTypes.INTEGER,
+//             autoIncrement: true,
+//             primaryKey: true,
+//             unique: true,
+//         },
+//         username:{
+//             type: DataTypes.INTEGER,
+//             unique:true,
+//         },
+//         email: {
+//             type: DataTypes.STRING,
+//             allowNull: false,
+//             unique: true,
+//         },
+//         password: {
+//             type: DataTypes.STRING,
+//             allowNull:false,
+//         }
+//     },
+//     {
+//         modelName: 'user',
+//         sequelize: db,
+//     }
+// )
 
 Playlist.init(
     {
@@ -73,15 +108,16 @@ Song.init(
 Playlist.hasMany(Song, { foreignKey: 'playlistId'})
 Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
+
+// User.hasMany(Playlist, {foreignKey:'userId'})
+// Playlist.belongsTo(User, {foreignKey: 'userId'})
+
+
 // await db.sync({ force: true })
 
 // const testMixtape = await Playlist.create({ name: 'joe mix' })
 
 // console.log(testMixtape)
-
-// const testStock = await Stock.create({ stockId: '1', stockSymbol: 'AAPL'})
-
-// console.log(testStock)   
 
 
 // await db.close()
