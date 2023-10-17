@@ -42,9 +42,9 @@ for(let i = 0; i < 3; i++){
                 position: 2
             },
             {
-                album: "Abbey Road",
-                artist: "The Beatles",
-                name: "Come Together",
+                album: "A Little Bit of Mambo",
+                artist: "Lou Bega",
+                name: "Mambo No. 5",
                 position: 3
             },
             {
