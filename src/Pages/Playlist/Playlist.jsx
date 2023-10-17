@@ -1,35 +1,41 @@
 import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
-import { useLoaderData } from "react-router-dom";
+import Header from "../../Components/Header/Header";
+import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
+import axios from "axios";
 import './playlist.css'
+
 
 const Playlist = () => {
 
+  const Navigate = useNavigate()
+
   let {playlists} = useLoaderData();
+
   let playlistData = playlists.map((pl) => {
     return <PlaylistRow pl={pl} />
   })
 
+  const createPlaylist = async () => {
+      const res = await axios.post('/api/addnewplaylist')
+
+      console.log(res.data)
+
+      let newId = res.data
+      Navigate(`/playlist/${newId}`) 
+
+
+  }
+
   return  <>
             <header>
-
-              <div id='tapeMain'>
-                <div id='window'>
-                  <button className="windowButtons" id='topButton'> Top </button>
-                  <button className="windowButtons" id='loginButton'> Login </button>
-                  <button className="windowButtons" id='friendsButton'> Friends </button>
-                </div>
-                <div id='tapeBottom'>
-                  <div>
-                    <p>username/signup</p>
-                  </div>
-                </div>
-              </div>
-
+              <Header />
             </header>
-
             <main>
               <div id='playlistContainer'>
                 {playlistData}
+              </div>
+              <div id='createPlaylistDiv'>
+                <button id='createPlaylistButton' onClick={(e)=> createPlaylist }> Create Playlist </button>
               </div>
             </main>
 
