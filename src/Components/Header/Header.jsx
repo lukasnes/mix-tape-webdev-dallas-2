@@ -1,5 +1,17 @@
+import LoginModal from "../Modal/Login/Login"
+import {useState} from 'react'
 
-const Header = ({isLoggedIn, setIsLoggedIn}) => {
+
+const Header = ({isLoggedIn}) => {
+
+  const [show, setShow] = useState(false)
+
+  // <LoginModal show={show} setShow={setShow} />
+
+  const handleOpen = () => {
+    setShow(true)
+  }
+
 
     return isLoggedIn ? (
       <div id='tapeMain'>
@@ -19,7 +31,7 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
         <div id='tapeMain'>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
-          <button className="windowButtons" id='loginButton'> Login </button>
+          <button className="windowButtons" id='loginButton' onClick={handleOpen} > Login </button>
           <button className="windowButtons" id='friendsButton'> Friends </button>
         </div>
         <div id='tapeBottom'>
