@@ -70,7 +70,7 @@ app.get("/api/playlistsongs", playlistSong)
 app.post("/api/addnewsong", addNewSong)
 
 //Delete Song
-app.post("/api/deletesong", deleteSong)
+app.post("/api/deletesong/:songId", deleteSong)
 
   // //Login
   // app.post("/api/login", login)
