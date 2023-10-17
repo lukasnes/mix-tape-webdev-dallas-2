@@ -1,0 +1,31 @@
+
+.displayRow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+#timeStampDiv {
+    display: flex;
+    width: 33vw;
+    justify-content: left;
+}
+
+#playlistNameDiv {
+    display: flex;
+    width: 33vw;
+    justify-content: center;
+}
+
+#deleteButtonDiv {
+    display: flex;
+    width: 33vw;
+    justify-content: right;
+}
+
+#deletePlaylistButton {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+}

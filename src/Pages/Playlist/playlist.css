@@ -36,7 +36,7 @@ main {
     border: 1px solid black;
 }
 
-.displayRow {
-    height: 50px;
-    width: 400px;
+#createPlaylistDiv {
+    display: flex;
+    justify-content: center;
 }

@@ -26,7 +26,6 @@ const editPlaylist = async (req,res) => {
     
 }
 
-
 const deletePlayList = async (req, res) => {
     const { playlistId } = req.body
     const playlist = await Playlist.findOne(
@@ -42,7 +41,6 @@ const deletePlayList = async (req, res) => {
 
 
 };
-
 
 export { 
     getPlaylist,
