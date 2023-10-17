@@ -82,6 +82,9 @@ Song.init(
                 primaryKey: true,
                 unique: true
             },
+            preview: {
+                type: DataTypes.STRING
+            },
             album:{
                 type: DataTypes.STRING,
 
@@ -96,6 +99,9 @@ Song.init(
             },
             position: {
                 type: DataTypes.INTEGER,
+            },
+            imgUrl: {
+                type: DataTypes.STRING,
             },
         },
         

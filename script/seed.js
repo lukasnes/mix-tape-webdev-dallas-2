@@ -1,6 +1,7 @@
 // create 3 playlists, 5 of the same song
 
 // import util from 'util'
+import axios from 'axios'
 import { User, Playlist, Song, db } from '../database/model.js'
 
 console.log('Syncing Database...')
@@ -9,7 +10,8 @@ await db.sync ({force: true})
 
 console.log('Seeding database...')
 
-// const samplePlaylist = []
+
+
 
 for(let i = 0; i < 3; i++){
     const user = await User.create(
@@ -25,43 +27,70 @@ for(let i = 0; i < 3; i++){
             name:`samplePlaylist${i}`
         })
         
-        // samplePlaylist.push(playlist)
         
         const sampleSongs = [
             {
                 album: "Hotel California",
                 artist: "Eagles",
-                name: "Hotel California",
-                position: 1,
+                track: "Hotel California",
+
             },
             
             {
                 album: "Believe",
                 artist: "Cher",
-                name: "Believe",
-                position: 2
+                track: "Believe",
+
             },
             {
                 album: "A Little Bit of Mambo",
                 artist: "Lou Bega",
-                name: "Mambo No. 5",
-                position: 3
+                track: "Mambo No. 5",
+
             },
             {
                 album: "Sunshine on Leith",
                 artist: "The Proclaimers",
-                name: "500 Miles",
-                position: 4,
+                track: "500 Miles",
+
             },
             {
                 album: "Whenever You Need Somebody",
                 artist: "Rick Astley",
-                name: "Never Gonna Give You Up",
-                position: 5
+                track: "Never Gonna Give You Up",
+
             }
         ];
         
-        for (const songData of sampleSongs){
+
+
+        let apiData = await Promise.all(
+            sampleSongs.map( async (song, index)=> {
+                let queryString = "https://api.deezer.com/search?q="
+                for (let key in song){
+                    if(key !== 'track'){
+                        queryString += `${key}:"${song[key]}" `
+                    } else {
+                        queryString += `${key}:"${song[key]}"`
+                    }
+                }
+                let {data} = await axios.get(queryString)
+                // console.log(data.data[0])
+                let { title: name, preview, artist: { name: artist }, album: { title: album, cover_medium: imgUrl} } = data.data[0]
+                return {
+                    name, 
+                    preview,
+                    artist,
+                    album,
+                    imgUrl,
+                    position:index + 1
+                }
+            })
+
+        )
+console.log(apiData)
+
+        for (const songData of apiData){
             const song = await playlist.createSong(songData)
             console.log(song)
             
