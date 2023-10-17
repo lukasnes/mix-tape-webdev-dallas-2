@@ -50,7 +50,6 @@ const editPlaylist = async (req,res) => {
         playlist.name = playlistname
         await playlist.save()
 
- 
     res.status(200).json(playlist)
 
 }
@@ -65,7 +64,13 @@ const deletePlayList = async (req, res) => {
     )
     await playlist.destroy()
 
-    const playlists = await Playlist.findAll()
+    const playlists = await Playlist.findAll(
+        {
+            where: {
+                userId : userId
+            }
+        }
+    )
     res.status(200).json(playlists)
 
 };

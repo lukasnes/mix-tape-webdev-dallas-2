@@ -37,6 +37,7 @@ ViteExpress.config({ printViteDevServerHost: true });
 
 //getApiData
 app.get('/ApiData', async (req, res) => {
+  
   const response = await axios.get('')
   const data = response.data
   console.log(data)
