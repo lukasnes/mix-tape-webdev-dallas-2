@@ -17,6 +17,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
         Song name: {song.name} <br />
         Artist: {song.artist} <br /> Album: {song.album}
       </p>
+      <img src={song.imgUrl}/>
       <button
         className="rowButton"
         onClick={() => {

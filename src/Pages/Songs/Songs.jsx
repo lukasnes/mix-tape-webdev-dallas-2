@@ -1,14 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import SongsRow from "../../Components/SongsRow/SongsRow";
-import { useState } from "react"
-
+import { useState } from "react";
+ import "../Songs/Songs.css"
 
 const Songs = () => {
   let { playlist } = useLoaderData();
   console.log(playlist);
 
   const [songs, setSongs] = useState(playlist.songs);
+  console.log(songs)
   const [playlistName, setPlaylistname] = useState(playlist.name);
   const [isEditing, setEditing] = useState(false);
 
@@ -37,25 +38,77 @@ const Songs = () => {
     });
   };
 
+  const addSong = () => {};
+
   return (
     <div>
-      
       {isEditing ? (
-        <header>
+        <div>
           <input
             value={playlistName}
             onChange={(e) => setPlaylistname(e.target.value)}
           />
           <button onClick={(e) => EditPlaylistName()}>Submit</button>
-        </header>
+        </div>
       ) : (
-        <header>
+        <div>
           <h1>{playlistName}</h1>
           <button onClick={(e) => setEditing(true)}>Edit</button>
-        </header>
+        </div>
       )}
       {songsDisplay}
-      <div className="addSongForm">
+      <div className="container">
+        <form action="action_page.php">
+          <div className="row">
+            <div className="col-25">
+              <label for="fname">Name</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="text"
+                id="fname"
+                name="firstname"
+                placeholder="Your song.."
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-25">
+              <label for="lname">Artist</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="text"
+                id="lname"
+                name="lastname"
+                placeholder="Your favorite artist"
+              />
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-25">
+              <label for="country">Album</label>
+            </div>
+            <div className="col-75">
+              <input
+                type="text"
+                id="album"
+                name="album"
+                placeholder="Your album"
+              />
+            </div>
+          </div>
+          <button className="addSongButton">Add</button>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default Songs;
+
+{
+  /* <div className="addSongForm">
         <form>
           <label>Name:</label>
           <input type="text" id="name" name="name" />
@@ -66,8 +119,5 @@ const Songs = () => {
           <button className="addSongButton">Add</button>
         </form>
       </div>
-    </div>
-  );
-};
-
-export default Songs;
+    </div> */
+}
