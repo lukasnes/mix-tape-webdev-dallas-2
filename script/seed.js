@@ -12,7 +12,7 @@ console.log('Seeding database...')
 // const samplePlaylist = []
 
 for(let i = 0; i < 3; i++){
-    const user = User.create(
+    const user = await User.create(
         {
             username: `testUser${i}`,
             email: `test${i}@email.com`,
