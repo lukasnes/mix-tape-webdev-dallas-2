@@ -1,24 +1,26 @@
 import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import Header from "../../Components/Header/Header";
-import { useLoaderData, Navigate, useNavigate } from "react-router-dom";
+import { useLoaderData, useNavigate} from "react-router-dom";
+import { useState } from "react";
 import axios from "axios";
 import './playlist.css'
 
 
 const Playlist = () => {
 
-  const Navigate = useNavigate()
-
+  const navigate = useNavigate()
   let {playlists} = useLoaderData();
 
-  let playlistData = playlists.map((pl) => {
-    return <PlaylistRow pl={pl} />
+  const [playlist, setPlaylist] = useState(playlists)
+
+  let playlistData = playlist.map((pl) => {
+    return <PlaylistRow pl={pl} setPlaylist={setPlaylist} />
   })
 
   const createPlaylist = async () => {
       const res = await axios.post('/api/addnewplaylist')
       let newId = res.data.playlistId
-      Navigate(`/playlist/${newId}`) 
+      navigate(`/playlist/${newId}`) 
 
   }
 
