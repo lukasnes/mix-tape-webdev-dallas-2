@@ -12,9 +12,10 @@ const AddSong = () => {
     const handleClose = () => setAdd(false);
     const handleAdd = () => setAdd(true);
 
-    const search = () => {
-        fetch('api_url_for_search_capabilitites')
-        .then(res => res.json())
+    const searchSong = async () => {
+        const response = await fetch('api_url_for_search_capabilitites' + searchTerm)
+        const data = await response.json();
+        return data;
     }
 
     return (
