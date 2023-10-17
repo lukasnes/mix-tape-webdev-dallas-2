@@ -5,8 +5,8 @@ div {
 header {
     display: flex;
     justify-content: center;
-    height: 30%vh;
-    width: 100%vw;
+    height: 30vh;
+    width: 100vw;
 }
 
 #window {
@@ -22,17 +22,18 @@ header {
 }
 
 main {
-    height: 60%vh;
-    width: 100%vw;
+    height: 60vh;
+    width: 100vw;
     border: 1px solid black;
 }
 
 #playlistContainer {
     display: flex;
-    justify-content: center;
+
+    align-items: center;
     flex-direction: column;
     height: 500px;
-    width: 100%vw;
+    width: 100vw;
     border: 1px solid black;
 }
 

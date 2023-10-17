@@ -17,12 +17,8 @@ const Playlist = () => {
 
   const createPlaylist = async () => {
       const res = await axios.post('/api/addnewplaylist')
-
-      console.log(res.data)
-
-      let newId = res.data
+      let newId = res.data.playlistId
       Navigate(`/playlist/${newId}`) 
-
 
   }
 
@@ -35,7 +31,7 @@ const Playlist = () => {
                 {playlistData}
               </div>
               <div id='createPlaylistDiv'>
-                <button id='createPlaylistButton' onClick={(e)=> createPlaylist }> Create Playlist </button>
+                <button id='createPlaylistButton' onClick={(e)=> createPlaylist()}> Create Playlist </button>
               </div>
             </main>
 
