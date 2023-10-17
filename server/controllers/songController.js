@@ -1,8 +1,8 @@
 import { Playlist, Song } from "../../database/model.js";
 
 const playlistSong = async (req, res) => {
-    const songs = await Song.findAll({ where: { playlistId:+req.params.id }});
-    res.status(200).json(songs);
+    const playlist = await Playlist.findOne({ where: { playlistId:+req.params.id }, include: { model: Song, attributes: ['name', 'artist', 'album', 'position'] }});
+    res.status(200).json(playlist);
 }
 
 const addNewSong = async (req, res) => {
@@ -14,7 +14,7 @@ const addNewSong = async (req, res) => {
 };
 
 const deleteSong =  async (req, res) => {
-    let deletedSong = await Song.destroy({ where: req.params.songId });
+    let deletedSong = await Song.destroy({ where:+req.params.songId });
     // await deleteSongs.destroy();
     res.status(200).json({ message: 'Song deleted successfully' });
 }; 
