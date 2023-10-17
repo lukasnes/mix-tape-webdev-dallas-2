@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-dom";
 import Modal from "react-modal";
 import { useState } from "react";
-import { Model } from "sequelize";
+
 
 const AddSong = () => {
     const [Add, setAdd] = useState(false);
@@ -16,7 +16,7 @@ const AddSong = () => {
         
         <Modal.Dialog>
             <Modal.Header>
-                <Model.Title>Add Songs</Model.Title>
+                <Modal.Title>Add Songs</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
