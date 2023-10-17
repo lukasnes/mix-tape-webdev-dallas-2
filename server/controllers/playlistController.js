@@ -5,7 +5,7 @@ import { Playlist } from "../../database/model.js"
 let userId = 1; 
 
 const getPlaylist = async (req, res) => {
-    const playlists = await Playlist.findAll({where: userId})
+    const playlists = await Playlist.findAll({where: {userId: userId}})
     res.status(200).json(playlists)
 }
 
