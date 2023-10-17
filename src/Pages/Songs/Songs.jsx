@@ -33,7 +33,7 @@ const Songs = () => {
     setEditing(false);
     await axios.post("/api/editplaylist", {
       playlistId: playlist.playlistId,
-      playlistname: playlist.name,
+      playlistname: playlistName,
     });
   };
 
