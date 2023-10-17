@@ -2,7 +2,9 @@ import React from "react";
 import ReactModal from "react-dom";
 import Modal from "react-modal";
 import { useState } from "react";
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 const AddSong = () => {
     const [Add, setAdd] = useState(false);
@@ -20,7 +22,16 @@ const AddSong = () => {
             </Modal.Header>
 
             <Modal.Body>
-                <p></p>
+                <Form>
+                <Form.Label>Search Song</Form.Label>
+                <Form.Control
+                    type="song"
+                    placeholder="enter song here"
+                    autoFocus
+                />
+                <Form.Label>Results:</Form.Label>
+                <Form.Control as="results" row={10} />
+                </Form>
             </Modal.Body>
 
             <Modal.Footer>
@@ -30,6 +41,6 @@ const AddSong = () => {
         </Modal.Dialog>
     </>
     )
-}
+};
 
 export default AddSong;
