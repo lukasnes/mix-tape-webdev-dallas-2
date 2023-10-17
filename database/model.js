@@ -35,7 +35,7 @@ User.init(
             unique: true,
         },
         username:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             unique:true,
         },
         email: {
