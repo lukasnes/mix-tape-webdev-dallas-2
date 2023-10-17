@@ -1,22 +1,13 @@
+import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import { useLoaderData } from "react-router-dom";
 import './playlist.css'
 
 const Playlist = () => {
+
   let {playlists} = useLoaderData();
-  console.log(playlists)
-
-
-    let playlistData = playlists.map((pl) => {
-      return (
-        <div className="displayRow">
-          <p id='timeStamp'> {pl.createdAt} </p>
-          <p> {pl.name} </p>
-          <button className="rowButton"> edit </button>
-          <button className="rowButton"> delete </button>
-        </div>
-      )
-    })
-  
+  let playlistData = playlists.map((pl) => {
+    return <PlaylistRow pl={pl} />
+  })
 
   return  <>
             <header>
@@ -28,7 +19,9 @@ const Playlist = () => {
                   <button className="windowButtons" id='friendsButton'> Friends </button>
                 </div>
                 <div id='tapeBottom'>
-                  <div></div>
+                  <div>
+                    <p>username/signup</p>
+                  </div>
                 </div>
               </div>
 
