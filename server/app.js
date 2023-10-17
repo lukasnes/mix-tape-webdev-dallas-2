@@ -35,15 +35,6 @@ app.use(
 ViteExpress.config({ printViteDevServerHost: true });
 
 
-//getApiData
-app.get('/ApiData', async (req, res) => {
-  
-  const response = await axios.get('')
-  const data = response.data
-  console.log(data)
-  res.status(200).json(data)
-}
-  )
 
 
 //Get Playlist
@@ -54,7 +45,7 @@ app.post("/api/addnewplaylist", addPlaylist)
 
 
 //Edit Playlist
-app.post('api/playlists', editPlaylist)
+app.post('/api/editplaylist', editPlaylist)
 
 
 //Delete Playlist
