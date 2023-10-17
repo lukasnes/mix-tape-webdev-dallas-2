@@ -12,6 +12,11 @@ const AddSong = () => {
     const handleClose = () => setAdd(false);
     const handleAdd = () => setAdd(true);
 
+    const search = () => {
+        fetch('api_url_for_search_capabilitites')
+        .then(res => res.json())
+    }
+
     return (
     <>
         <Button variant="primary" onClick={handleAdd}> Add New Song </Button>
