@@ -27,7 +27,7 @@ let router = createBrowserRouter(
         loader={async ({ params }) => {
           let res = await axios.get(`/api/playlistsongs/${params.id}`);
           return {
-            songs: res.data,
+            playlist: res.data,
           };
         }}
       />
