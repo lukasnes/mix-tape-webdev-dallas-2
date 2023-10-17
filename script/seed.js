@@ -83,7 +83,7 @@ for(let i = 0; i < 3; i++){
                     artist,
                     album,
                     imgUrl,
-                    position:index + 1
+                    position: index + 1
                 }
             })
 
