@@ -36,9 +36,9 @@ for(let i = 0; i < 3; i++){
             },
             
             {
-                album: "Nevermind",
-                artist: "Nirvana",
-                name: "Drain You",
+                album: "Believe",
+                artist: "Cher",
+                name: "Believe",
                 position: 2
             },
             {
@@ -48,15 +48,15 @@ for(let i = 0; i < 3; i++){
                 position: 3
             },
             {
-                album: "Purple Haze",
-                artist: "Jimi Hendrix",
-                name: "Purple Haze",
+                album: "Sunshine on Leith",
+                artist: "The Proclaimers",
+                name: "500 Miles",
                 position: 4,
             },
             {
-                album: "Rumours",
-                artist: "Fleetwood Mac",
-                name: "Go Your Own Way",
+                album: "Whenever You Need Somebody",
+                artist: "Rick Astley",
+                name: "Never Gonna Give You Up",
                 position: 5
             }
         ];
