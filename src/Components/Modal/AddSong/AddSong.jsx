@@ -22,7 +22,7 @@ const AddSong = () => {
     <>
         <Button variant="primary" onClick={handleAdd}> Add New Song </Button>
         
-        <Modal.Dialog>
+        <Modal>
             <Modal.Header>
                 <Modal.Title>Add Songs</Modal.Title>
             </Modal.Header>
@@ -44,7 +44,7 @@ const AddSong = () => {
                 <Button variant="primary">Save</Button>
                 <Button variant ="secondary">Close</Button>
             </Modal.Footer>
-        </Modal.Dialog>
+        </Modal>
     </>
     )
 };

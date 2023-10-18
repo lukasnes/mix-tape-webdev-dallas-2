@@ -1,14 +1,16 @@
-import {Modal} from 'react-bootstrap';
-import Button from 'react-bootstrap/Button';
+import {Modal, Form, Button} from 'react-bootstrap';
+// import Modal from 'react-modal'
+// import ReactModal from 'react-dom'
 import { useState } from 'react';
+import axios from 'axios';
 
-function LoginModal() {
+function LoginModal({show, setShow, handleClose}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleLogin = async () => {
-        event.preventDefault()
+        // event.preventDefault()
         const res = await axios.post('/api/login', {email, password})
         // todo need response
     }
@@ -16,35 +18,37 @@ function LoginModal() {
   return (
     <div
       className="modal show"
-      style={{ display: 'block', position: 'initial' }}
+      style={ show ? { display: 'block', position: 'initial', height: '300px' } : {display: 'none'}}
     >
       <Modal.Dialog>
-        <Modal.Header closeButton>
+        <Modal.Header onClick={handleClose} closeButton >
           <Modal.Title>Please Login</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-            <form id='loginForm' onSubmit={handleLogin} >
-            <label for="email" />
-            <input id="email" 
-                type="email" 
+            <Form>
+            <Form.Control
+                id="email" 
+                type="text" 
                 value={email} 
                 onChange={(e)=>setEmail(e.target.value)} 
                 placeholder='Please enter email'
+                autoFocus
                 required />
-            <label for="password" />
-            <input id="password"
+            <Form.Control
+                id="password"
                 type="text"
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
-                placeholder='please enter a password'
+                placeholder='Please enter password'
+                autoFocus
                 required />
-            </form>    
+            </Form>    
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary">Close</Button>
-          <input type='submit' variant="primary">Submit</input>
+          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button type='submit' variant="primary" onClick={handleLogin}>Submit</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </div>
