@@ -1,20 +1,19 @@
-import LoginModal from "../Modal/Login/Login"
+// import LoginModal from "../Modal/Login/Login"
 import {useState} from 'react'
+import {Modal} from 'react-bootstrap'
 
 
 const Header = ({isLoggedIn}) => {
 
   const [show, setShow] = useState(false)
 
-  // <LoginModal show={show} setShow={setShow} />
-
-  const handleOpen = () => {
-    setShow(true)
-  }
+  const handleOpen = () => setShow(true)
+  const handleClose = () => setShow(false)
 
 
     return isLoggedIn ? (
       <div id='tapeMain'>
+        
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
           <button className="windowButtons" id='createButton'> Create </button>
@@ -29,6 +28,9 @@ const Header = ({isLoggedIn}) => {
     ):
     (
         <div id='tapeMain'>
+          <Modal id="loginModal" show={show} setShow={setShow}>
+          
+          </Modal>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
           <button className="windowButtons" id='loginButton' onClick={handleOpen} > Login </button>
