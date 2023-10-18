@@ -1,6 +1,6 @@
 import React from "react";
-import ReactModal from "react-dom";
-import Modal from "react-modal";
+// import ReactModal from "react-dom";
+// import Modal from "react-modal";
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -21,7 +21,6 @@ const AddSong = () => {
     return (
     <>
         <Button variant="primary" onClick={handleAdd}> Add New Song </Button>
-        
         <Modal>
             <Modal.Header>
                 <Modal.Title>Add Songs</Modal.Title>

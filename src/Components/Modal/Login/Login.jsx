@@ -1,27 +1,30 @@
-import {Modal, Form, Button} from 'react-bootstrap';
-// import Modal from 'react-modal'
-// import ReactModal from 'react-dom'
 import { useState } from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
-function LoginModal({show, setShow, handleClose}) {
+function LoginModal({show, setShow, handleClose, setIsloggedIn}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleLogin = async () => {
+        console.log('hit')
         // event.preventDefault()
         const res = await axios.post('/api/login', {email, password})
-        // todo need response
+        if (res.data.success){
+            setIsloggedIn(true)
+        }
     }
 
   return (
     <div
       className="modal show"
-      style={ show ? { display: 'block', position: 'initial', height: '300px' } : {display: 'none'}}
+      style={ show ? { display: 'block', position: 'initial', height: '290px' } : {display: 'none'}}
     >
       <Modal.Dialog>
-        <Modal.Header onClick={handleClose} closeButton >
+        <Modal.Header >
           <Modal.Title>Please Login</Modal.Title>
         </Modal.Header>
 
@@ -33,7 +36,6 @@ function LoginModal({show, setShow, handleClose}) {
                 value={email} 
                 onChange={(e)=>setEmail(e.target.value)} 
                 placeholder='Please enter email'
-                autoFocus
                 required />
             <Form.Control
                 id="password"
@@ -41,7 +43,6 @@ function LoginModal({show, setShow, handleClose}) {
                 value={password}
                 onChange={(e)=>setPassword(e.target.value)}
                 placeholder='Please enter password'
-                autoFocus
                 required />
             </Form>    
         </Modal.Body>
