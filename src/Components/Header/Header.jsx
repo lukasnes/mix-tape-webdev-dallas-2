@@ -1,4 +1,4 @@
-// import LoginModal from "../Modal/Login/Login"
+import LoginModal from "../Modal/Login/Login"
 import {useState} from 'react'
 import {Modal} from 'react-bootstrap'
 
@@ -28,9 +28,6 @@ const Header = ({isLoggedIn}) => {
     ):
     (
         <div id='tapeMain'>
-          <Modal id="loginModal" show={show} setShow={setShow}>
-          
-          </Modal>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
           <button className="windowButtons" id='loginButton' onClick={handleOpen} > Login </button>
@@ -41,6 +38,7 @@ const Header = ({isLoggedIn}) => {
             <p>signup</p>
           </div>
         </div>
+        <LoginModal id="loginModal" show={show} setShow={setShow} handleClose={handleClose} />
       </div>  
     )
 }
