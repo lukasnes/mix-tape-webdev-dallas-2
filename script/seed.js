@@ -2,7 +2,12 @@
 
 // import util from 'util'
 import axios from 'axios'
-import { User, Playlist, Song, db } from '../database/model.js'
+import { User, 
+    Playlist, 
+    Song,
+    FriendList,
+    Friends,
+    Likes, db } from '../database/model.js'
 
 console.log('Syncing Database...')
 
@@ -16,15 +21,14 @@ console.log('Seeding database...')
 for(let i = 0; i < 3; i++){
     const user = await User.create(
         {
-            username: `testUser${i}`,
+            username: `testUsername${i}`,
             email: `test${i}@email.com`,
             password: `test`
-        }
-    )
+        })
 
-    for(let i = 0; i < 3; i++){
+    for(let i = 0; i < 2; i++){
         const playlist = await user.createPlaylist({
-            name:`samplePlaylist${i}`
+            name:`Sample Playlist ${i}`
         })
         
         
@@ -53,6 +57,11 @@ for(let i = 0; i < 3; i++){
                 artist: "The Proclaimers",
                 track: "500 Miles",
 
+            },
+            {
+                album: "Bark at the Moon",
+                artist: "Ozzy Osbourne",
+                track: "Bark at the Moon"
             },
             {
                 album: "Whenever You Need Somebody",
@@ -88,14 +97,38 @@ for(let i = 0; i < 3; i++){
             })
 
         )
-console.log(apiData)
+        // console.log(apiData)
 
         for (const songData of apiData){
             const song = await playlist.createSong(songData)
-            console.log(song)
-            
+            // console.log(song)
         }
+
+        // Sample Likes Data
+        const like = await Likes.create({
+            userId: user.userId,
+            playlistId: playlist.playlistId,
+            // liked: true,
+        })
+        console.log(like)
+
     }
+
+        //Sample friendList data
+        const friendList = await FriendList.create({
+            userId: user.userId
+        })
+
+        for(let j = 0; j < 5; j++){
+            const friend = await Friends.create({
+                friendListId: friendList.friendListId
+            })
+            console.log(friendList)
+            console.log(friend)
+        }
+
+
+
 }
     
     
