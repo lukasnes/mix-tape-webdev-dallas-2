@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import SongsRow from "../../Components/SongsRow/SongsRow";
 import { useState } from "react";
- import "../Songs/Songs.css"
+import "../Songs/Songs.css"
+import SongsModal from "./SongsModal";
 
 const Songs = () => {
   let { playlist } = useLoaderData();
@@ -58,7 +59,7 @@ const Songs = () => {
       )}
       {songsDisplay}
       <div className="container">
-        <form action="action_page.php">
+        <form>
           <div className="row">
             <div className="col-25">
               <label for="fname">Name</label>
@@ -98,6 +99,7 @@ const Songs = () => {
               />
             </div>
           </div>
+            <SongsModal/>
           <button className="addSongButton">Add</button>
         </form>
       </div>
@@ -107,7 +109,7 @@ const Songs = () => {
 
 export default Songs;
 
-{
+
   /* <div className="addSongForm">
         <form>
           <label>Name:</label>
@@ -120,4 +122,4 @@ export default Songs;
         </form>
       </div>
     </div> */
-}
+

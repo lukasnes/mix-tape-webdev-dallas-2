@@ -2,7 +2,7 @@ import {Modal} from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 
-function LoginModal({show, setShow}) {
+function LoginModal() {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -16,7 +16,7 @@ function LoginModal({show, setShow}) {
   return (
     <div
       className="modal show"
-      style={ open ? { display: 'block', position: 'initial' } : {display: 'none'}}
+      style={{ display: 'block', position: 'initial' }}
     >
       <Modal.Dialog>
         <Modal.Header closeButton>
