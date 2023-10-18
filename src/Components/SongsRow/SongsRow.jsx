@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRef } from "react";
 
 const SongsRow = ({ song, songs, setSongs }) => {
   const deleteSongs = (songId) => {
@@ -18,6 +19,9 @@ const SongsRow = ({ song, songs, setSongs }) => {
         Artist: {song.artist} <br /> Album: {song.album}
       </p>
       <img src={song.imgUrl}/>
+      <div>
+      <audio ref={useRef()} src={song.preview} controls />
+      </div>
       <button
         className="rowButton"
         onClick={() => {
