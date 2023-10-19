@@ -26,6 +26,24 @@ export class Song extends Model {
     }
 }
 
+export class FriendList extends Model {
+    [util.inspect.custom](){
+        return this.toJSON()
+    }
+}
+
+export class Friends extends Model {
+    [util.inspect.custom](){
+        return this.toJSON()
+    }
+}
+
+export class Likes extends Model {
+    [util.inspect.custom](){
+        return this.toJSON()
+    }
+}
+
 User.init(
     {
         userId: {
@@ -111,12 +129,84 @@ Song.init(
         }
 )
 
+FriendList.init(
+    {
+        friendListId: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement:true,
+            allowNull: false
+        },
+    },
+    {
+        modelName: 'friendlist',
+        sequelize: db,
+    }
+)
+
+Friends.init(
+    {
+        friendId: {
+            type: DataTypes.INTEGER,
+            autoIncrement:true,
+            primaryKey: true,
+            allowNull: false,
+        },
+    },
+    {
+        modelName: 'friends',
+        sequelize: db,
+    }
+)
+
+Likes.init(
+{
+    likesId: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+        allowNull: false,
+    },
+    // liked: {
+    //     type: DataTypes.BOOLEAN,
+    //     allowNull: false,
+    //     defaultValue: false,
+    // }
+
+},
+{
+    modelName: 'likes',
+    sequelize: db,
+}
+
+)
+
+
+// Playlist table
 Playlist.hasMany(Song, { foreignKey: 'playlistId'})
 Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
+// Likes
+Playlist.hasMany(Likes, { foreignKey: 'playlistId'})
+Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
+// Playlist
 User.hasMany(Playlist, {foreignKey:'userId'})
 Playlist.belongsTo(User, {foreignKey: 'userId'})
+
+// Friendlist
+User.hasOne(FriendList, {foreignKey: 'userId'})
+FriendList.belongsTo(User, { foreignKey: 'userId'})
+
+// Likes table
+User.hasMany(Likes, {foreignKey: 'userId'})
+Likes.belongsTo(User, {foreignKey: 'userId'})
+
+// Friendlist
+FriendList.hasMany(Friends, { foreignKey: 'friendListId'})
+Friends.belongsTo(FriendList, {foreignKey: 'friendListId'})
+
+
 
 
 // await db.sync({ force: true })
