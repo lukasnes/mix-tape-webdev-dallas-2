@@ -1,6 +1,7 @@
 import LoginModal from "../Modal/Login/Login"
 import {useState} from 'react'
 import {Modal} from 'react-bootstrap'
+import './header.css'
 
 
 const Header = ({isLoggedIn, setIsLoggedIn}) => {
@@ -32,7 +33,7 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
           <button className="windowButtons" id='friendsButton'> Friends </button>
         </div>
         <div id='tapeBottom'>
-          <div>
+          <div id='signUpDiv'>
             <p>signup</p>
           </div>
         </div>

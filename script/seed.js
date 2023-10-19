@@ -1,30 +1,39 @@
-// create 3 playlists, 5 of the same song
 
-// import util from 'util'
 import axios from 'axios'
-import { User, Playlist, Song, db } from '../database/model.js'
+import { User, 
+    Playlist, 
+    Song,
+    FriendList,
+    Friends,
+    Likes, db } from '../database/model.js'
+    
+    console.log('Syncing Database...')
+    
+    await db.sync ({force: true})
+    
+    console.log('Seeding database...')
+    
+    
+    
+    
+    for(let i = 1; i < 5; i++){
+        const user = await User.create(
+            {
+                username: `testUsername${i}`,
+                email: `test${i}@email.com`,
+                password: `test`
+            })
+     
+            
+            //Sample friendList data
+            const friendList = await FriendList.create({
+                userId: user.userId
+            })
 
-console.log('Syncing Database...')
 
-await db.sync ({force: true})
-
-console.log('Seeding database...')
-
-
-
-
-for(let i = 0; i < 3; i++){
-    const user = await User.create(
-        {
-            username: `testUser${i}`,
-            email: `test${i}@email.com`,
-            password: `test`
-        }
-    )
-
-    for(let i = 0; i < 3; i++){
+    for(let i = 1; i < 3; i++){
         const playlist = await user.createPlaylist({
-            name:`samplePlaylist${i}`
+            name:`Sample Playlist ${i}`
         })
         
         
@@ -53,6 +62,11 @@ for(let i = 0; i < 3; i++){
                 artist: "The Proclaimers",
                 track: "500 Miles",
 
+            },
+            {
+                album: "Bark at the Moon",
+                artist: "Ozzy Osbourne",
+                track: "Bark at the Moon"
             },
             {
                 album: "Whenever You Need Somebody",
@@ -88,16 +102,67 @@ for(let i = 0; i < 3; i++){
             })
 
         )
-console.log(apiData)
+        // console.log(apiData)
 
         for (const songData of apiData){
             const song = await playlist.createSong(songData)
-            console.log(song)
-            
+            // console.log(song)
         }
+
     }
+
 }
+
+        // // Sample Likes Data
+        // array of 2 random numbers 0-number of playlists
+        //array.foreach(1 num)=> { seed like function pass in i for user and num for playlist}
+        const randomNumber = () => {
+            return Math.ceil(Math.random() * 8)
+        }
+
+        console.log(randomNumber())
+
+        for ( let i = 1; i < 5; i++){
+            const playlistId = randomNumber()
+            
+                const like = await Likes.create({
+                    userId: i,
+                    playlistId: playlistId
+                    // liked: true,
+                    })
+
+                    console.log(like)   
+        }
+        
+        const randNum = () => {
+            return Math.ceil(Math.random() * 5)
+        }
+        console.log(randNum())
+        
+        for(let j = 1; j <= 4; j++){
+            const friendListId = randNum()   
+            const friend = await Friends.create({
+                frienId: j,
+                friendListId: friendListId
+            })
+            console.log(friend)
+            
+            }
+
+            
+                    //     console.log(friendList)
+                    //     console.log(friend)
+
+        //await like.setUser(user)
+
+
+    for( let i = 0; i <= 2; i++){
     
-    
+    }
+
+
+
+
+
 await db.close()
 console.log('Finished seeding database!')

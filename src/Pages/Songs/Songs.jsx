@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import axios from "axios";
 import SongsRow from "../../Components/SongsRow/SongsRow";
 import { useState } from "react";
-import "../Songs/Songs.css"
+import "../Songs/Songs.css";
+import AddSong from "../../Components/Modal/AddSong/AddSong.jsx";
 import SongsModal from "./SongsModal";
 
 const Songs = () => {
@@ -10,7 +11,7 @@ const Songs = () => {
   console.log(playlist);
 
   const [songs, setSongs] = useState(playlist.songs);
-  console.log(songs)
+  console.log(songs);
   const [playlistName, setPlaylistname] = useState(playlist.name);
   const [isEditing, setEditing] = useState(false);
 
@@ -52,74 +53,37 @@ const Songs = () => {
           <button onClick={(e) => EditPlaylistName()}>Submit</button>
         </div>
       ) : (
-        <div>
-          <h1>{playlistName}</h1>
-          <button onClick={(e) => setEditing(true)}>Edit</button>
-        </div>
+        <section className="playlist_active">
+          <div className="header">
+            <h1 className="title">
+              {playlistName}
+              <svg
+                className="editPlaylistButton"
+                onClick={(e) => setEditing(true)}
+                xmlns="http://www.w3.org/2000/svg"
+                width="25"
+                height="25"
+                fill="currentColor"
+                viewBox="0 0 16 16"
+              >
+                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z" />
+              </svg>
+              {/* <button
+                className="editPlaylistButton"
+                onClick={(e) => setEditing(true)}
+              >
+                Edit
+              </button> */}
+            </h1>
+          </div>
+          <div className="songsDisplay">
+            {songsDisplay}
+            <AddSong />
+          </div>
+        </section>
       )}
-      {songsDisplay}
-      <div className="container">
-        <form>
-          <div className="row">
-            <div className="col-25">
-              <label for="fname">Name</label>
-            </div>
-            <div className="col-75">
-              <input
-                type="text"
-                id="fname"
-                name="firstname"
-                placeholder="Your song.."
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-25">
-              <label for="lname">Artist</label>
-            </div>
-            <div className="col-75">
-              <input
-                type="text"
-                id="lname"
-                name="lastname"
-                placeholder="Your favorite artist"
-              />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-25">
-              <label for="country">Album</label>
-            </div>
-            <div className="col-75">
-              <input
-                type="text"
-                id="album"
-                name="album"
-                placeholder="Your album"
-              />
-            </div>
-          </div>
-            <SongsModal/>
-          <button className="addSongButton">Add</button>
-        </form>
-      </div>
     </div>
   );
 };
 
 export default Songs;
-
-
-  /* <div className="addSongForm">
-        <form>
-          <label>Name:</label>
-          <input type="text" id="name" name="name" />
-          <label>Artist:</label>
-          <input type="text" id="artist" name="artist" />
-          <label>Album:</label>
-          <input type="text" id="album" name="album" />
-          <button className="addSongButton">Add</button>
-        </form>
-      </div>
-    </div> */
-
