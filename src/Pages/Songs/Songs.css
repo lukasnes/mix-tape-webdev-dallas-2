@@ -1,64 +1,64 @@
-/* Style inputs, select elements and textareas */
-input[type=text], select, textarea{
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    resize: vertical;
-  }
+.title{
+  font-weight: 300;
+  font-size: 40px;
+  text-align: center;
+  margin-top: 15px;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+  font-weight: bold;
+  color: #556768;
+        text-decoration: none;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        font-family: calibri;
+        border-radius: 3px;
+        border: 2px solid #545c5d;
+        padding: 1rem 2rem;
+        box-shadow: .9px 1px 0 0 #758384, 1.5px 2px 0 0 #414747, 2.5px 3px 0 0 #4d5556, 3.5px 4px 0 0 #4a5050, 4.5px 5px 0 0 #535c5d, 5.5px 6px 0 0 #717374, 6.5px 7px 0 0 #a0acad, 7.5px 8px 0 0 #959b9b, 8.5px 9px 0 0 #777b7c, 9.5px 10px 0 0 #898b8b;
+        position: relative;
+        inset: 0;
+        transform: rotateX(0), rotateY(0) rotateZ(0);
+        display: flex;
+        justify-content: center;
+        outline: 2px dashed transparent;
+        transition: all 600ms ease;
+}
+
+.title:hover {
+  inset: 6px 0 5.5px 0;
+  transform: rotateX(5deg) rotateY(3deg) rotateZ(.25deg);
+  box-shadow: none;
+}
+
+
+.songsDisplay{
+  background-image: url(/src/Pages/Songs/images/pexels-daniel-reche-3721941.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* background-color: rgb(42, 41, 41); */
+}
+
+.header{
+  background-image: url(/src/Pages/Songs/images/pexels-daniel-reche-3721941.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   
-  /* Style the label to display next to the inputs */
-  label {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-  }
-  
-  /* Style the submit button */
-  input[type=submit] {
-    background-color: #04AA6D;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-  }
-  
-  /* Style the container */
-  .container {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-  }
-  
-  /* Floating column for labels: 25% width */
-  .col-25 {
-    float: left;
-    width: 25%;
-    margin-top: 6px;
-  }
-  
-  /* Floating column for inputs: 75% width */
-  .col-75 {
-    float: left;
-    width: 75%;
-    margin-top: 6px;
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .col-25, .col-75, input[type=submit] {
-      width: 100%;
-      margin-top: 0;
-    }
-  }
+}
+.editPlaylistButton{
+  font-size: 20px;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.editPlaylistButton:hover{
+  color: rgb(103, 189, 160);
+  cursor: pointer;
+}
+
+
+
+
 
   

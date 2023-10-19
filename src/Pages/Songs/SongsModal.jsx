@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { FormControl, FormLabel, ModalDialog } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-
+import Form from 'react-bootstrap/Form';
 
 function SongsModal() {
   const [show, setShow] = useState(false);
@@ -9,18 +10,38 @@ function SongsModal() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const searchSong = async () => {
+    const response = await fetch('api_url_for_search_capabilitites' + searchTerm)
+    const data = await response.json();
+    return data;
+  }
+
   return (
-    
-       <>
+    <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Add New Song
       </Button>
 
       <Modal show={show} onHide={handleClose}>
+
+        <Modal.Dialog>
         <Modal.Header closeButton>
-          <Modal.Title>Songs Modal</Modal.Title>
+          <Modal.Title>Add Songs</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+
+        <Modal.Body>
+          <Form>
+            <Form.Label>Search Song</Form.Label>
+            <Form.Control
+            type="song"
+            placeholder="Enter song here"
+            autoFocus
+            />
+            <Form.Label>Results</Form.Label>
+            <Form.Control as="results" row={10}/>
+          </Form>
+        </Modal.Body>
+
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -29,8 +50,9 @@ function SongsModal() {
             Save Changes
           </Button>
         </Modal.Footer>
+        </Modal.Dialog>
       </Modal>
-      </> 
+    </>
   );
 }
 

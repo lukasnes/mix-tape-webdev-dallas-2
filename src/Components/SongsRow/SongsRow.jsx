@@ -1,5 +1,9 @@
 import axios from "axios";
 import { useRef } from "react";
+import "../SongsRow/SongsRow.css";
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import { ListGroupItem } from "react-bootstrap";
 
 const SongsRow = ({ song, songs, setSongs }) => {
   const deleteSongs = (songId) => {
@@ -13,24 +17,36 @@ const SongsRow = ({ song, songs, setSongs }) => {
   };
 
   return (
-    <div>
-      <p>
-        Song name: {song.name} <br />
-        Artist: {song.artist} <br /> Album: {song.album}
-      </p>
-      <img src={song.imgUrl}/>
-      <div>
-      <audio ref={useRef()} src={song.preview} controls />
+   
+
+      <div className="songProps">
+        <p>
+          Song name: {song.name} <br />
+          Artist: {song.artist} <br />
+          Album: {song.album}
+        </p>
+        <img className="songImage" src={song.imgUrl} />
+
+        <audio
+          className="audioPreview"
+          ref={useRef()}
+          src={song.preview}
+          controls
+        />
+
+        <a
+          onClick={() => {
+            deleteSongs(song.songId);
+          }}
+          href="#"
+          className="deleteButton"
+        >
+          <ion-icon name="remove-outline"></ion-icon>
+          <ion-icon name="close"></ion-icon>
+          <span>Remove Song</span>
+        </a>
       </div>
-      <button
-        className="rowButton"
-        onClick={() => {
-          deleteSongs(song.songId);
-        }}
-      >
-        Delete
-      </button>
-    </div>
+   
   );
 };
 
