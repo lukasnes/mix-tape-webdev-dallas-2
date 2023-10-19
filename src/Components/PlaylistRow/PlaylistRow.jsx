@@ -12,7 +12,7 @@ const PlaylistRow = ({pl, setPlaylist}) => {
     }  
         
     const editPlaylist = async () => {
-        navigate(`/api/playlist/${pl.playlistId}`)
+        navigate(`/playlist/${pl.playlistId}`)
     }
 
     return (
