@@ -80,11 +80,11 @@ span {
     transition: all 500ms ease;
 }
 
-.btn:hover [name="close"] {
+.deleteButton:hover [name="close"] {
     transform: translateX(-45px);
 }
 
-.btn:hover [name="remove-outline"],  
-.btn:hover span{
+.deleteButton:hover [name="remove-outline"],  
+.deleteButton:hover span{
     transform: translateX(-6000px);
 }
