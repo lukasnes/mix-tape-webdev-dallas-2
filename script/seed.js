@@ -6,23 +6,30 @@ import { User,
     FriendList,
     Friends,
     Likes, db } from '../database/model.js'
+    
+    console.log('Syncing Database...')
+    
+    await db.sync ({force: true})
+    
+    console.log('Seeding database...')
+    
+    
+    
+    
+    for(let i = 1; i < 5; i++){
+        const user = await User.create(
+            {
+                username: `testUsername${i}`,
+                email: `test${i}@email.com`,
+                password: `test`
+            })
+     
+            
+            //Sample friendList data
+            const friendList = await FriendList.create({
+                userId: user.userId
+            })
 
-console.log('Syncing Database...')
-
-await db.sync ({force: true})
-
-console.log('Seeding database...')
-
-
-
-
-for(let i = 1; i < 5; i++){
-    const user = await User.create(
-        {
-            username: `testUsername${i}`,
-            email: `test${i}@email.com`,
-            password: `test`
-        })
 
     for(let i = 1; i < 3; i++){
         const playlist = await user.createPlaylist({
@@ -106,31 +113,45 @@ for(let i = 1; i < 5; i++){
 
 }
 
-
-        //Sample friendList data
-        const friendList = await FriendList.create({
-            userId: user.userId
-        })
-
-        for(let j = 1; j < 5; j++){
-            const friend = await Friends.create({
-                friendListId: friendList.friendListId
-            })
-            console.log(friendList)
-            console.log(friend)
-        }
-
         // // Sample Likes Data
         // array of 2 random numbers 0-number of playlists
         //array.foreach(1 num)=> { seed like function pass in i for user and num for playlist}
+        const randomNumber = () => {
+            return Math.ceil(Math.random() * 8)
+        }
 
-        // const like = await Likes.create({
-        //     userId: user.userId,
-        //     playlistId: playlist.playlistId,
-        //     // liked: true,
-        // })
-        // console.log(like)   
+        console.log(randomNumber())
+
+        for ( let i = 1; i < 5; i++){
+            const playlistId = randomNumber()
+            
+                const like = await Likes.create({
+                    userId: i,
+                    playlistId: playlistId
+                    // liked: true,
+                    })
+
+                    console.log(like)   
+        }
         
+        const randNum = () => {
+            return Math.ceil(Math.random() * 5)
+        }
+        console.log(randNum())
+        
+        for(let j = 1; j <= 4; j++){
+            const friendListId = randNum()   
+            const friend = await Friends.create({
+                frienId: j,
+                friendListId: friendListId
+            })
+            console.log(friend)
+            
+            }
+
+            
+                    //     console.log(friendList)
+                    //     console.log(friend)
 
         //await like.setUser(user)
 
