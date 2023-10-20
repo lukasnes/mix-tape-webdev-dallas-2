@@ -72,8 +72,6 @@ app.post("/api/addnewsong", addNewSong)
 //Delete Song
 app.post("/api/deletesong/:songId", deleteSong)
 
-
-
 ////Users Endpoints Section
 
 //Sign-Up
@@ -81,6 +79,9 @@ app.post("/api/signup", addSignUp)
 
 //Login
 app.post("/api/auth", authenticate)
+
+//Login
+// app.post("/api/login", login)
 
 //Logout
 app.post("/api/logout", authRequired, destroySession)

@@ -1,5 +1,9 @@
-div {
-    border: 1px solid black
+body {
+    background-color: white;
+}
+
+p {
+    color: black;
 }
 
 header {
@@ -24,20 +28,28 @@ header {
 main {
     height: 60vh;
     width: 100vw;
-    border: 1px solid black;
 }
 
 #playlistContainer {
     display: flex;
-
     align-items: center;
     flex-direction: column;
     height: 500px;
     width: 100vw;
-    border: 1px solid black;
 }
 
 #createPlaylistDiv {
     display: flex;
     justify-content: center;
+}
+
+.displayRow {
+    border-radius: 7px;
+    border: 3px solid black;
+
+}
+
+#playlistNameDiv {
+    border: 2px solid black;
+    border-radius: 7px;
 }

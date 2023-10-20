@@ -5,12 +5,15 @@
     align-items: center;
     height: 50px;
     width: 95vw;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px black;
 }
 
 #timeStampDiv {
     display: flex;
     width: 33vw;
     justify-content: left;
+    text-align: center;
 }
 
 #playlistNameDiv {
@@ -29,4 +32,7 @@
     height: 30px;
     width: 30px;
     border-radius: 50%;
+    margin-right: 10px;
+    background-color: white;
+    box-shadow: 3px 3px black ;
 }
