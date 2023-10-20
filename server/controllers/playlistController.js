@@ -6,8 +6,10 @@
 
 import { 
     User, 
-    Playlist } from "../../database/model.js"
+    Playlist,
+    Likes } from "../../database/model.js"
 
+    
 let userId = 1; 
 
 const getPlaylist = async (req, res) => {
