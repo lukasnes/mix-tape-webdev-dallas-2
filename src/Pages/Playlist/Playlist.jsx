@@ -15,14 +15,13 @@ const Playlist = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   let playlistData = playlist.map((pl) => {
-    return <PlaylistRow pl={pl} setPlaylist={setPlaylist} />
+    return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
   })
 
   const createPlaylist = async () => {
       const res = await axios.post('/api/addnewplaylist')
       let newId = res.data.playlistId
       navigate(`/playlist/${newId}`) 
-
   }
 
   return  <>
