@@ -1,11 +1,12 @@
 //get playlist function and return them
-// import axios from 'axios'
-
 //add playlist endpoint creates a pL w/ name of "New Playlist"
-
 //getplaylist data 
 
-import { User, Playlist,  } from "../../database/model.js"
+// import axios from 'axios'
+
+import { 
+    User, 
+    Playlist } from "../../database/model.js"
 
 let userId = 1; 
 

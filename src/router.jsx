@@ -32,7 +32,15 @@ let router = createBrowserRouter(
           };
         }}
       />
+
+    <Route 
+    path='style' 
+    
+    />
+    
     </Route>
+
+    
   )
 );
 
