@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function LoginModal({show, setShow, handleClose, setIsloggedIn}) {
+function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsloggedIn}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,7 +21,7 @@ function LoginModal({show, setShow, handleClose, setIsloggedIn}) {
   return (
     <div
       className="modal show"
-      style={ show ? { display: 'block', position: 'initial', height: '290px' } : {display: 'none'}}
+      style={ loginShow ? { display: 'block', position: 'initial', height: '290px', zindex: '3' } : {display: 'none'}}
     >
       <Modal.Dialog>
         <Modal.Header >
@@ -48,7 +48,7 @@ function LoginModal({show, setShow, handleClose, setIsloggedIn}) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>Close</Button>
+          <Button variant="secondary" onClick={handleLoginClose}>Close</Button>
           <Button type='submit' variant="primary" onClick={handleLogin}>Submit</Button>
         </Modal.Footer>
       </Modal.Dialog>
