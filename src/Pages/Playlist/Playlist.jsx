@@ -33,7 +33,7 @@ const Playlist = () => {
                 {playlistData}
               </div>
               <div id='createPlaylistDiv'>
-                <button id='createPlaylistButton' onClick={(e)=> createPlaylist()}> Create Playlist </button>
+                <button id='createPlaylistButton' onClick={()=> createPlaylist()}> Create Playlist </button>
               </div>
             </main>
 

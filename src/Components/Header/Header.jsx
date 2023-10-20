@@ -1,15 +1,21 @@
 import LoginModal from "../Modal/Login/Login"
+import SignUpModal from "../Modal/SignUp/SignUp"
 import {useState} from 'react'
 import {Modal} from 'react-bootstrap'
 import './header.css'
 
 
+
 const Header = ({isLoggedIn, setIsLoggedIn}) => {
 
-  const [show, setShow] = useState(false)
+  const [loginShow, setLoginShow] = useState(false)
+  const [signUpShow, setSignUpShow] = useState(false)
 
-  const handleOpen = () => setShow(true)
-  const handleClose = () => setShow(false)
+  const handleLoginOpen = () => setLoginShow(true)
+  const handleLoginClose = () => setLoginShow(false)
+
+  const handleSignUpOpen = () => setSignUpShow(true)
+  const handleSignUpClose = () => setSignUpShow(false)
 
     return isLoggedIn ? (
       <div id='tapeMain'>
@@ -26,20 +32,26 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
       </div>  
     ):
     (
+      <>
+      <SignUpModal id='signUpModal' signUpShow={signUpShow} setSignUpShow={setSignUpShow} handleSignUpClose={handleSignUpClose}  />
+      <LoginModal id="loginModal" loginShow={loginShow} setLoginShow={setLoginShow} handleLoginClose={handleLoginClose} setIsLoggedIn={setIsLoggedIn} />
+      
         <div id='tapeMain'>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
-          <button className="windowButtons" id='loginButton' onClick={handleOpen} > Login </button>
+          <button className="windowButtons" id='loginButton' onClick={handleLoginOpen} > Login </button>
           <button className="windowButtons" id='friendsButton'> Friends </button>
         </div>
         <div id='tapeBottom'>
           <div id='signUpDiv'>
-            <p>signup</p>
+            <a href='#' id='signUpLink' onClick={handleSignUpOpen} >signup</a>
           </div>
         </div>
-        <LoginModal id="loginModal" show={show} setShow={setShow} handleClose={handleClose} setIsLoggedIn={setIsLoggedIn} />
-      </div>  
+      </div>
+      
+       </>
     )
+   
 }
 
 export default Header
