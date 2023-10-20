@@ -9,12 +9,15 @@ function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsloggedIn}) 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleLogin = async () => {
+    console.log(email)
+    console.log(password)
+    const handleLogin = async (event) => {
         console.log('hit')
-        // event.preventDefault()
-        const res = await axios.post('/api/login', {email, password})
+        event.preventDefault()
+        const res = await axios.post('/api/auth', {email, password})
         if (res.data.success){
             setIsloggedIn(true)
+            console.log(setIsloggedIn)
         }
     }
 
