@@ -22,7 +22,7 @@ const addSignUp = async (req, res) => {
 
   if( user && email && password ){
       req.session.userId = user.userId
-      res.status(200).json({message:'user created!', success: true})
+      res.status(200).json({message:'user created and logged in!', success: true})
   } else {
       res.json({ success: false })
   }    
