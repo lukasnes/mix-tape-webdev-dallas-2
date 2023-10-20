@@ -6,7 +6,6 @@ import axios from 'axios'
 
 //user variable that grabs user info 
 
-
 import { 
   getPlaylist,
   addPlaylist, 
@@ -14,9 +13,10 @@ import {
   deletePlayList, 
 } from "./controllers/playlistController.js";
 
-import { playlistSong, 
-    addNewSong, 
-    deleteSong } from "./controllers/songController.js";
+import { 
+  playlistSong, 
+  addNewSong, 
+  deleteSong } from "./controllers/songController.js";
 
 
 import { 
@@ -87,6 +87,8 @@ app.post("/api/logout", authRequired, destroySession)
 
 //checks authentication
 app.get("/api/auth/status", getAuthStatus)
+
+
 
 
 

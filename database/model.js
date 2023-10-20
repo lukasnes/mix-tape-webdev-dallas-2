@@ -167,13 +167,8 @@ Likes.init(
         primaryKey: true,
         allowNull: false,
     },
-    // liked: {
-    //     type: DataTypes.BOOLEAN,
-    //     allowNull: false,
-    //     defaultValue: false,
-    // }
-
 },
+
 {
     modelName: 'likes',
     sequelize: db,
@@ -186,28 +181,30 @@ Likes.init(
 Playlist.hasMany(Song, { foreignKey: 'playlistId'})
 Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
-// Likes
+// Likes Table
 Playlist.hasMany(Likes, { foreignKey: 'playlistId'})
 Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
-// Playlist
+// Playlist Table
 User.hasMany(Playlist, {foreignKey:'userId'})
 Playlist.belongsTo(User, {foreignKey: 'userId'})
 
-// Friendlist
+// Friendlist Table
 User.hasOne(FriendList, {foreignKey: 'userId'})
 FriendList.belongsTo(User, { foreignKey: 'userId'})
+
+///Friend table
+User.hasMany(Friends, { foreignKey: 'userId' })
+Friends.belongsTo(User, { foreignKey: 'userId' })
 
 // Likes table
 User.hasMany(Likes, {foreignKey: 'userId'})
 Likes.belongsTo(User, {foreignKey: 'userId'})
 
-// Friendlist
+// Friendlist Table
 FriendList.hasMany(Friends, { foreignKey: 'friendListId'})
 Friends.belongsTo(FriendList, {foreignKey: 'friendListId'})
 
-
-///make a association for friend to user foreignkey 
 
 
 
