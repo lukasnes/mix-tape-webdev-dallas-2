@@ -9,6 +9,7 @@ function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsLoggedIn}) 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+
     const handleLogin = async () => {
         // console.log('hit')
         // event.preventDefault()
@@ -16,6 +17,7 @@ function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsLoggedIn}) 
         // console.log(res)
         if (res.data.success){
             setIsLoggedIn(true)
+
         }
     }
 

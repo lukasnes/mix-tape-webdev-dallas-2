@@ -1,10 +1,6 @@
-//registry
-//register and login at the same time/session
-//logout/destroy session
-
 import { User, Playlist } from "../../database/model.js"
-import session from "express-session"
 
+import session from "express-session"
 
 //Sign-up
 const addSignUp = async (req, res) => {
