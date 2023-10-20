@@ -5,8 +5,6 @@ import ViteExpress from "vite-express";
 import axios from 'axios'
 
 //user variable that grabs user info 
-
-
 import { 
   getPlaylist,
   addPlaylist, 
@@ -14,9 +12,10 @@ import {
   deletePlayList, 
 } from "./controllers/playlistController.js";
 
-import { playlistSong, 
-    addNewSong, 
-    deleteSong } from "./controllers/songController.js";
+import { 
+  playlistSong, 
+  addNewSong, 
+  deleteSong } from "./controllers/songController.js";
 
 
 import { 
@@ -72,6 +71,8 @@ app.post("/api/addnewsong", addNewSong)
 //Delete Song
 app.post("/api/deletesong/:songId", deleteSong)
 
+
+
 ////Users Endpoints Section
 
 //Sign-Up
@@ -79,9 +80,6 @@ app.post("/api/signup", addSignUp)
 
 //Login
 app.post("/api/auth", authenticate)
-
-//Login
-// app.post("/api/login", login)
 
 //Logout
 app.post("/api/logout", authRequired, destroySession)

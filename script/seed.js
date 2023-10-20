@@ -25,7 +25,7 @@ import { User,
             })
      
             
-            //Sample friendList data
+        //Sample FriendList data
         const friendList = await FriendList.create({
             userId: user.userId
             })
@@ -110,13 +110,10 @@ import { User,
         }
 
     }
-    console.log(user)
+    // console.log(user)
 }
 
-        // // Sample Likes Data
-        // array of 2 random numbers 0-number of playlists
-        //array.foreach(1 num)=> { seed like function pass in i for user and num for playlist}
-        
+
     const randomNumber = () => {
         return Math.ceil(Math.random() * 8)
         }
@@ -124,13 +121,11 @@ import { User,
 
     for ( let i = 1; i < 5; i++){
          const playlistId = randomNumber()
-            
-        const like = await Likes.create({
-            userId: i,
+         const like = await Likes.create({
+             userId: i,
              playlistId: playlistId
             })
-
-         console.log(like)   
+            console.log(like)   
         }
         
 
@@ -138,15 +133,16 @@ import { User,
     for(let j = 1; j <= 4; j++){
         let randInt = Math.ceil(Math.random() * 4)
         console.log(randInt, j)
-        while (randInt !== j){
+        while (randInt === j){
             randInt = Math.ceil(Math.random() * 4)
+            console.log(randInt, j, "in while loop")
+            
             }
         const friend = await Friends.create({
             userId: randInt,
             friendListId: j
             })
-        console.log(friend)
-            
+        console.log(friend)  
         }
 
 
