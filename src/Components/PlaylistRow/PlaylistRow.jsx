@@ -14,8 +14,7 @@ const PlaylistRow = ({pl, setPlaylist}) => {
     const editPlaylist = async () => {
         navigate(`/playlist/${pl.playlistId}`)
     }
-
-    console.log(pl)
+    
     return (
         <div className="displayRow" >
             <div id='timeStampDiv'>

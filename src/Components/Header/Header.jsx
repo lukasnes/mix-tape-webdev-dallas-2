@@ -2,6 +2,7 @@ import LoginModal from "../Modal/Login/Login"
 import SignUpModal from "../Modal/SignUp/SignUp"
 import {useState} from 'react'
 import {Modal} from 'react-bootstrap'
+import axios from "axios"
 import './header.css'
 
 
@@ -17,11 +18,19 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
   const handleSignUpOpen = () => setSignUpShow(true)
   const handleSignUpClose = () => setSignUpShow(false)
 
+  const handleLogout = async () => {
+    const res = await axios.post('/api/logout')
+    if(res.data.success){
+      setIsLoggedIn(false)
+      setLoginShow(false)
+    }
+  }
+
     return isLoggedIn ? (
       <div id='tapeMain'>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
-          <button className="windowButtons" id='createButton'> Create </button>
+          <button className="windowButtons" id='logoutButton' onClick={handleLogout}> Logout </button>
           <button className="windowButtons" id='friendsButton'> Friends </button>
         </div>
         <div id='tapeBottom'>
