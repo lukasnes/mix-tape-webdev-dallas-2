@@ -4,19 +4,21 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
-function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsloggedIn}) {
+function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsLoggedIn}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const handleLogin = async () => {
-        console.log('hit')
+        // console.log('hit')
         // event.preventDefault()
-        const res = await axios.post('/api/login', {email, password})
+        const res = await axios.post('/api/auth', {email, password})
+        // console.log(res)
         if (res.data.success){
-            setIsloggedIn(true)
+            setIsLoggedIn(true)
         }
     }
+
 
   return (
     <div

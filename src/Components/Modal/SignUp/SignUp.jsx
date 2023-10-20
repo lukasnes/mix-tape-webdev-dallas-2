@@ -8,13 +8,13 @@ function SignUpModal({setIsLoggedIn, signUpShow, handleSignUpClose}) {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [confirm, setConfirm] = useState('')
+    const [passwordConfirm, setConfirm] = useState('')
 
     const handleSignUp = async () => {
-        console.log('hit')
         if(password === passwordConfirm){
-            const res = await axios.post('', {username, email, password})
-        if(res.data.success){
+          const res = await axios.post('/api/signup', {username, email, password})
+          console.log(res)
+        if (res.data.success){
             setIsLoggedIn(true)
         } else {
                 alert('Passwords do not match!')
@@ -58,7 +58,7 @@ function SignUpModal({setIsLoggedIn, signUpShow, handleSignUpClose}) {
                 <Form.Control
                     id='passwordConfirm'
                     type='text'
-                    value={confirm}
+                    value={passwordConfirm}
                     onChange={(e)=>setConfirm(e.target.value)}
                     placeholder='please renter password'
                     required />

@@ -22,7 +22,7 @@ const addSignUp = async (req, res) => {
 
   if( user && email && password ){
       req.session.userId = user.userId
-      res.status(200).json({message:'user created and logged in!', success: true})
+      res.status(200).json({success: true, message:'user created and logged in!' })
   } else {
       res.json({ success: false })
   }    
@@ -32,6 +32,7 @@ const addSignUp = async (req, res) => {
 //Login
 const authenticate = async (req, res) => {
   const { email, password } = req.body
+  console.log(req.body.email)
   const user = await User.findOne({ where: { email: email}})
   console.log(user,password,email)
   if(user && user.password === password && !req.session.userId) {

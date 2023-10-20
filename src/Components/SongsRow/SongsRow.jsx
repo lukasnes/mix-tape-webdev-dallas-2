@@ -19,32 +19,39 @@ const SongsRow = ({ song, songs, setSongs }) => {
   return (
    
 
-      <div className="songProps">
-        <p>
-          Song name: {song.name} <br />
-          Artist: {song.artist} <br />
-          Album: {song.album}
-        </p>
-        <img className="songImage" src={song.imgUrl} />
+      <div className="songProps"> 
+        <div id='albumCover'>
+          <img className="songImage" src={song.imgUrl} />
+        </div>
 
-        <audio
-          className="audioPreview"
-          ref={useRef()}
-          src={song.preview}
-          controls
-        />
-
-        <a
-          onClick={() => {
-            deleteSongs(song.songId);
-          }}
-          href="#"
-          className="deleteButton"
-        >
-          <ion-icon name="remove-outline"></ion-icon>
-          <ion-icon name="close"></ion-icon>
-          <span>Remove Song</span>
-        </a>
+        <div id='songInfo'>
+          <p>
+            Song name: {song.name} <br />
+            Artist: {song.artist} <br />
+            Album: {song.album}
+          </p>
+        </div>
+        <div id='audioPreview'>
+          <audio
+            className="audioPreview"
+            ref={useRef()}
+            src={song.preview}
+            controls
+          />
+        </div>
+        <div id='deleteButton'>
+          <a
+            onClick={() => {
+              deleteSongs(song.songId);
+            }}
+            href="#"
+            className="deleteButton"
+          >
+            <ion-icon name="remove-outline"></ion-icon>
+            <ion-icon name="close"></ion-icon>
+            {/* <span></span> */}
+          </a>
+        </div>
       </div>
    
   );
