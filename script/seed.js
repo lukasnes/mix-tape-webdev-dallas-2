@@ -19,7 +19,7 @@ import { User,
     for(let i = 1; i < 5; i++){
         const user = await User.create(
             {
-                username: `testUsername${i}`,
+                username: `username${i}`,
                 email: `test${i}@email.com`,
                 password: `test`
             })
@@ -110,7 +110,7 @@ import { User,
         }
 
     }
-
+    console.log(user)
 }
 
         // // Sample Likes Data
@@ -142,7 +142,7 @@ import { User,
             randInt = Math.ceil(Math.random() * 4)
             }
         const friend = await Friends.create({
-            friendId: randInt,
+            userId: randInt,
             friendListId: j
             })
         console.log(friend)

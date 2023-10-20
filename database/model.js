@@ -207,6 +207,9 @@ FriendList.hasMany(Friends, { foreignKey: 'friendListId'})
 Friends.belongsTo(FriendList, {foreignKey: 'friendListId'})
 
 
+///make a association for friend to user foreignkey 
+
+
 
 
 // await db.sync({ force: true })

@@ -17,9 +17,14 @@ import {
 import { playlistSong, 
     addNewSong, 
     deleteSong } from "./controllers/songController.js";
-// import { login, 
-//   logout, 
-//   loginRequired } from "./controllers/authController.js";
+
+
+import { 
+  addSignUp,
+  authenticate, 
+  destroySession, 
+  getAuthStatus,
+  authRequired } from "./controllers/authController.js";
 
 const app = express();
 const port = "8000";
@@ -35,7 +40,7 @@ app.use(
 ViteExpress.config({ printViteDevServerHost: true });
 
 
-
+////PLaylist EndPoints Section
 
 //Get Playlist
 app.get('/api/playlists', getPlaylist)
@@ -51,14 +56,15 @@ app.post('/api/editplaylist', editPlaylist)
 //Delete Playlist
 app.post("/api/deleteplaylist", deletePlayList)
  
-app.get("/api/playlistsongs/:id", playlistSong)
-  
 
-//Add new Song
-app.post("/api/addnewsong", addNewSong)
+
+////Songs EndPoints Section
 
 //Get playlist Songs
 app.get("/api/playlistsongs", playlistSong)
+
+//Get Playlist Songs
+app.get("/api/playlistsongs/:id", playlistSong)
 
 //Add new Song
 app.post("/api/addnewsong", addNewSong)
@@ -66,11 +72,21 @@ app.post("/api/addnewsong", addNewSong)
 //Delete Song
 app.post("/api/deletesong/:songId", deleteSong)
 
-  // //Login
-  // app.post("/api/login", login)
 
-  // //Logout
-  // app.post("/api/logout", logout)
+
+////Users Endpoints Section
+
+//Sign-Up
+app.post("/api/signup", addSignUp)
+
+//Login
+app.post("/api/auth", authenticate)
+
+//Logout
+app.post("/api/logout", authRequired, destroySession)
+
+//checks authentication
+app.get("/api/auth/status", getAuthStatus)
 
 
 

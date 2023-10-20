@@ -2,8 +2,32 @@
 //register and login at the same time/session
 //logout/destroy session
 
-
+import { User, Playlist } from "../../database/model.js"
 import session from "express-session"
+
+
+//Sign-up
+const addSignUp = async (req, res) => {
+
+  const {username, email, password } = req.body
+      let user = await User.create({
+          username: username,
+          email: email,
+          password: password
+          })
+          
+        await user.createPlaylist()
+
+  console.log(user)
+
+  if( user && email && password ){
+      req.session.userId = user.userId
+      res.status(200).json({message:'user created!', success: true})
+  } else {
+      res.json({ success: false })
+  }    
+  }
+
 
 //Login
 const authenticate = async (req, res) => {
@@ -27,7 +51,7 @@ const destroySession = async (req, res) => {
 
 
 //checks authentication
-const authStatus = (req, res) => {
+const getAuthStatus = (req, res) => {
   if ( req.session.userId ) {
     res.json({loggedIn: true }) 
   } else {
@@ -36,18 +60,26 @@ const authStatus = (req, res) => {
 }
 
 //middleware function that will clean-up code
-const loginRequired = async (req, res, next) => {
+const authRequired = async (req, res, next) => {
   if (req.session.userId) {
     next();
   } else {
     res.status(401).json({ error: 'Unauthorized'});
   }
+
+  // const { userId } = req.session 
+  // if(!userId) {
+  //     res.status(401).json({ error: 'Unauthorized'})
+  // } else {
+  //     next()
+  // }
 }
 
 
 export { 
   authenticate, 
   destroySession, 
-  authStatus,
-  loginRequired,
+  getAuthStatus,
+  authRequired,
+  addSignUp
 };
