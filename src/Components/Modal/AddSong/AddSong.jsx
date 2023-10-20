@@ -1,23 +1,34 @@
 import React from "react";
 import ReactModal from "react-dom";
 // import Modal from "react-modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import "../AddSong/AddSong.css"
+import { debounce, throttle } from 'lodash';
 
 function AddSong() {
     const [show, setShow] = useState(false);
+    const [search, setSearch] = useState('');
+    const [loading, setLoading] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   
     const searchSong = async () => {
-      const response = await fetch('api_url_for_search_capabilitites' + searchTerm)
+      const response = await fetch('' + searchTerm)
       const data = await response.json();
       return data;
-    }
+    };
+
+    // useEffect(() => {
+    //   const loadSongs = async () => {
+    //   setLoading(true);
+
+    //   const 
+    // }
+    // })
   
     return (
       <>
