@@ -27,7 +27,7 @@ const Playlist = () => {
           setPageData(<HotList/>)
           break
         case 'friendsList':
-          setPageData()
+          setPageData(<FriendList />)
           break
         case 'friendsPlaylist':
           setPageData()
