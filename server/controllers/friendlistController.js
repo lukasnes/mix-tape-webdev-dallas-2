@@ -20,6 +20,9 @@ const getFriendList = async (req, res) => {
   });
   console.log(friends);
 
+  friends = friends.map(friend => friend.user)
+  console.log(friends)
+  
   res.json(friends);
 };
 
