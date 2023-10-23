@@ -7,7 +7,7 @@ import Songs from "./Pages/Songs/Songs.jsx";
 import Playlist from "./Pages/Playlist/Playlist.jsx";
 import Root from "./Root.jsx";
 import axios from "axios";
-import AddSong from "./Components/Modal/AddSong/AddSong.jsx";
+import FriendList from "./Components/FriendList/FriendList.jsx";
 
 let router = createBrowserRouter(
   createRoutesFromElements(
@@ -33,14 +33,8 @@ let router = createBrowserRouter(
         }}
       />
 
-    <Route 
-    path='style' 
-    
-    />
-    
+      <Route path="style" />
     </Route>
-
-    
   )
 );
 
