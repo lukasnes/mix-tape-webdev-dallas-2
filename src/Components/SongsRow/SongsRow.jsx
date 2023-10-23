@@ -52,7 +52,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
         </div>
 
       </div>
-    </div>
+    // </div>
   );
 };
 

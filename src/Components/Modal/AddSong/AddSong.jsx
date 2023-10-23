@@ -34,7 +34,7 @@ function AddSong() {
         setLoading(true)
 
         const data = await fetch(
-          `https://api.deezer.com/search?q=track:${search}`
+          `https://api.deezer.com/search/track?q=${search}`
         ).then((res) => res.json());
         setLoading(false);
       }
