@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import "../AddSong/AddSong.css"
-import { debounce, throttle } from 'lodash';
+import debounce from 'lodash/debounce';
 
 function AddSong() {
     const [show, setShow] = useState(false);
@@ -15,6 +15,11 @@ function AddSong() {
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleChange = () => {
+      const { value: nextValue } = event.target;
+      debouncedSave(nextValue);
+    };
   
     const searchSong = async () => {
       const response = await fetch('' + searchTerm)
@@ -25,10 +30,8 @@ function AddSong() {
     // useEffect(() => {
     //   const loadSongs = async () => {
     //   setLoading(true);
-
-    //   const 
     // }
-    // })
+    // }, [search]);
   
     return (
       <>
