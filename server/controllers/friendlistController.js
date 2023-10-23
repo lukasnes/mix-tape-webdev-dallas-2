@@ -44,21 +44,7 @@ const getFriendList = async (req, res) => {
 }
 
 
-const addFriend = async (req, res) => {
-    let {userId} = req.session
-    const {} = req.body
-
-}
-
-const deleteFriend = async (req, res) => {
-
-}
-
-
-
 
 export {
     getFriendList,
-    addFriend,
-    deleteFriend,
 }

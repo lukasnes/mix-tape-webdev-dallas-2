@@ -20,7 +20,9 @@ import {
                 ] 
             }
         }
-        );
+        )
+
+        console.log(playlist)
     res.status(200).json(playlist)
 }
 
