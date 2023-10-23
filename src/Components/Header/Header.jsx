@@ -6,6 +6,7 @@ import axios from "axios"
 import './header.css'
 import { useDispatch, useSelector } from "react-redux"
 import { BsHeartFill, BsHeart } from "react-icons/bs";
+import FriendList from "../FriendList/FriendList"
 
 
 

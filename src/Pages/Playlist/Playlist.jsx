@@ -4,6 +4,7 @@ import { useLoaderData, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import './playlist.css'
+import FriendList from "../../Components/FriendList/FriendList";
 
 
 const Playlist = () => {
