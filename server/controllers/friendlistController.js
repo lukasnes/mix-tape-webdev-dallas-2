@@ -1,50 +1,29 @@
-import {
-    FriendList,
-    Friend,
-    User
-} from '../../database/model.js'
+import { FriendList, Friend, User } from "../../database/model.js";
 
 const getFriendList = async (req, res) => {
-    let { userId } = req.session
-    console.log(userId, "userID")
-    const friendlist = await FriendList.findOne(
-        {
-            where: {
-                userId: userId
-        },
-            include: {
-                model: Friend,
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            }
-        }
-    )
-    console.log(friendlist, "Friendlist")
-    if (!friendlist) {
-        return res.status(404).json({ error: "No Friends Found" })
-    }
+  let { userId } = req.session;
+  console.log(userId, "userID");
+  const friendlist = await FriendList.findOne({
+    where: {
+      userId: userId,
+    },
+  });
 
-    //packaged up friends
-    const {friends} = friendlist
-    
-    //mapped out friends
-    const friendsMap = friendlist.friends.map(friend => {
-        return {
-            friendId: friend.friendId,
-            username: friend.user.username,
-        }
-    })
-    console.log(friendsMap)
+  const friends = await Friend.findAll({
+    where: {
+      friendlistId: friendlist.friendlistId,
+    },
+    include: {
+      model: User,
+      attributes: ["userId", "username"],
+    },
+
+  });
+  console.log(friends)
 
 
+  res.json(friends);
+};
 
-    res.json(friends)
-}
+export { getFriendList };
 
-
-
-export {
-    getFriendList,
-}
