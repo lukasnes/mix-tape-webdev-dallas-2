@@ -1,7 +1,8 @@
 import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import Header from "../../Components/Header/Header";
+import HotList from "../../Components/HotList/HotList";
 import { useLoaderData, useNavigate} from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import './playlist.css'
 
@@ -9,13 +10,32 @@ import './playlist.css'
 const Playlist = () => {
 
   const navigate = useNavigate()
-  let {playlists} = useLoaderData();
+  // let {playlists} = useLoaderData();
 
-  const [playlist, setPlaylist] = useState(playlists)
+  // const [playlist, setPlaylist] = useState(playlists)
+  const [pageState, setPageState] = useState('hot')
+  const [pageData, setPageData] = useState()
 
-  let playlistData = playlist.map((pl) => {
-    return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
-  })
+  // let playlistData = playlist.map((pl) => {
+  //   return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
+  // })
+
+  useEffect(()=>{
+      switch (pageState){
+        case 'hot':
+          setPageData(<HotList/>)
+          break
+        case 'friendsList':
+          setPageData()
+          break
+        case 'friendsPlaylist':
+          setPageData()
+          break
+        case 'myPlaylist':
+          setPageData()
+          break
+      }
+  }, [pageState])
 
   const createPlaylist = async () => {
       const res = await axios.post('/api/addnewplaylist')
@@ -25,11 +45,11 @@ const Playlist = () => {
 
   return  <>
             <header>
-              <Header />
+              <Header setPageState={setPageState} />
             </header>
             <main>
               <div id='playlistContainer'>
-                {playlistData}
+                {pageData}
               </div>
               <div id='createPlaylistDiv'>
                 <button id='createPlaylistButton' onClick={()=> createPlaylist()}> Create Playlist </button>

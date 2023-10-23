@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../SongsRow/SongsRow.css";
 
 // import Card from "react-bootstrap/Card";
@@ -10,7 +10,7 @@ import "../SongsRow/SongsRow.css";
 
 const SongsRow = ({ song, songs, setSongs }) => {
 
-  
+  const isLoggedIn = useSelector(state=>state.loggedIn)
 
   const deleteSongs = (songId) => {
     axios.post(`/api/deletesong/${songId}`).then((res) => {
@@ -35,6 +35,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
             Album: {song.album}
           </p>
         </div>
+
         <div id='audioPreview'>
           <audio
             className="audioPreview"
@@ -43,14 +44,16 @@ const SongsRow = ({ song, songs, setSongs }) => {
             controls
           />
         </div>
-          {}
-        <div id='deleteButton'>
-          < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>
-        </div>
-        <div id='addButton'>
-
-        </div>
-
+        
+        {isLoggedIn ? (
+          <div id='deleteButton'>
+            < button onClick={()=>{}} > Add </button>
+          </div>
+        ):(
+          <div id='deleteButton'>
+            < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>
+          </div> 
+        )}
       </div>
     </div>
   );
