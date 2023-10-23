@@ -32,7 +32,7 @@ export class FriendList extends Model {
     }
 }
 
-export class Friends extends Model {
+export class Friend extends Model {
     [util.inspect.custom](){
         return this.toJSON()
     }
@@ -144,7 +144,7 @@ FriendList.init(
     }
 )
 
-Friends.init(
+Friend.init(
     {
         friendId: {
             type: DataTypes.INTEGER,
@@ -154,7 +154,7 @@ Friends.init(
         },
     },
     {
-        modelName: 'friends',
+        modelName: 'friend',
         sequelize: db,
     }
 )
@@ -194,16 +194,21 @@ User.hasOne(FriendList, {foreignKey: 'userId'})
 FriendList.belongsTo(User, { foreignKey: 'userId'})
 
 ///Friend table
-User.hasMany(Friends, { foreignKey: 'userId' })
-Friends.belongsTo(User, { foreignKey: 'userId' })
+Friend.belongsTo(User, { foreignKey: 'userId' })
+User.hasMany(Friend, { foreignKey: 'userId'})
 
 // Likes table
 User.hasMany(Likes, {foreignKey: 'userId'})
 Likes.belongsTo(User, {foreignKey: 'userId'})
 
+
+Playlist.hasMany(Likes, {foreignKey: 'playlistId'})
+Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
+
+
 // Friendlist Table
-FriendList.hasMany(Friends, { foreignKey: 'friendListId'})
-Friends.belongsTo(FriendList, {foreignKey: 'friendListId'})
+FriendList.hasMany(Friend, { foreignKey: 'friendListId'})
+Friend.belongsTo(FriendList, {foreignKey: 'friendListId'})
 
 
 

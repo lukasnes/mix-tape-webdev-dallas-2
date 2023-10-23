@@ -4,7 +4,6 @@ import { User,
     Playlist, 
     Song,
     FriendList,
-    Friends,
     Likes, db } from '../database/model.js'
     
     console.log('Syncing Database...')
@@ -114,36 +113,56 @@ import { User,
 }
 
 
-    const randomNumber = () => {
-        return Math.ceil(Math.random() * 8)
-        }
-    console.log(randomNumber())
 
-    for ( let i = 1; i < 5; i++){
-         const playlistId = randomNumber()
-         const like = await Likes.create({
-             userId: i,
-             playlistId: playlistId
-            })
-            console.log(like)   
-        }
-        
 
-        
-    for(let j = 1; j <= 4; j++){
-        let randInt = Math.ceil(Math.random() * 4)
-        console.log(randInt, j)
-        while (randInt === j){
-            randInt = Math.ceil(Math.random() * 4)
-            console.log(randInt, j, "in while loop")
-            
-            }
-        const friend = await Friends.create({
-            userId: randInt,
-            friendListId: j
-            })
-        console.log(friend)  
+const randomNumber = () => {
+    return Math.ceil(Math.random() * 8)
+}
+console.log(randomNumber())
+
+for ( let i = 1; i < 5; i++){
+    const playlistId = randomNumber()
+    const like = await Likes.create({
+        userId: i,
+        playlistId: playlistId
+    })
+    console.log(like)   
+}
+
+for( let i = 1; i < 5; i++ ) {
+
+    let randInt = Math.ceil(Math.random() * 4)
+    console.log("inside this mess")
+    while (randInt === i ){
+        randInt = Math.ceil(Math.random() * 4)
+        console.log(randInt, "in while loop")
+    }
+    console.log(randInt)
+    const friendlist = await FriendList.findOne({
+        where: {
+            userId: i
         }
+    }
+    )
+    const friend = await friendlist.createFriend({
+        userId: randInt
+    })
+    console.log(friend)  
+
+    const friendReturn = await FriendList.findOne({
+        where: {
+            userId: randInt
+        }
+    }
+    )
+    const otherFriend = await friendReturn.createFriend({
+        userId: i
+    })
+    console.log(otherFriend)
+}
+
+
+
 
 
 await db.close()
