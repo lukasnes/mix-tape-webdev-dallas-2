@@ -10,7 +10,7 @@ import debounce from 'lodash/debounce';
 
 function AddSong() {
     const [show, setShow] = useState(false);
-    const [search, setSearch] = useState<string | null>(null);
+    const [search, setSearch] = useState('');
     const [loading, setLoading] = useState(false);
   
     const handleClose = () => setShow(false);
