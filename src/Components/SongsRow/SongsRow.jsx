@@ -2,9 +2,11 @@ import axios from "axios";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import "../SongsRow/SongsRow.css";
+
 // import Card from "react-bootstrap/Card";
 // import ListGroup from "react-bootstrap/ListGroup";
 // import { ListGroupItem } from "react-bootstrap";
+
 
 const SongsRow = ({ song, songs, setSongs }) => {
 
@@ -21,12 +23,10 @@ const SongsRow = ({ song, songs, setSongs }) => {
   };
 
   return (
-   
-
-      <div className="songProps"> 
-        <div id='albumCover'>
-          <img className="songImage" src={song.imgUrl} />
-        </div>
+    <div className="songProps">
+      <div id="albumCover">
+        <img className="songImage" src={song.imgUrl} />
+      </div>
 
         <div id='songInfo'>
           <p>
@@ -52,7 +52,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
         </div>
 
       </div>
-   
+    </div>
   );
 };
 
