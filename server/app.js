@@ -17,6 +17,8 @@ import {
   addNewSong, 
   deleteSong } from "./controllers/songController.js";
 
+  import { getFriendList,
+   } from "./controllers/friendlistController.js";
 
 import { 
   addSignUp,
@@ -86,6 +88,12 @@ app.post("/api/logout", authRequired, destroySession)
 
 //checks authentication
 app.get("/api/auth/status", getAuthStatus)
+
+
+////Friends List Endpoints
+
+//Get Friend List
+app.get("/api/friendlist", authRequired, getFriendList)
 
 
 
