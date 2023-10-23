@@ -1,6 +1,6 @@
 import {
     FriendList,
-    Friends,
+    Friend,
     User
 } from '../../database/model.js'
 
@@ -13,7 +13,7 @@ const getFriendList = async (req, res) => {
                 userId: userId
         },
             include: {
-                model: Friends,
+                model: Friend,
                 include: {
                     model: User,
                     attributes: ['username']

@@ -3,14 +3,25 @@ import {
     Playlist,
     Likes } from "../../database/model.js"
 
-    
-let userId = 1
 
 const getPlaylist = async (req, res) => {
-    
-    const playlists = await Playlist.findAll({where: {userId: userId}})
-    res.status(200).json(playlists)
-    console.log(playlists)
+
+    // const playlists = await Playlist.findAll({where: {userId: userId}})
+    // res.status(200).json(playlists)
+    // console.log(playlists)
+
+    let { userId } = req.session
+    if ( userId ){
+        const playlists = await Playlist.findAll({where: {userId: userId}})
+        res.status(200).json(playlists)
+        console.log(playlists)
+    } else {
+        const allPlaylists = await Playlist.findAll()
+        res.status(200).json(allPlaylists)
+        console.log(allPlaylists)
+    }
+
+
 }
 
 
