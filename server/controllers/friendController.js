@@ -1,5 +1,5 @@
 import{
-    Friends,
+    Friend,
     FriendList,
     User
 } from "../../database/model.js"
