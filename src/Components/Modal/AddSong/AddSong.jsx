@@ -16,22 +16,31 @@ function AddSong() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleChange = () => {
-      const { value: nextValue } = event.target;
-      debouncedSave(nextValue);
-    };
+    // const handleChange = () => {
+    //   const { value: nextValue } = event.target;
+    //   debouncedSave(nextValue);
+    // };
   
-    const searchSong = async () => {
-      const response = await fetch('' + searchTerm)
-      const data = await response.json();
-      return data;
-    };
+    // const searchSong = async () => {
+    //   const response = await fetch('' + searchTerm)
+    //   const data = await response.json();
+    //   return data;
+    // };
 
-    // useEffect(() => {
-    //   const loadSongs = async () => {
-    //   setLoading(true);
-    // }
-    // }, [search]);
+    useEffect(() => {
+      // search the api
+
+      async function fetchData(){
+        setLoading(true)
+
+        const data = await fetch(
+          `https://api.deezer.com/search?q=track:${search}`
+        ).then((res) => res.json());
+        setLoading(false);
+      }
+
+      fetchData();
+    }, [search]);
   
     return (
       <>
@@ -52,6 +61,7 @@ function AddSong() {
               <Form.Control
               type="song"
               placeholder="Enter song here"
+              onChange={(e) => setSearch(e.target.value)}
               autoFocus
               />
               <Form.Label>Results</Form.Label>
