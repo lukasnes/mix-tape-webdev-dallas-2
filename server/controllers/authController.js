@@ -1,4 +1,6 @@
-import { User, Playlist } from "../../database/model.js"
+import { 
+  User, 
+  Playlist } from "../../database/model.js"
 
 import session from "express-session"
 
@@ -47,16 +49,7 @@ const destroySession = async (req, res) => {
 
 
 
-//checks authentication
-const getAuthStatus = (req, res) => {
-  if ( req.session.userId ) {
-    res.json({loggedIn: true }) 
-  } else {
-    res.json({loggedIn: false})
-  }
-}
-
-//middleware function that will clean-up code
+//middleware function that cleans up code
 const authRequired = async (req, res, next) => {
   if (req.session.userId) {
     next();
@@ -72,11 +65,21 @@ const authRequired = async (req, res, next) => {
   // }
 }
 
+//checks authentication
+const getAuthStatus = (req, res) => {
+  if ( req.session.userId ) {
+    res.json({loggedIn: true }) 
+  } else {
+    res.json({loggedIn: false})
+  }
+}
+
+
 
 export { 
+  addSignUp,
   authenticate, 
   destroySession, 
-  getAuthStatus,
   authRequired,
-  addSignUp
+  getAuthStatus,
 };

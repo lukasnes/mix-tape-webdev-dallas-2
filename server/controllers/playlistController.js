@@ -1,18 +1,13 @@
-//get playlist function and return them
-//add playlist endpoint creates a pL w/ name of "New Playlist"
-//getplaylist data 
-
-// import axios from 'axios'
-
 import { 
     User, 
     Playlist,
     Likes } from "../../database/model.js"
 
     
-let userId = 1; 
+let userId = 1
 
 const getPlaylist = async (req, res) => {
+    
     const playlists = await Playlist.findAll({where: {userId: userId}})
     res.status(200).json(playlists)
     console.log(playlists)
@@ -31,7 +26,8 @@ const addPlaylist = async (req, res) => {
     
      const newPlaylist = await user.createPlaylist(
         {
-         name:'New Playlist'
+        //  name: name
+         name: 'New Playlist'
         }
     )
     res.status(201).json(newPlaylist)

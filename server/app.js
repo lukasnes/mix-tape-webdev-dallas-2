@@ -2,23 +2,7 @@ import express from "express";
 import session from "express-session"
 import morgan from "morgan";
 import ViteExpress from "vite-express";
-import axios from 'axios'
 
-//user variable that grabs user info 
-import { 
-  getPlaylist,
-  addPlaylist, 
-  editPlaylist,
-  deletePlayList, 
-} from "./controllers/playlistController.js";
-
-import { 
-  playlistSong, 
-  addNewSong, 
-  deleteSong } from "./controllers/songController.js";
-
-  import { getFriendList,
-   } from "./controllers/friendlistController.js";
 
 import { 
   addSignUp,
@@ -26,6 +10,38 @@ import {
   destroySession, 
   getAuthStatus,
   authRequired } from "./controllers/authController.js";
+  
+  import { 
+    getPlaylist,
+    addPlaylist, 
+    editPlaylist,
+    deletePlayList, 
+  } from "./controllers/playlistController.js";
+  
+
+  import { 
+    getFriendList,
+  } from "./controllers/friendlistController.js";
+  
+  import { 
+    playlistSong, 
+    addNewSong, 
+    deleteSong } from "./controllers/songController.js";
+  
+
+   import{
+    addFriend,
+    deleteFriend,
+    getFriendPlaylists
+   } from "../server/controllers/friendController.js"
+
+   import {
+    getTopLiked,
+    myLikes,
+    addLike,
+    removeLike
+   } from "./controllers/likesController.js"
+
 
 const app = express();
 const port = "8000";
@@ -42,6 +58,7 @@ ViteExpress.config({ printViteDevServerHost: true });
 
 
 ////PLaylist EndPoints Section
+//This needs to have getAuth added in order to only get this onece you are logged in
 
 //Get Playlist
 app.get('/api/playlists', getPlaylist)
@@ -90,10 +107,40 @@ app.post("/api/logout", authRequired, destroySession)
 app.get("/api/auth/status", getAuthStatus)
 
 
-////Friends List Endpoints
+////FriendList Endpoints
 
-//Get Friend List
+//Get FriendList
 app.get("/api/friendlist", authRequired, getFriendList)
+
+
+////Friend Endpoints
+
+//Add Friend
+app.post("/api/addfriend", authRequired, addFriend )
+
+//Remove Friend
+app.post("/api/deletefriend/:friendId", authRequired, deleteFriend)
+
+//Get ALL Friend Playlists
+app.get("/api/friend/playlists", authRequired, getFriendPlaylists)
+
+//Get Friend Playlist Id
+app.get("api/friend/playlists/:id")
+
+//Likes Endpoints
+
+//get all TOP Liked Playlists
+app.get("/api/gettopliked", getTopLiked)
+
+//get all liked playlist by user
+app.post("/api/allmyliked", authRequired, myLikes)
+
+//add a like to Playlist
+app.post("/api/likeplaylist", authRequired, addLike)
+
+//unlike a playlist
+app.post("api/removelike", authRequired, removeLike)
+
 
 
 
