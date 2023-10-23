@@ -8,22 +8,19 @@ const getFriendList = async (req, res) => {
       userId: userId,
     },
   });
-
+  console.log(friendlist);
   const friends = await Friend.findAll({
     where: {
-      friendlistId: friendlist.friendlistId,
+      friendListId: friendlist.friendListId,
     },
     include: {
       model: User,
       attributes: ["userId", "username"],
     },
-
   });
-  console.log(friends)
-
+  console.log(friends);
 
   res.json(friends);
 };
 
 export { getFriendList };
-
