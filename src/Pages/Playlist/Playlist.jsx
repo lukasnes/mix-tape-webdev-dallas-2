@@ -12,7 +12,6 @@ const Playlist = () => {
   let {playlists} = useLoaderData();
 
   const [playlist, setPlaylist] = useState(playlists)
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   let playlistData = playlist.map((pl) => {
     return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
@@ -26,7 +25,7 @@ const Playlist = () => {
 
   return  <>
             <header>
-              <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+              <Header />
             </header>
             <main>
               <div id='playlistContainer'>

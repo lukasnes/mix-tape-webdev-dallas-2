@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 
-function SignUpModal({setIsLoggedIn, signUpShow, handleSignUpClose}) {
+function SignUpModal({signUpShow, handleSignUpClose}) {
 
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [passwordConfirm, setConfirm] = useState('')
+    const dispatch = useDispatch()
 
     const handleSignUp = async () => {
         if(password === passwordConfirm){
           const res = await axios.post('/api/signup', {username, email, password})
           console.log(res)
         if (res.data.success){
-            setIsLoggedIn(true)
+            dispatch({type: 'login'})
+            handleSignUpClose()
         } else {
                 alert('Passwords do not match!')
             }

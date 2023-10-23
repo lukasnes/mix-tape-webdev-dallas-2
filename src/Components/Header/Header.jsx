@@ -4,13 +4,18 @@ import {useState} from 'react'
 import {Modal} from 'react-bootstrap'
 import axios from "axios"
 import './header.css'
+import { useDispatch, useSelector } from "react-redux"
+import { BsHeartFill, BsHeart } from "react-icons/bs";
 
 
 
-const Header = ({isLoggedIn, setIsLoggedIn}) => {
+const Header = () => {
 
   const [loginShow, setLoginShow] = useState(false)
   const [signUpShow, setSignUpShow] = useState(false)
+
+  const dispatch = useDispatch()
+  const isLoggedIn = useSelector(state=>state.loggedIn)
 
   const handleLoginOpen = () => setLoginShow(true)
   const handleLoginClose = () => setLoginShow(false)
@@ -21,8 +26,9 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
   const handleLogout = async () => {
     const res = await axios.post('/api/logout')
     if(res.data.success){
-      setIsLoggedIn(false)
+      dispatch({type: 'logout'})
       setLoginShow(false)
+
     }
   }
 
@@ -31,10 +37,10 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
           <button className="windowButtons" id='logoutButton' onClick={handleLogout}> Logout </button>
-          <button className="windowButtons" id='friendsButton'> Friends </button>
+          <button className="windowButtons" id='friendsButton' > <BsHeartFill/> </button>
         </div>
         <div id='tapeBottom'>
-          <div>
+          <div id='signUpDiv'>
             <p>username</p>
           </div>
         </div>
@@ -43,13 +49,13 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
     (
       <>
       <SignUpModal id='signUpModal' signUpShow={signUpShow} setSignUpShow={setSignUpShow} handleSignUpClose={handleSignUpClose}  />
-      <LoginModal id="loginModal" loginShow={loginShow} setLoginShow={setLoginShow} handleLoginClose={handleLoginClose} setIsLoggedIn={setIsLoggedIn} />
+      <LoginModal id="loginModal" loginShow={loginShow} setLoginShow={setLoginShow} handleLoginClose={handleLoginClose} />
       
         <div id='tapeMain'>
         <div id='window'>
           <button className="windowButtons" id='topButton'> Top </button>
           <button className="windowButtons" id='loginButton' onClick={handleLoginOpen} > Login </button>
-          <button className="windowButtons" id='friendsButton'> Friends </button>
+          <button className="windowButtons" id='friendsButton' disabled={true}> <BsHeart/> </button>
         </div>
         <div id='tapeBottom'>
           <div id='signUpDiv'>
