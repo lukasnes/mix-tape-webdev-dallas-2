@@ -1,9 +1,10 @@
 import axios from "axios"
 
-let {data: {loggedIn}} = await axios.get("/api/auth/status")
+let {data: {loggedIn, userId}} = await axios.get("/api/auth/status")
 
 const initialState = {
-    loggedIn: loggedIn
+    loggedIn: loggedIn,
+    userId: userId
 }
 
 export default function reducer (state = initialState, action){
