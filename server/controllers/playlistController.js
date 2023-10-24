@@ -4,17 +4,17 @@ import {
  } from "../../database/model.js"
 
 
-const getMyPlaylist = async (req, res) => {
+const getPlaylistByUser = async (req, res) => {
 
     // const playlists = await Playlist.findAll({where: {userId: userId}})
     // res.status(200).json(playlists)
     // console.log(playlists)
 
-    let { userId } = req.session
+    let { userId } = req.params 
  
         const playlists = await Playlist.findAll({
             where: {
-                userId: userId
+                userId: +userId
             }
         })
         res.status(200).json(playlists)
@@ -88,7 +88,7 @@ const deletePlayList = async (req, res) => {
 };
 
 export { 
-    getMyPlaylist,
+    getPlaylistByUser,
     addPlaylist, 
     editPlaylist,
     deletePlayList,

@@ -12,7 +12,7 @@ import {
   authRequired } from "./controllers/authController.js";
   
   import { 
-    getMyPlaylist,
+    getPlaylistByUser,
     addPlaylist, 
     editPlaylist,
     deletePlayList, 
@@ -61,7 +61,7 @@ ViteExpress.config({ printViteDevServerHost: true });
 //This needs to have getAuth added in order to only get this onece you are logged in
 
 //Get Playlist
-app.get('/api/playlists', getMyPlaylist)
+app.get('/api/playlists/:userId', getPlaylistByUser)
 
 //Add PlayList
 app.post("/api/addnewplaylist", addPlaylist)
