@@ -31,10 +31,11 @@ const Playlist = () => {
           setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
           break
         case 'friendsPlaylist':
-          setPageData()
+          setPageData(<MyPlaylist friendId={friendId} />)
           break
         case 'myPlaylist':
-          setPageData(<MyPlaylist />)
+          setFriendId(null)
+          setPageData(<MyPlaylist friendId={friendId}/>)
           break
       }
   }, [pageState])

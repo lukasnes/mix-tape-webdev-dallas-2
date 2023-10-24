@@ -12,7 +12,7 @@ const MyPlaylist = ({friendId}) => {
     useEffect(() => {
         const getMyList = async () => {
             let res 
-            if(friendId){
+            if(friendId !== null){
                 res = await axios.get(`/api/playlists/${friendId}`)  
             } else {
                 res = await axios.get(`/api/playlists/${userId}`) 
