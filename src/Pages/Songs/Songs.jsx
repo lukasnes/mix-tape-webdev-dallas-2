@@ -7,11 +7,13 @@ import "../Songs/Songs.css";
 import SongsModal from "./SongsModal";
 import SearchBar from "../../Components/Modal/AddSong/AddSong.jsx";
 import AddSong from "../../Components/Modal/AddSong/AddSong.jsx";
+import { useNavigate } from "react-router-dom";
 
 const Songs = () => {
   let { playlist } = useLoaderData();
   console.log(playlist);
 
+  const navigate = useNavigate();
   const [songs, setSongs] = useState(playlist.songs);
   console.log(songs);
   const [playlistName, setPlaylistname] = useState(playlist.name);
@@ -57,7 +59,11 @@ const Songs = () => {
       ) : (
         <section className="playlist_active">
           <div className="header">
+          <button onClick={()=>{
+            navigate("/")
+          }} className="backButton">Back Home</button>
             <h1 className="title">
+           
               {playlistName}
               <svg
                 className="editPlaylistButton"
