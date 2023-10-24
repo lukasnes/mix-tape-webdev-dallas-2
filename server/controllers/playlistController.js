@@ -30,7 +30,9 @@ const getPlaylist = async (req, res) => {
 
 
 const addPlaylist = async (req, res) => {
-    // const { name } = req.body
+    const { 
+        userId, 
+         } = req.body
     const user = await User.findOne(
         {
             where: {
@@ -41,7 +43,6 @@ const addPlaylist = async (req, res) => {
     
      const newPlaylist = await user.createPlaylist(
         {
-        //  name: name
          name: 'New Playlist'
         }
     )
@@ -50,6 +51,8 @@ const addPlaylist = async (req, res) => {
 
 
 const editPlaylist = async (req,res) => {
+
+
     const {
         playlistId,
         playlistname
@@ -72,7 +75,7 @@ const editPlaylist = async (req,res) => {
 const deletePlayList = async (req, res) => {
     const { userId } = req.session
     console.log("userId:", userId)
-    
+
     const { playlistId } = req.body
     const playlist = await Playlist.findOne(
         {
