@@ -16,6 +16,7 @@ const Playlist = () => {
 
   const [pageState, setPageState] = useState('hot')
   const [pageData, setPageData] = useState()
+  const [friendId, setFriendId] = useState(null)
 
   // let playlistData = playlist.map((pl) => {
   //   return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
@@ -27,7 +28,7 @@ const Playlist = () => {
           setPageData(<HotList />)
           break
         case 'friendsList':
-          setPageData(<FriendList />)
+          setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
           break
         case 'friendsPlaylist':
           setPageData()
