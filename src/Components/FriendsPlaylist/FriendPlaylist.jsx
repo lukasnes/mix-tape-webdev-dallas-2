@@ -1,5 +1,5 @@
 import PlaylistRow from "../PlaylistRow/PlaylistRow"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 const FriendsPlaylist = ({friendId}) => {
