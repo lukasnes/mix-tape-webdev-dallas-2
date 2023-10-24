@@ -1,39 +1,35 @@
-import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import Header from "../../Components/Header/Header";
 import HotList from "../../Components/HotList/HotList";
-import { useLoaderData, useNavigate} from "react-router-dom";
+import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
+import { useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './playlist.css'
 import FriendList from "../../Components/FriendList/FriendList";
+import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist";
 
 
 const Playlist = () => {
 
   const navigate = useNavigate()
-  // let {playlists} = useLoaderData();
-
-  // const [playlist, setPlaylist] = useState(playlists)
   const [pageState, setPageState] = useState('hot')
   const [pageData, setPageData] = useState()
-
-  // let playlistData = playlist.map((pl) => {
-  //   return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
-  // })
+  const [friendId, setFriendId] = useState(null)
 
   useEffect(()=>{
       switch (pageState){
         case 'hot':
-          setPageData(<HotList/>)
+          setPageData(<HotList />)
           break
         case 'friendsList':
-          setPageData(<FriendList />)
+          setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
           break
         case 'friendsPlaylist':
-          setPageData()
+          setPageData(<FriendsPlaylist friendId={friendId} />)
           break
         case 'myPlaylist':
-          setPageData()
+          setFriendId(null)
+          setPageData(<MyPlaylist />)
           break
       }
   }, [pageState])

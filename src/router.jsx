@@ -16,7 +16,8 @@ let router = createBrowserRouter(
         index
         element={<Playlist />}
         loader={async () => {
-          let res = await axios.get("/api/playlists");
+          let res = await axios.get("/api/gettopliked");
+          
           return {
             playlists: res.data,
           };

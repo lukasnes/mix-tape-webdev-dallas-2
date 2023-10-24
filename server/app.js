@@ -12,7 +12,7 @@ import {
   authRequired } from "./controllers/authController.js";
   
   import { 
-    getPlaylist,
+    getPlaylistByUser,
     addPlaylist, 
     editPlaylist,
     deletePlayList, 
@@ -37,9 +37,9 @@ import {
 
    import {
     getTopLiked,
-    myLikes,
+    getMyLikes,
     addLike,
-    removeLike
+    removeLike,
    } from "./controllers/likesController.js"
 
 
@@ -61,7 +61,7 @@ ViteExpress.config({ printViteDevServerHost: true });
 //This needs to have getAuth added in order to only get this onece you are logged in
 
 //Get Playlist
-app.get('/api/playlists', getPlaylist)
+app.get('/api/playlists/:userId', getPlaylistByUser)
 
 //Add PlayList
 app.post("/api/addnewplaylist", addPlaylist)
@@ -116,7 +116,7 @@ app.get("/api/friendlist", authRequired, getFriendList)
 ////Friend Endpoints
 
 //Add Friend
-app.post("/api/addfriend", authRequired, addFriend )
+app.post("/api/addfriend/:friendUserId", authRequired, addFriend )
 
 //Remove Friend
 app.post("/api/deletefriend/:friendId", authRequired, deleteFriend)
@@ -133,7 +133,7 @@ app.get("api/friend/playlists/:id")
 app.get("/api/gettopliked", getTopLiked)
 
 //get all liked playlist by user
-app.post("/api/allmyliked", authRequired, myLikes)
+app.get("/api/allmyliked", authRequired, getMyLikes)
 
 //add a like to Playlist
 app.post("/api/likeplaylist", authRequired, addLike)

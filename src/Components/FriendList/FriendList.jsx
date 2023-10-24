@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { BsHeartFill, BsHeart } from "react-icons/bs";
 import axios from "axios";
 import "../Header/header.css";
+import Friends from "../Friend/Friends";
 
-const FriendList = () => {
+
+const FriendList = ({setPageState, setFriendId}) => {
   const [friendList, setFriendList] = useState([]);
 
   useEffect(() => {
@@ -23,9 +24,7 @@ const FriendList = () => {
     <div>
       <div>
         {friendList.map((friend, index) => (
-          <div key={index}>
-            {friend.userId} {friend.username}
-          </div>
+          <Friends friend={friend} key={index} setPageState= {setPageState} setFriendId= {setFriendId} />
         ))}
       </div>
     </div>

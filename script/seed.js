@@ -129,6 +129,7 @@ for ( let i = 1; i < 5; i++){
     console.log(like)   
 }
 
+
 for( let i = 1; i < 5; i++ ) {
 
     let randInt = Math.ceil(Math.random() * 4)
@@ -149,16 +150,17 @@ for( let i = 1; i < 5; i++ ) {
     })
     console.log(friend)  
 
-    const friendReturn = await FriendList.findOne({
-        where: {
-            userId: randInt
-        }
-    }
-    )
-    const otherFriend = await friendReturn.createFriend({
-        userId: i
-    })
-    console.log(otherFriend)
+    // const friendReturn = await FriendList.findOne({
+    //     where: {
+    //         userId: randInt
+    //     }
+    // }
+    // )
+    // const otherFriend = await friendReturn.createFriend({
+    //     userId: i
+    // })
+    // console.log(otherFriend)
+    
 }
 
 

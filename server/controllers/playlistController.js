@@ -1,32 +1,29 @@
 import { 
     User, 
     Playlist,
-    Likes } from "../../database/model.js"
+ } from "../../database/model.js"
 
 
-const getPlaylist = async (req, res) => {
+const getPlaylistByUser = async (req, res) => {
 
     // const playlists = await Playlist.findAll({where: {userId: userId}})
     // res.status(200).json(playlists)
     // console.log(playlists)
 
-    let { userId } = req.session
-    if ( userId ){
-        const playlists = await Playlist.findAll({where: {userId: userId}})
+    let { userId } = req.params 
+ 
+        const playlists = await Playlist.findAll({
+            where: {
+                userId: +userId
+            }
+        })
         res.status(200).json(playlists)
         console.log(playlists)
-    } else {
-        const allPlaylists = await Playlist.findAll()
-        res.status(200).json(allPlaylists)
-        console.log(allPlaylists)
-    }
-
-
-}
+    } 
 
 
 const addPlaylist = async (req, res) => {
-    // const { name } = req.body
+    const { userId } = req.session
     const user = await User.findOne(
         {
             where: {
@@ -37,7 +34,6 @@ const addPlaylist = async (req, res) => {
     
      const newPlaylist = await user.createPlaylist(
         {
-        //  name: name
          name: 'New Playlist'
         }
     )
@@ -46,6 +42,8 @@ const addPlaylist = async (req, res) => {
 
 
 const editPlaylist = async (req,res) => {
+
+
     const {
         playlistId,
         playlistname
@@ -66,6 +64,9 @@ const editPlaylist = async (req,res) => {
 }
 
 const deletePlayList = async (req, res) => {
+    const { userId } = req.session
+    console.log("userId:", userId)
+
     const { playlistId } = req.body
     const playlist = await Playlist.findOne(
         {
@@ -87,7 +88,7 @@ const deletePlayList = async (req, res) => {
 };
 
 export { 
-    getPlaylist,
+    getPlaylistByUser,
     addPlaylist, 
     editPlaylist,
     deletePlayList,

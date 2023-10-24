@@ -57,6 +57,12 @@
   color: rgb(103, 189, 160);
   cursor: pointer;
 }
+.backButton{
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  
+}
 
 
 
