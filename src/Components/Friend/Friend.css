@@ -11,16 +11,22 @@
 .friendsContainer{
     border: 2px solid rgba(14, 13, 13, 0.888);
     box-shadow: 3px 3px black;
+    width: 300px;
     height: 50px;
-    height: 40px;
+    
 }
 
 .likes{
+    border: 2px solid rgba(14, 13, 13, 0.888);
+    box-shadow: 3px 3px black;
     display: flex;
     align-items: right;
     justify-content: right;
-    margin-top: -20px;
-    margin-right: 100px;
+    width: 200px;
+    height: 50px;
+    margin-left: 500px;
+    margin-top: 0;
+    
 
 }
 .friendDisplay:hover{

@@ -1,4 +1,6 @@
 import "../Friend/Friend.css";
+import LikePlaylist from "../LikedPlaylist/LikePlaylist";
+
 
 const Friends = ({ friend, index, setPageState, setFriendId }) => {
   return (
@@ -14,7 +16,9 @@ const Friends = ({ friend, index, setPageState, setFriendId }) => {
           {friend.username}
         </div>
         <div className="userId">{friend.userId}</div>
-        <div className="likes">Likes</div>
+      </div>
+      <div className="likes">
+        <LikePlaylist/>
       </div>
     </div>
   );

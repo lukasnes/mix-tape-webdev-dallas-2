@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { BsHeartFill, BsHeart } from "react-icons/bs";
 import axios from "axios";
 import "../Header/header.css";
 import Friends from "../Friend/Friends";
