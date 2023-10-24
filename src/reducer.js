@@ -1,6 +1,9 @@
+import axios from "axios"
+
+let {data: {loggedIn}} = await axios.get("/api/auth/status")
 
 const initialState = {
-    loggedIn: false
+    loggedIn: loggedIn
 }
 
 export default function reducer (state = initialState, action){
@@ -13,3 +16,4 @@ export default function reducer (state = initialState, action){
             return state
     }
 }
+

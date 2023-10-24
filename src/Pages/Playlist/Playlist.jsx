@@ -1,7 +1,8 @@
-import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
+// import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import Header from "../../Components/Header/Header";
 import HotList from "../../Components/HotList/HotList";
-import { useLoaderData, useNavigate} from "react-router-dom";
+import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
+import { useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import './playlist.css'
@@ -13,7 +14,6 @@ const Playlist = () => {
   const navigate = useNavigate()
   // let {playlists} = useLoaderData();
 
-  // const [playlist, setPlaylist] = useState(playlists)
   const [pageState, setPageState] = useState('hot')
   const [pageData, setPageData] = useState()
 
@@ -24,7 +24,7 @@ const Playlist = () => {
   useEffect(()=>{
       switch (pageState){
         case 'hot':
-          setPageData(<HotList/>)
+          setPageData(<HotList />)
           break
         case 'friendsList':
           setPageData(<FriendList />)
@@ -33,7 +33,7 @@ const Playlist = () => {
           setPageData()
           break
         case 'myPlaylist':
-          setPageData()
+          setPageData(<MyPlaylist />)
           break
       }
   }, [pageState])
