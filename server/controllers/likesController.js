@@ -70,11 +70,30 @@ const topPlaylists = await Playlist.findAll({
 }
 
 
-const myLikes = async (req, res) => {
-
+const getMyLikes = async (req, res) => {
+    
     let { userId } = req.session
 
+    let myLikes = await Likes.findAll({
+        where: {
+            userId: userId
+        },
+        include: {
+            model: Playlist,
+            attributes: [
+                'playlistId',
+                'name',
+                'createdAt'
+            ]
+        }
+    })
+    console.log(myLikes)
 
+
+
+    myLikes = myLikes.map(like => like.playlist)
+
+    res.json(myLikes)
 }
 
 const addLike = async (req, res) => {
@@ -88,7 +107,7 @@ const removeLike = async (req, res) => {
 
 export {
     getTopLiked,
-    myLikes,
+    getMyLikes,
     addLike,
     removeLike
 }

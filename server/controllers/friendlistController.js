@@ -10,14 +10,11 @@ const getFriendList = async (req, res) => {
     where: {
       userId: userId,
     },
-// <<<<<<< HEAD
+
   })
 
   console.log(friendlist)
-// =======
-  // });
-//   console.log(friendlist);
-// >>>>>>> f84de8b0315eb7da0e20752802bccb1b706e0893
+
   let friends = await Friend.findAll({
     where: {
       friendListId: friendlist.friendListId,

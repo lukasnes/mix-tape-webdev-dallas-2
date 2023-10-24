@@ -37,9 +37,9 @@ import {
 
    import {
     getTopLiked,
-    myLikes,
+    getMyLikes,
     addLike,
-    removeLike
+    removeLike,
    } from "./controllers/likesController.js"
 
 
@@ -133,7 +133,7 @@ app.get("api/friend/playlists/:id")
 app.get("/api/gettopliked", getTopLiked)
 
 //get all liked playlist by user
-app.post("/api/allmyliked", authRequired, myLikes)
+app.get("/api/allmyliked", authRequired, getMyLikes)
 
 //add a like to Playlist
 app.post("/api/likeplaylist", authRequired, addLike)
