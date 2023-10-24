@@ -16,7 +16,6 @@ let router = createBrowserRouter(
         index
         element={<Playlist />}
         loader={async () => {
-          console.log('hit')
           let res = await axios.get("/api/gettopliked");
           
           return {

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux"
-import PlaylistRow from "../PlaylistRow/PlaylistRow"
 import { useEffect, useState } from 'react'
+import PlaylistRow from "../PlaylistRow/PlaylistRow"
 import axios from "axios"
 
 
-const MyPlaylist = ({friendId}) => {
+const MyPlaylist = () => {
 
     const userId = useSelector(state=>state.userId)
     const [playlist, setPlaylist] = useState([])
@@ -12,9 +12,7 @@ const MyPlaylist = ({friendId}) => {
     useEffect(() => {
         const getMyList = async () => {
             let res 
-            if(friendId !== null){
-                res = await axios.get(`/api/playlists/${friendId}`)  
-            } else {
+            if(userId !== null){
                 res = await axios.get(`/api/playlists/${userId}`) 
             }
             setPlaylist(res.data)
@@ -24,7 +22,6 @@ const MyPlaylist = ({friendId}) => {
     let playlistData = playlist.map((pl) => {
         return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
       })
-    
       return playlistData
     }
     
