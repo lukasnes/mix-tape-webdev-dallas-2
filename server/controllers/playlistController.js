@@ -66,6 +66,7 @@ const editPlaylist = async (req,res) => {
 }
 
 const deletePlayList = async (req, res) => {
+    const { userId } = req.session
     const { playlistId } = req.body
     const playlist = await Playlist.findOne(
         {
