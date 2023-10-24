@@ -1,12 +1,13 @@
 import LoginModal from "../Modal/Login/Login"
 import SignUpModal from "../Modal/SignUp/SignUp"
 import {useState} from 'react'
-import {Modal} from 'react-bootstrap'
+// import {Modal} from 'react-bootstrap'
 import axios from "axios"
 import './header.css'
 import { useDispatch, useSelector } from "react-redux"
 import { BsHeartFill, BsHeart } from "react-icons/bs";
-import FriendList from "../FriendList/FriendList"
+// import FriendList from "../FriendList/FriendList"
+
 
 
 
@@ -29,6 +30,7 @@ const Header = ({setPageState}) => {
     if(res.data.success){
       dispatch({type: 'logout'})
       setLoginShow(false)
+      setPageState('hot')
     }
   }
 

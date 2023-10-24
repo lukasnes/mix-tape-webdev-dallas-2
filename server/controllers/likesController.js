@@ -8,14 +8,14 @@ const getTopLiked = async (req, res) => {
 const getAllPlaylists = await Playlist.findAll()
 res.status(200).json(getAllPlaylists)
 
-const topPlaylists = await Playlist.findAll({
-    include: {
-        model: Likes,
-    },
-    order: [
-        [{ }]
-    ]
-})
+// const topPlaylists = await Playlist.findAll({
+//     include: {
+//         model: Likes,
+//     },
+//     order: [
+//         [{ }]
+//     ]
+// })
 
 // const rankedPlaylists = await Playlist.findAll({
 //     attributes: {
