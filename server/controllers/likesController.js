@@ -8,10 +8,11 @@ import{
 const getTopLiked = async (req, res) => {
 const getAllPlaylists = await Playlist.findAll()
 res.status(200).json(getAllPlaylists)
+return
 
 const topPlaylists = await Playlist.findAll({
     include: {
-        model: Likes,
+       model: Likes,
     },
     order: [
         [{ }]
@@ -40,6 +41,13 @@ const topPlaylists = await Playlist.findAll({
 //     },
 //     order: [
 //         [sequelize.literal('laughReactionsCount'), 'DESC']
+  
+// const topPlaylists = await Playlist.findAll({
+//     include: {
+//         model: Likes,
+//     },
+//     order: [
+//         [{ }]
 //     ]
 // })
 

@@ -1,0 +1,29 @@
+.friendDisplay {
+    flex-grow: 1;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    height: 50px;
+    width: 95vw;
+    margin-left: 20px;
+
+}
+.friendsContainer{
+    border: 2px solid rgba(14, 13, 13, 0.888);
+    box-shadow: 3px 3px black;
+    height: 50px;
+    height: 40px;
+}
+
+.likes{
+    display: flex;
+    align-items: right;
+    justify-content: right;
+    margin-top: -45px;
+    margin-right: 100px;
+
+}
+.friendDisplay:hover{
+    cursor: pointer;
+    
+}
