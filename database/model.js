@@ -181,11 +181,7 @@ Likes.init(
 Playlist.hasMany(Song, { foreignKey: 'playlistId'})
 Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
-// Likes Table
-Playlist.hasMany(Likes, { foreignKey: 'playlistId'})
-Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
-// Playlist Table
 User.hasMany(Playlist, {foreignKey:'userId'})
 Playlist.belongsTo(User, {foreignKey: 'userId'})
 
@@ -193,22 +189,25 @@ Playlist.belongsTo(User, {foreignKey: 'userId'})
 User.hasOne(FriendList, {foreignKey: 'userId'})
 FriendList.belongsTo(User, { foreignKey: 'userId'})
 
+
+FriendList.hasMany(Friend, { foreignKey: 'friendListId'})
+Friend.belongsTo(FriendList, {foreignKey: 'friendListId'})
+
+
 ///Friend table
 Friend.belongsTo(User, { foreignKey: 'userId' })
 User.hasMany(Friend, { foreignKey: 'userId'})
+
 
 // Likes table
 User.hasMany(Likes, {foreignKey: 'userId'})
 Likes.belongsTo(User, {foreignKey: 'userId'})
 
 
-Playlist.hasMany(Likes, {foreignKey: 'playlistId'})
+Playlist.hasMany(Likes, { foreignKey: 'playlistId'})
 Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
 
-// Friendlist Table
-FriendList.hasMany(Friend, { foreignKey: 'friendListId'})
-Friend.belongsTo(FriendList, {foreignKey: 'friendListId'})
 
 
 

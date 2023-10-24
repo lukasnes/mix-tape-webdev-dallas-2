@@ -116,7 +116,7 @@ app.get("/api/friendlist", authRequired, getFriendList)
 ////Friend Endpoints
 
 //Add Friend
-app.post("/api/addfriend", authRequired, addFriend )
+app.post("/api/addfriend/:friendUserId", authRequired, addFriend )
 
 //Remove Friend
 app.post("/api/deletefriend/:friendId", authRequired, deleteFriend)

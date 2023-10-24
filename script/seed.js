@@ -149,16 +149,17 @@ for( let i = 1; i < 5; i++ ) {
     })
     console.log(friend)  
 
-    const friendReturn = await FriendList.findOne({
-        where: {
-            userId: randInt
-        }
-    }
-    )
-    const otherFriend = await friendReturn.createFriend({
-        userId: i
-    })
-    console.log(otherFriend)
+    // const friendReturn = await FriendList.findOne({
+    //     where: {
+    //         userId: randInt
+    //     }
+    // }
+    // )
+    // const otherFriend = await friendReturn.createFriend({
+    //     userId: i
+    // })
+    // console.log(otherFriend)
+    
 }
 
 

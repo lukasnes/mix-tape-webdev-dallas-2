@@ -1,7 +1,7 @@
 import { 
     User, 
     Playlist,
-    Likes } from "../../database/model.js"
+ } from "../../database/model.js"
 
 
 const getPlaylist = async (req, res) => {
@@ -12,7 +12,11 @@ const getPlaylist = async (req, res) => {
 
     let { userId } = req.session
     if ( userId ){
-        const playlists = await Playlist.findAll({where: {userId: userId}})
+        const playlists = await Playlist.findAll({
+            where: {
+                userId: userId
+            }
+        })
         res.status(200).json(playlists)
         console.log(playlists)
     } else {
@@ -66,6 +70,9 @@ const editPlaylist = async (req,res) => {
 }
 
 const deletePlayList = async (req, res) => {
+    const { userId } = req.session
+    console.log("userId:", userId)
+    
     const { playlistId } = req.body
     const playlist = await Playlist.findOne(
         {
