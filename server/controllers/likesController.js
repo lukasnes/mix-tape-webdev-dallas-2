@@ -1,5 +1,6 @@
 import{
-    Likes, Playlist,
+    Likes, 
+    Playlist,
 } from "../../database/model.js"
 
 
@@ -7,7 +8,40 @@ import{
 const getTopLiked = async (req, res) => {
 const getAllPlaylists = await Playlist.findAll()
 res.status(200).json(getAllPlaylists)
+return
 
+const topPlaylists = await Playlist.findAll({
+    include: {
+       model: Likes,
+    },
+    order: [
+        [{ }]
+    ]
+})
+// SELECT CountQueuingStrategy(*) FROM Likes;
+// GROUP BY getFriendPlaylistId;
+// ORDER BY  CountQueuingStrategy(*) DESC
+// LIMIT 10
+
+// Post.findAll({
+//     attributes: {
+//         include: [
+//             [
+//                 sequelize.literal(`(
+//                     SELECT COUNT(*)
+//                     FROM reactions AS reaction
+//                     WHERE
+//                         reaction.postId = post.id
+//                         AND
+//                         reaction.type = "Laugh"
+//                 )`),
+//                 'laughReactionsCount'
+//             ]
+//         ]
+//     },
+//     order: [
+//         [sequelize.literal('laughReactionsCount'), 'DESC']
+  
 // const topPlaylists = await Playlist.findAll({
 //     include: {
 //         model: Likes,
@@ -37,6 +71,9 @@ res.status(200).json(getAllPlaylists)
 
 
 const myLikes = async (req, res) => {
+
+    let { userId } = req.session
+
 
 }
 
