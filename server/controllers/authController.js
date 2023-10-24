@@ -68,9 +68,9 @@ const authRequired = async (req, res, next) => {
 //checks authentication
 const getAuthStatus = (req, res) => {
   if ( req.session.userId ) {
-    res.json({loggedIn: true }) 
+    res.json({loggedIn: true, userId: req.session.userId }) 
   } else {
-    res.json({loggedIn: false })
+    res.json({ loggedIn: false, userId: null })
   }
 }
 
