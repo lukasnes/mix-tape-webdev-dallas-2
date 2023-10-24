@@ -44,6 +44,21 @@ const Songs = () => {
 
   const addSong = () => {};
 
+  // const updatePlaylistData = async () => {
+  //   try {
+  //     const response = await axios.get(`/api/getplaylist/${playlist.playlistId}`);
+  //     const updatedPlaylist = response.data; 
+  //     setSongs(updatedPlaylist.songs);
+  //     setPlaylistname(updatedPlaylist.name);
+  //   } catch (error) {
+  //     console.error("Error updating playlist data:", error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   updatePlaylistData();
+  // }, [playlist.playlistId]);
+
   return (
     <div>
       {isEditing ? (
@@ -80,7 +95,9 @@ const Songs = () => {
           </div>
           <div className="songsDisplay">
             {songsDisplay}
-            <AddSong />
+            <AddSong 
+            // onPlaylistDataUpdate = {updatePlaylistData}
+            />
           </div>
         </section>
       )}
