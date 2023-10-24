@@ -32,7 +32,7 @@ const getPlaylist = async (req, res) => {
 const addPlaylist = async (req, res) => {
     const { 
         userId, 
-         } = req.body
+         } = req.session
     const user = await User.findOne(
         {
             where: {
