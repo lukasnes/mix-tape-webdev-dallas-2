@@ -129,6 +129,7 @@ for ( let i = 1; i < 5; i++){
     console.log(like)   
 }
 
+
 for( let i = 1; i < 5; i++ ) {
 
     let randInt = Math.ceil(Math.random() * 4)

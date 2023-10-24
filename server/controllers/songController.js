@@ -5,7 +5,7 @@ import {
     const playlistSong = async (req, res) => {
     const playlist = await Playlist.findOne(
         { 
-            where: { playlistId:+req.params.id },
+            where: { playlistId: +req.params.id },
             include: { 
                 model: Song, 
                 attributes: 
