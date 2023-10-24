@@ -1,4 +1,3 @@
-// import PlaylistRow from "../../Components/PlaylistRow/PlaylistRow";
 import Header from "../../Components/Header/Header";
 import HotList from "../../Components/HotList/HotList";
 import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
@@ -12,15 +11,9 @@ import FriendList from "../../Components/FriendList/FriendList";
 const Playlist = () => {
 
   const navigate = useNavigate()
-  // let {playlists} = useLoaderData();
-
   const [pageState, setPageState] = useState('hot')
   const [pageData, setPageData] = useState()
   const [friendId, setFriendId] = useState(null)
-
-  // let playlistData = playlist.map((pl) => {
-  //   return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
-  // })
 
   useEffect(()=>{
       switch (pageState){
