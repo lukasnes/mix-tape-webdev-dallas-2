@@ -97,6 +97,32 @@ const getMyLikes = async (req, res) => {
 }
 
 const addLike = async (req, res) => {
+    let { userId, 
+        playlistId } = req.params
+
+    const liked = await Likes.findOne({
+        where: {
+            userId, 
+            playlistId
+        }
+    })
+    console.log(liked)
+
+    if ( liked ) {
+        liked.destroy()
+        res.json({
+            liked: false,
+        })
+    } else {
+        await Likes.create({ 
+            userId, 
+            playlistId
+        }) 
+        res.status(200).json({
+        liked: true
+    })
+    }
+
 
 }
 

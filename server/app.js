@@ -136,7 +136,7 @@ app.get("/api/gettopliked", getTopLiked)
 app.get("/api/allmyliked", authRequired, getMyLikes)
 
 //add a like to Playlist
-app.post("/api/likeplaylist", authRequired, addLike)
+app.post("/api/:userId/likeplaylist/:playlistId", authRequired, addLike)
 
 //unlike a playlist
 app.post("api/removelike", authRequired, removeLike)
