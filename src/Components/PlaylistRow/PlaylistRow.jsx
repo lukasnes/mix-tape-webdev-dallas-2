@@ -1,29 +1,30 @@
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import './playlistRow.css';
 import axios from "axios";
 import { useSelector } from 'react-redux';
 
 const PlaylistRow = ({pl, setPlaylist}) => {
+    console.log(pl)
 
     const navigate = useNavigate()
     const userId = useSelector(state=>state.userId)
     const isLoggedIn = useSelector(state=>state.loggedIn)
 
     const deletePlaylist = async () => {
-        
         if( isLoggedIn === true && userId === pl.userId ) {
-            console.log('hit')
            const res = await axios.post("/api/deleteplaylist", {playlistId: pl.playlistId}) 
-           console.log(res.data)
             setPlaylist(res.data)
         }
-
-        
     }  
         
     const editPlaylist = async () => {
         navigate(`/playlist/${pl.playlistId}`)
+    }
+
+    const time = (pl) => {
+        let isoDate = pl.createdAt
+        var d = new Date(isoDate)
+       return d    
     }
     
     return isLoggedIn ? (

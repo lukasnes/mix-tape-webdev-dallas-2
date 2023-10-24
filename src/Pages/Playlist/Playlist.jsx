@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import './playlist.css'
 import FriendList from "../../Components/FriendList/FriendList";
+import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist";
 
 
 const Playlist = () => {
@@ -24,11 +25,11 @@ const Playlist = () => {
           setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
           break
         case 'friendsPlaylist':
-          setPageData(<MyPlaylist friendId={friendId} />)
+          setPageData(<FriendsPlaylist friendId={friendId} />)
           break
         case 'myPlaylist':
           setFriendId(null)
-          setPageData(<MyPlaylist friendId={friendId}/>)
+          setPageData(<MyPlaylist />)
           break
       }
   }, [pageState])
