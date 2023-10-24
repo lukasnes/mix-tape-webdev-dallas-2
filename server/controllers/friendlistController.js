@@ -9,7 +9,7 @@ const getFriendList = async (req, res) => {
     },
   });
   console.log(friendlist);
-  const friends = await Friend.findAll({
+  let friends = await Friend.findAll({
     where: {
       friendListId: friendlist.friendListId,
     },
