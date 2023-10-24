@@ -1,12 +1,17 @@
 import axios from "axios";
 import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../SongsRow/SongsRow.css";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import { ListGroupItem } from "react-bootstrap";
-import FriendList from "../FriendList/FriendList.jsx";
+
+// import Card from "react-bootstrap/Card";
+// import ListGroup from "react-bootstrap/ListGroup";
+// import { ListGroupItem } from "react-bootstrap";
+
 
 const SongsRow = ({ song, songs, setSongs }) => {
+
+  const isLoggedIn = useSelector(state=>state.loggedIn)
+
   const deleteSongs = (songId) => {
     axios.post(`/api/deletesong/${songId}`).then((res) => {
       let newSongs = [...songs];
@@ -23,35 +28,33 @@ const SongsRow = ({ song, songs, setSongs }) => {
         <img className="songImage" src={song.imgUrl} />
       </div>
 
-      <div id="songInfo">
-        <p>
-          Song name: {song.name} <br />
-          Artist: {song.artist} <br />
-          Album: {song.album}
-        </p>
+        <div id='songInfo'>
+          <p>
+            Song name: {song.name} <br />
+            Artist: {song.artist} <br />
+            Album: {song.album}
+          </p>
+        </div>
+
+        <div id='audioPreview'>
+          <audio
+            className="audioPreview"
+            ref={useRef()}
+            src={song.preview}
+            controls
+          />
+        </div>
+        
+        {isLoggedIn ? (
+          <div id='deleteButton'>
+            < button onClick={()=>{}} > Add </button>
+          </div>
+        ):(
+          <div id='deleteButton'>
+            < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>
+          </div> 
+        )}
       </div>
-      <div id="audioPreview">
-        <audio
-          className="audioPreview"
-          ref={useRef()}
-          src={song.preview}
-          controls
-        />
-      </div>
-      <div id="deleteButton">
-        <a
-          onClick={() => {
-            deleteSongs(song.songId);
-          }}
-          href="#"
-          className="deleteButton"
-        >
-          <ion-icon name="remove-outline"></ion-icon>
-          <ion-icon name="close"></ion-icon>
-          {/* <span></span> */}
-        </a>
-      </div>
-    </div>
   );
 };
 

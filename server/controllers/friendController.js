@@ -1,6 +1,7 @@
 import{
     Friend, 
     FriendList,
+    Playlist,
     User
 } from "../../database/model.js"
 
@@ -64,6 +65,7 @@ const deleteFriend = async (req, res) => {
         }
     })
     console.log(deletingFriend)
+    deletingFriend.destroy()
 
     const friends = await Friend.findAll({
         where: {
@@ -79,14 +81,35 @@ const deleteFriend = async (req, res) => {
     friends = friends.map(friend => friend.user)
     console.log(friends)
     res.status(200).json(friends)
-
-
 }
 
 
 
 const getFriendPlaylists = async (req,res) => {
+    let { userId } = req.session
+    console.log("userId:", userId )
 
+    const { friendUserId } = req.params
+    console.log("friendUserId:", friendUserId)
+    
+    const friendPlaylists = await Friend.findOne({
+        where: {
+            userId: friendUserId
+        }
+    })
+    console.log(friendPlaylists)
+
+    if ( friendUserId ) {
+        const playlists = await Playlist.findAll({
+            where: {
+                userId: friendUserId
+            }
+        })
+        res.status(200).json(playlists)
+        console.log(playlists)
+    } else {
+        res.status(200).json({ success : false, message: 'No Friendlist Found'})
+    }
 }
 
 const getFriendPlaylistId = async (req, res) => {

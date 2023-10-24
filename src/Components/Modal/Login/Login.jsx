@@ -3,24 +3,22 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import { useDispatch } from 'react-redux';
 
-function LoginModal({loginShow, setLoginShow, handleLoginClose, setIsLoggedIn}) {
+function LoginModal({loginShow, setLoginShow, handleLoginClose}) {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const dispatch = useDispatch()
 
 
     const handleLogin = async () => {
-        // console.log('hit')
-        // event.preventDefault()
         const res = await axios.post('/api/auth', {email, password})
-        // console.log(res)
         if (res.data.success){
-            setIsLoggedIn(true)
-
+            dispatch({type: 'login', payload: {userId: 1}})
+            setLoginShow(false)
         }
     }
-
 
   return (
     <div
