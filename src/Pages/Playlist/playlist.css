@@ -1,9 +1,11 @@
 body {
-    background-color: white;
+    /* background-color: #311a46; */
+    background-color: black;
 }
 
 p {
-    color: black;
+    color: white;
+    font-family: 'DotGothic16', sans-serif;
 }
 
 header {
@@ -11,18 +13,6 @@ header {
     justify-content: center;
     height: 30vh;
     width: 100vw;
-}
-
-#window {
-    height: 50px;
-    width: 200px;
-    margin: auto;
-}
-
-#tapeBottom {
-    height: 50px;
-    width: 100px;
-    margin: auto;
 }
 
 main {
@@ -36,6 +26,7 @@ main {
     flex-direction: column;
     height: 500px;
     width: 100vw;
+    padding-top: 10px;
 }
 
 #createPlaylistDiv {
@@ -43,13 +34,23 @@ main {
     justify-content: center;
 }
 
-.displayRow {
-    border-radius: 7px;
-    border: 3px solid black;
-
+.button {
+    font-family: 'DotGothic16', sans-serif;
+    text-align: center;
+    border: 1px solid white;
+    background-color: transparent;
+    box-shadow: 0 0 5px #ef97e8;
+    color: #fff;
 }
 
-#playlistNameDiv {
-    border: 2px solid black;
-    border-radius: 7px;
+.roundButton {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.button:hover {
+    box-shadow: 0 0 10px #ef97e8, 0 0 20px #ef97e8, 0 0 20px #fff inset;
+    
 }

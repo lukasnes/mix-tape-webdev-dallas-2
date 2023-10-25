@@ -1,34 +1,111 @@
+.tape {
+    border: 7px solid white;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #B058C6,
+              0 0 0.8rem #B058C6,
+              /* 0 0 2.8rem #B058C6, */
+              inset 0 0 1.3rem #B058C6;
+}
+
+#logo {
+    text-align: center;
+    font-family: 'DotGothic16', sans-serif;
+    color: #fff;
+    font-size: 50px;
+    animation: pulsate 0.11s ease-in-out infinite alternate
+}
+
+@keyframes pulsate {
+    100% {
+      /* Larger blur radius */
+      text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #f09,
+        0 0 80px #f09,
+        0 0 90px #f09,
+        0 0 100px #f09,
+        0 0 150px #f09;
+    }
+   0% {
+      /* A slightly smaller blur radius */
+      text-shadow:
+        0 0 4px #fff,
+        0 0 10px #fff,
+        0 0 18px #fff,
+        0 0 38px #f09,
+        0 0 73px #f09,
+        0 0 80px #f09,
+        0 0 94px #f09,
+        0 0 140px #f09;
+    }
+  }
 
 #tapeMain {
     display: flex;
     position: absolute;
     justify-content: center;
     flex-direction: column;
-    border: 7px solid black;
     margin-top: 10px;
-    width: 300px;
-    height: 200px;
+    width: 380px;
+    height: 230px;
     border-radius: 10px;
+}
+
+#tapeBottom {
+    height: 50px;
+    width: 100px;
+    margin: auto;
 }
 
 #window {
     display: flex;
     justify-content: space-between;
-    border: 2px solid black;
+    border: 2px solid white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    box-shadow: 0 0 .2rem #fff,
+              0 0 .2rem #fff,
+              0 0 2rem #bc13fe,
+              /* 0 0 0.8rem #bc13fe, */
+              /* 0 0 2.8rem #bc13fe, */
+              inset 0 0 1.3rem #bc13fe;
+    align-items: center;
+    height: 60px;
+    width: 210px;
+    margin: auto;
 }
 
 .windowButtons {
-    width: 
+    background-color: black;
+    color: white;
 }
 
 #signUpDiv {
-    border: 7px solid black;
+    display: flex ;
+    position: relative;
+    bottom: -15px;
+    right: 60px;
+    justify-content: center;
+    align-items: center;
     border-radius: 5px;
-    width: 150px;
+    width: 220px;
     height: 50px;
     transform: perspective(10px) rotateX(3deg);
 }
 
+#topButton {
+    margin-left: 10px;
+}
+
+#friendsButton {
+    margin-right: 10px;
+}
+
 Modal {
-    z-index: 3;
+    z-index: 4;
 }
