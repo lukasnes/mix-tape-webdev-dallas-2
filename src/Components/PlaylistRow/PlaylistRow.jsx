@@ -4,7 +4,6 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 
 const PlaylistRow = ({pl, setPlaylist}) => {
-    console.log(pl)
 
     const navigate = useNavigate()
     const userId = useSelector(state=>state.userId)
