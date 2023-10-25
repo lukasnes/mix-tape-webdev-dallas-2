@@ -49,7 +49,7 @@ const Playlist = () => {
                 {pageData}
               </div>
               <div id='createPlaylistDiv'>
-                <button id='createPlaylistButton' onClick={()=> createPlaylist()}> Create Playlist </button>
+                <button id='createPlaylistButton' className="button" onClick={()=> createPlaylist()}> Create Playlist </button>
               </div>
             </main>
 
