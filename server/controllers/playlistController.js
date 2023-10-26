@@ -65,6 +65,22 @@ const deletePlayList = async (req, res) => {
     console.log("userId:", userId)
 
     const { playlistId } = req.body
+    console.log("playlistId:", playlistId)
+
+    const likes = await Likes.findAll(
+
+    )
+    console.log(likes)
+
+    
+    await Likes.destroy({
+            where:{
+                // userId: userId,
+                playlistId: playlistId
+            }
+        })
+
+
     const playlist = await Playlist.findOne(
         {
             where:
@@ -73,14 +89,6 @@ const deletePlayList = async (req, res) => {
     )
     await playlist.destroy()
 
-    const likes = await Likes.findAll(
-        {
-            where:{
-                playlistId: playlistId
-            }
-        }
-    )
-    await likes.destroy()
 
 
     const playlists = await Playlist.findAll(
@@ -92,7 +100,7 @@ const deletePlayList = async (req, res) => {
     )
     res.status(200).json(playlists)
 
-};
+}
 
 // const updatedPlaylist = async (req, res) => {
 
