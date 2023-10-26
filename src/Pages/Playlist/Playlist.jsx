@@ -35,7 +35,7 @@ const Playlist = () => {
   }, [pageState])
 
   const createPlaylist = async () => {
-      const res = await axios.post('/api/addnewplaylist')
+      const res = await axios.post('/api/playlist/add')
       let newId = res.data.playlistId
       navigate(`/playlist/${newId}`) 
   }

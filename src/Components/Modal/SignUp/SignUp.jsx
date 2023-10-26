@@ -14,7 +14,7 @@ function SignUpModal({signUpShow, handleSignUpClose}) {
 
     const handleSignUp = async () => {
         if(password === passwordConfirm){
-          const res = await axios.post('/api/signup', {username, email, password})
+          const res = await axios.post('/api/auth/signup', {username, email, password})
           console.log(res)
         if (res.data.success){
             dispatch({type: 'login'})

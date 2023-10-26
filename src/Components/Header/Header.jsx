@@ -24,7 +24,7 @@ const Header = ({setPageState}) => {
   const handleSignUpClose = () => setSignUpShow(false)
 
   const handleLogout = async () => {
-    const res = await axios.post('/api/logout')
+    const res = await axios.post('/api/auth/logout')
     if(res.data.success){
       dispatch({type: 'logout'})
       setLoginShow(false)

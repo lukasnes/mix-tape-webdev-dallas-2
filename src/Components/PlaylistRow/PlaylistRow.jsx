@@ -11,7 +11,7 @@ const PlaylistRow = ({pl, setPlaylist}) => {
 
     const deletePlaylist = async () => {
         if( isLoggedIn === true && userId === pl.userId ) {
-           const res = await axios.post("/api/deleteplaylist", {playlistId: pl.playlistId}) 
+           const res = await axios.post("/api/playlist/delete", {playlistId: pl.playlistId}) 
             setPlaylist(res.data)
         }
     }  

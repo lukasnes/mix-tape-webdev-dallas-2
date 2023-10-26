@@ -1,3 +1,8 @@
+import { 
+    Sequelize 
+} from "sequelize"
+
+
 import{
     Likes, 
     Playlist,
@@ -6,18 +11,27 @@ import{
 
 
 const getTopLiked = async (req, res) => {
-const getAllPlaylists = await Playlist.findAll()
-res.status(200).json(getAllPlaylists)
-return
 
-const topPlaylists = await Playlist.findAll({
-    include: {
-       model: Likes,
-    },
-    order: [
-        [{ }]
-    ]
-})
+console.log('hit')
+const topPlaylists = await Likes.findAll({
+        attributes: [
+            'playlistId',
+            [Sequelize.fn('COUNT', 
+                Sequelize.col('likes.playlist_id')), 'likeCount'],
+        ],
+        group: ['likes.playlist_id','playlist.playlist_id'],
+        order: [[Sequelize.fn('COUNT', 
+        Sequelize.col('likes.playlist_id')), 'DESC']],
+        include: {
+            model: Playlist,
+            attributes: ['playlistId','name', 'createdAt']
+        }
+      })
+    console.log(topPlaylists)
+
+      res.json(topPlaylists)
+}
+
 // SELECT CountQueuingStrategy(*) FROM Likes;
 // GROUP BY getFriendPlaylistId;
 // ORDER BY  CountQueuingStrategy(*) DESC
@@ -67,12 +81,12 @@ const topPlaylists = await Playlist.findAll({
 
 //   res.json(rankedPlaylists)
 
-}
+
 
 
 const getMyLikes = async (req, res) => {
     
-    let { userId } = req.session
+    let { userId } = req.params
 
     let myLikes = await Likes.findAll({
         where: {
@@ -122,8 +136,6 @@ const addLike = async (req, res) => {
         liked: true
     })
     }
-
-
 }
 
 const removeLike = async (req, res) => {

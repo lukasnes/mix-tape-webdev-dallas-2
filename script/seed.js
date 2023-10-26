@@ -1,33 +1,32 @@
 
 import axios from 'axios'
 import { User, 
-    Playlist, 
-    Song,
     FriendList,
     Likes, db } from '../database/model.js'
     
-    console.log('Syncing Database...')
+
+console.log('Syncing Database...')
+
+await db.sync ({force: true})
+
+console.log('Seeding database...')
     
-    await db.sync ({force: true})
-    
-    console.log('Seeding database...')
     
     
     
-    
-    for(let i = 1; i < 5; i++){
-        const user = await User.create(
-            {
-                username: `username${i}`,
-                email: `test${i}@email.com`,
-                password: `test`
-            })
+for(let i = 1; i < 5; i++){
+    const user = await User.create(
+        {
+            username: `username${i}`,
+            email: `test${i}@email.com`,
+            password: `test`
+        })
      
             
-        //Sample FriendList data
-        const friendList = await FriendList.create({
-            userId: user.userId
-            })
+    //Sample FriendList data
+    const friendList = await FriendList.create({
+        userId: user.userId
+        })
 
 
     for(let i = 1; i < 3; i++){
@@ -36,46 +35,45 @@ import { User,
         })
         
         
-        const sampleSongs = [
-            {
-                album: "Hotel California",
-                artist: "Eagles",
-                track: "Hotel California",
+    const sampleSongs = [
+        {
+            album: "Hotel California",
+            artist: "Eagles",
+            track: "Hotel California",
 
-            },
-            
-            {
-                album: "Believe",
-                artist: "Cher",
-                track: "Believe",
-
-            },
-            {
-                album: "A Little Bit of Mambo",
-                artist: "Lou Bega",
-                track: "Mambo No. 5",
-
-            },
-            {
-                album: "Sunshine on Leith",
-                artist: "The Proclaimers",
-                track: "500 Miles",
-
-            },
-            {
-                album: "Bark at the Moon",
-                artist: "Ozzy Osbourne",
-                track: "Bark at the Moon"
-            },
-            {
-                album: "Whenever You Need Somebody",
-                artist: "Rick Astley",
-                track: "Never Gonna Give You Up",
-
-            }
-        ];
+        },
         
+        {
+            album: "Believe",
+            artist: "Cher",
+            track: "Believe",
 
+        },
+        {
+            album: "A Little Bit of Mambo",
+            artist: "Lou Bega",
+            track: "Mambo No. 5",
+
+        },
+        {
+            album: "Sunshine on Leith",
+            artist: "The Proclaimers",
+            track: "500 Miles",
+
+        },
+        {
+            album: "Bark at the Moon",
+            artist: "Ozzy Osbourne",
+            track: "Bark at the Moon"
+        },
+        {
+            album: "Whenever You Need Somebody",
+            artist: "Rick Astley",
+            track: "Never Gonna Give You Up",
+
+        }
+    ]
+        
 
         let apiData = await Promise.all(
             sampleSongs.map( async (song, index)=> {
@@ -89,7 +87,12 @@ import { User,
                 }
                 let {data} = await axios.get(queryString)
                 // console.log(data.data[0])
-                let { title: name, preview, artist: { name: artist }, album: { title: album, cover_medium: imgUrl} } = data.data[0]
+                let { 
+                    title: name, 
+                    preview, 
+                    artist: { name: artist }, 
+                    album: { title: album, cover_medium: imgUrl} 
+                } = data.data[0]
                 return {
                     name, 
                     preview,
@@ -99,7 +102,6 @@ import { User,
                     position: index + 1
                 }
             })
-
         )
         // console.log(apiData)
 
@@ -107,10 +109,9 @@ import { User,
             const song = await playlist.createSong(songData)
             // console.log(song)
         }
-
+        }
+        // console.log(user)
     }
-    // console.log(user)
-}
 
 
 
@@ -149,22 +150,7 @@ for( let i = 1; i < 5; i++ ) {
         userId: randInt
     })
     console.log(friend)  
-
-    // const friendReturn = await FriendList.findOne({
-    //     where: {
-    //         userId: randInt
-    //     }
-    // }
-    // )
-    // const otherFriend = await friendReturn.createFriend({
-    //     userId: i
-    // })
-    // console.log(otherFriend)
-    
 }
-
-
-
 
 
 await db.close()
