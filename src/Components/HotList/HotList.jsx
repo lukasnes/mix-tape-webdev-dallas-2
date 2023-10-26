@@ -21,7 +21,7 @@ useEffect(() => {
   const getPlaylist = async () => {
     let res
     res = await axios.get('/api/likes/top')
-    console.log(res.data)
+    // console.log(res.data)
     setPlaylist(res.data)
   }
   getPlaylist()

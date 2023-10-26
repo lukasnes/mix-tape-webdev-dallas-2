@@ -5,7 +5,7 @@
     align-items: center;
     height: 50px;
     width: 95vw;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     border-radius: 7px;
     border: 2px solid #fff;
     box-shadow: 0 0 .2rem #fff,
@@ -23,6 +23,8 @@
     text-align: center;
     margin-left: 10px;
     padding-top: 12px;
+ 
+    
 }
 
 #playlistNameDiv {
@@ -31,8 +33,11 @@
     justify-content: center;
     border: 2px solid white;
     border-radius: 7px;
-    padding-top: 5px;
-    height: 40px;
+    padding-top: 10px;
+    background-color: black;
+    height: 60px;
+    position: relative;
+    top: 10px
 }
 
 #deleteButtonDiv {
