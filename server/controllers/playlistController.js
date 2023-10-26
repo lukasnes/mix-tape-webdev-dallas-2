@@ -73,7 +73,7 @@ const deletePlayList = async (req, res) => {
     )
     await playlist.destroy()
 
-    const likes = await Likes.findOne(
+    const likes = await Likes.findAll(
         {
             where:{
                 playlistId: playlistId
