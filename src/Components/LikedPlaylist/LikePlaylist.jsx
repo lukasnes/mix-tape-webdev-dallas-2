@@ -11,7 +11,7 @@ const LikePlaylist = () => {
   }, []);
 
   const getLikedPlaylist = async () => {
-    const res = await axios.get("/api/allmyliked");
+    const res = await axios.get("/api/likes/:userId");
     setLikedPlaylist(res.data);
   };
 

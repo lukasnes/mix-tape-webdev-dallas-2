@@ -33,16 +33,12 @@ import {
 
 import{
   toggleFriendship,
-  addFriend,
-  deleteFriend,
-  getFriendPlaylists
 } from "../server/controllers/friendController.js"
 
 import {
   getTopLiked,
   getMyLikes,
-  addLike,
-  removeLike,
+  toggleLike,
 } from "./controllers/likesController.js"
 
 
@@ -53,27 +49,28 @@ app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(express.json());
+
 app.use(
   session({ secret: "ssshhhhh", saveUninitialized: true, resave: false })
   );
-  
+
+
   ViteExpress.config({ printViteDevServerHost: true });
   
   
-  ////Users Endpoints Section
+////Users Endpoints Section
 
+//Sign-Up
+app.post("/api/auth/signup", addSignUp)
 
-  //Sign-Up
-  app.post("/api/auth/signup", addSignUp)
-  
-  //Login
-  app.post("/api/auth/login", authenticate)
-  
-  //Logout
-  app.post("/api/auth/logout", authRequired, destroySession)
-  
-  //checks authentication
-  app.get("/api/auth/status", getAuthStatus)
+//Login
+app.post("/api/auth/login", authenticate)
+
+//Logout
+app.post("/api/auth/logout", authRequired, destroySession)
+
+//checks authentication
+app.get("/api/auth/status", getAuthStatus)
   
 
 
@@ -128,15 +125,7 @@ app.get("/api/likes/top", getTopLiked)
 app.get("/api/likes/:userId", authRequired, getMyLikes)
 
 //Toggle Like Playlist
-app.post("api/:userId/like/:playlistId")
-
-
-
-// //add a like to Playlist
-// app.post("/api/:userId/likeplaylist/:playlistId", authRequired, addLike)
-
-// //unlike a playlist
-// app.post("api/removelike", authRequired, removeLike)
+app.post("api/:userId/like/:playlistId", authRequired, toggleLike)
 
 
 
