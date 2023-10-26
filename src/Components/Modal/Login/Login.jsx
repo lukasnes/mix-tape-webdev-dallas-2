@@ -12,7 +12,7 @@ function LoginModal({loginShow, setLoginShow, handleLoginClose}) {
     const dispatch = useDispatch()
 
     const handleLogin = async () => {
-        const res = await axios.post('/api/auth', {email, password})
+        const res = await axios.post('/api/auth/login', {email, password})
         if (res.data.success){
             dispatch({type: 'login', payload: {userId: 1}})
             setLoginShow(false)

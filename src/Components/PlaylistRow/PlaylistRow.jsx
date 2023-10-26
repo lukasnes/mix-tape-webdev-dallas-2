@@ -9,12 +9,13 @@ const PlaylistRow = ({pl, setPlaylist}) => {
     const navigate = useNavigate()
     const isLoggedIn = useSelector(state=>state.loggedIn)
 
-    // const deletePlaylist = async () => {
-    //     if( isLoggedIn === true && userId === pl.userId ) {
-    //        const res = await axios.post("/api/deleteplaylist", {playlistId: pl.playlistId}) 
-    //         setPlaylist(res.data)
-    //     }
-    // }  
+    const deletePlaylist = async () => {
+        if( isLoggedIn === true && userId === pl.userId ) {
+           const res = await axios.post("/api/playlist/delete", {playlistId: pl.playlistId}) 
+            setPlaylist(res.data)
+        }
+    }  
+
         
     const editPlaylist = async () => {
         navigate(`/playlist/${pl.playlistId}`)

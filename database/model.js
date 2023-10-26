@@ -1,5 +1,7 @@
-import { Model, 
-    DataTypes } from 'sequelize'
+import { 
+    Model, 
+    DataTypes
+ } from 'sequelize'
 import util from 'util'
 import connectToDB from './db.js'
 
@@ -95,39 +97,39 @@ Playlist.init(
 
 Song.init(
     {
-            songId:{
-                type: DataTypes.INTEGER,
-                autoIncrement: true,
-                primaryKey: true,
-                unique: true
-            },
-            preview: {
-                type: DataTypes.STRING
-            },
-            album:{
-                type: DataTypes.STRING,
-
-            },
-            artist: {
-                type: DataTypes.STRING,
-
-            },
-            name: {
-                type: DataTypes.STRING,
-
-            },
-            position: {
-                type: DataTypes.INTEGER,
-            },
-            imgUrl: {
-                type: DataTypes.STRING,
-            },
+        songId:{
+            type: DataTypes.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+            unique: true
         },
-        
-        {
-            modelName: 'song',
-            sequelize: db,
-        }
+        preview: {
+            type: DataTypes.STRING
+        },
+        album:{
+            type: DataTypes.STRING,
+
+        },
+        artist: {
+            type: DataTypes.STRING,
+
+        },
+        name: {
+            type: DataTypes.STRING,
+
+        },
+        position: {
+            type: DataTypes.INTEGER,
+        },
+        imgUrl: {
+            type: DataTypes.STRING,
+        },
+    },
+    
+    {
+        modelName: 'song',
+        sequelize: db,
+    }
 )
 
 FriendList.init(
@@ -174,7 +176,6 @@ Likes.init(
     modelName: 'likes',
     sequelize: db,
 }
-
 )
 
 
@@ -182,9 +183,9 @@ Likes.init(
 Playlist.hasMany(Song, { foreignKey: 'playlistId'})
 Song.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
-
 User.hasMany(Playlist, {foreignKey:'userId'})
 Playlist.belongsTo(User, {foreignKey: 'userId'})
+
 
 // Friendlist Table
 User.hasOne(FriendList, {foreignKey: 'userId'})
@@ -196,8 +197,8 @@ Friend.belongsTo(FriendList, {foreignKey: 'friendListId'})
 
 
 ///Friend table
-Friend.belongsTo(User, { foreignKey: 'userId' })
 User.hasMany(Friend, { foreignKey: 'userId'})
+Friend.belongsTo(User, { foreignKey: 'userId' })
 
 
 // Likes table
@@ -211,14 +212,7 @@ Likes.belongsTo(Playlist, {foreignKey: 'playlistId'})
 
 
 
-
-
-
 // await db.sync({ force: true })
-
 // const testMixtape = await Playlist.create({ name: 'joe mix' })
-
 // console.log(testMixtape)
-
-
 // await db.close()

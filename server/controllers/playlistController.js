@@ -6,10 +6,6 @@ import {
 
 const getPlaylistByUser = async (req, res) => {
 
-    // const playlists = await Playlist.findAll({where: {userId: userId}})
-    // res.status(200).json(playlists)
-    // console.log(playlists)
-
     let { userId } = req.params 
  
         const playlists = await Playlist.findAll({

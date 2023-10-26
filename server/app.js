@@ -9,38 +9,41 @@ import {
   authenticate, 
   destroySession, 
   getAuthStatus,
-  authRequired } from "./controllers/authController.js";
-  
-  import { 
-    getPlaylistByUser,
-    addPlaylist, 
-    editPlaylist,
-    deletePlayList, 
-  } from "./controllers/playlistController.js";
-  
+  authRequired 
+} from "./controllers/authController.js";
 
-  import { 
-    getFriendList,
-  } from "./controllers/friendlistController.js";
-  
-  import { 
-    playlistSong, 
-    addNewSong, 
-    deleteSong } from "./controllers/songController.js";
-  
+import { 
+  getPlaylistByUser,
+  addPlaylist, 
+  editPlaylist,
+  deletePlayList, 
+} from "./controllers/playlistController.js";
 
-   import{
-    addFriend,
-    deleteFriend,
-    getFriendPlaylists
-   } from "../server/controllers/friendController.js"
 
-   import {
-    getTopLiked,
-    getMyLikes,
-    addLike,
-    removeLike,
-   } from "./controllers/likesController.js"
+import { 
+  getFriendList,
+} from "./controllers/friendlistController.js";
+
+import { 
+  playlistSong, 
+  addNewSong, 
+  deleteSong 
+} from "./controllers/songController.js";
+
+
+import{
+  toggleFriendship,
+  addFriend,
+  deleteFriend,
+  getFriendPlaylists
+} from "../server/controllers/friendController.js"
+
+import {
+  getTopLiked,
+  getMyLikes,
+  addLike,
+  removeLike,
+} from "./controllers/likesController.js"
 
 
 const app = express();
@@ -52,29 +55,42 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(
   session({ secret: "ssshhhhh", saveUninitialized: true, resave: false })
-);
+  );
+  
+  ViteExpress.config({ printViteDevServerHost: true });
+  
+  
+  ////Users Endpoints Section
 
-ViteExpress.config({ printViteDevServerHost: true });
+
+  //Sign-Up
+  app.post("/api/auth/signup", addSignUp)
+  
+  //Login
+  app.post("/api/auth/login", authenticate)
+  
+  //Logout
+  app.post("/api/auth/logout", authRequired, destroySession)
+  
+  //checks authentication
+  app.get("/api/auth/status", getAuthStatus)
+  
 
 
 ////PLaylist EndPoints Section
-//This needs to have getAuth added in order to only get this onece you are logged in
 
 //Get Playlist
 app.get('/api/playlists/:userId', getPlaylistByUser)
 
 //Add PlayList
-app.post("/api/addnewplaylist", addPlaylist)
-
+app.post("/api/playlist/add", addPlaylist)
 
 //Edit Playlist
-app.post('/api/editplaylist', editPlaylist)
-
+app.post('/api/playlist/edit', editPlaylist)
 
 //Delete Playlist
-app.post("/api/deleteplaylist", deletePlayList)
+app.post("/api/playlist/delete", deletePlayList)
  
-
 
 ////Songs EndPoints Section
 
@@ -91,23 +107,7 @@ app.post("/api/addnewsong", addNewSong)
 app.post("/api/deletesong/:songId", deleteSong)
 
 
-
-////Users Endpoints Section
-
-//Sign-Up
-app.post("/api/signup", addSignUp)
-
-//Login
-app.post("/api/auth", authenticate)
-
-//Logout
-app.post("/api/logout", authRequired, destroySession)
-
-//checks authentication
-app.get("/api/auth/status", getAuthStatus)
-
-
-////FriendList Endpoints
+////FriendList Endpoint
 
 //Get FriendList
 app.get("/api/friendlist", authRequired, getFriendList)
@@ -115,31 +115,28 @@ app.get("/api/friendlist", authRequired, getFriendList)
 
 ////Friend Endpoints
 
-//Add Friend
-app.post("/api/addfriend/:friendUserId", authRequired, addFriend )
+//Toggle Friendship
+app.post("/api/friend/toggle/:userId/:friendId", authRequired, toggleFriendship)
 
-//Remove Friend
-app.post("/api/deletefriend/:friendId", authRequired, deleteFriend)
-
-//Get ALL Friend Playlists
-app.get("/api/friend/playlists", authRequired, getFriendPlaylists)
-
-//Get Friend Playlist Id
-app.get("api/friend/playlists/:id")
 
 //Likes Endpoints
 
 //get all TOP Liked Playlists
-app.get("/api/gettopliked", getTopLiked)
+app.get("/api/likes/top", getTopLiked)
 
 //get all liked playlist by user
-app.get("/api/allmyliked", authRequired, getMyLikes)
+app.get("/api/likes/:userId", authRequired, getMyLikes)
 
-//add a like to Playlist
-app.post("/api/:userId/likeplaylist/:playlistId", authRequired, addLike)
+//Toggle Like Playlist
+app.post("api/:userId/like/:playlistId")
 
-//unlike a playlist
-app.post("api/removelike", authRequired, removeLike)
+
+
+// //add a like to Playlist
+// app.post("/api/:userId/likeplaylist/:playlistId", authRequired, addLike)
+
+// //unlike a playlist
+// app.post("api/removelike", authRequired, removeLike)
 
 
 
