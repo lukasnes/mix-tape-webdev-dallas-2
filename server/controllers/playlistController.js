@@ -1,6 +1,7 @@
 import { 
     User, 
     Playlist,
+    Likes
  } from "../../database/model.js"
 
 
@@ -71,6 +72,16 @@ const deletePlayList = async (req, res) => {
         }
     )
     await playlist.destroy()
+
+    const likes = await Likes.findOne(
+        {
+            where:{
+                playlistId: playlistId
+            }
+        }
+    )
+    await likes.destroy()
+
 
     const playlists = await Playlist.findAll(
         {
