@@ -9,7 +9,7 @@ import {
   useEffect, 
   useState } from "react"
 import axios from "axios"
-
+import Hero from "../Hero/Hero"
 
 const HotList = () => {
 
@@ -28,9 +28,9 @@ useEffect(() => {
 }, [])
 
 let playlistData = playlist.map((pl) => {
+console.log(pl)
 
-    return 
-    <PlaylistRow 
+    return <PlaylistRow 
     pl={pl.playlist} 
     setPlaylist={setPlaylist} 
     key={pl.playlistId} />
@@ -38,5 +38,4 @@ let playlistData = playlist.map((pl) => {
 
   return playlistData
 }
-
 export default HotList

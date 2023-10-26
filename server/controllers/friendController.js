@@ -1,7 +1,6 @@
 import{
     Friend, 
     FriendList,
-    Playlist,
     User
 } from "../../database/model.js"
 
@@ -39,8 +38,6 @@ const toggleFriendship = async (req, res) => {
         })
 
     }
-
-
     let friends = await Friend.findAll({
         where: {
           friendListId: friendList.friendListId,
@@ -60,41 +57,41 @@ const toggleFriendship = async (req, res) => {
 
 
 
-const addFriend = async (req, res) => {
+// const addFriend = async (req, res) => {
     
-    const { 
-        userId,
-        friendId,
-     } = req.params
+//     const { 
+//         userId,
+//         friendId,
+//      } = req.params
     
-    const friendList = await FriendList.findOne({
-        where: {
-            userId,
-        }
-    })
+//     const friendList = await FriendList.findOne({
+//         where: {
+//             userId,
+//         }
+//     })
     
-    console.log(friendList)
+//     console.log(friendList)
 
-    const friend = await Friend.findOne({
-        where: {
-            friendListId: friendList.friendListId,
-            userId: friendId
-        }
-    })
+//     const friend = await Friend.findOne({
+//         where: {
+//             friendListId: friendList.friendListId,
+//             userId: friendId
+//         }
+//     })
 
-    if (friend) {
-        friend.destroy()
-        res.json({
-            isFriend: false
-        })
-    } else {
-        await friendList.createFriend({
-            userId: friendId
-        })
-        res.status(200).json({
-            isFriend: true
-        })
-    }
+//     if (friend) {
+//         friend.destroy()
+//         res.json({
+//             isFriend: false
+//         })
+//     } else {
+//         await friendList.createFriend({
+//             userId: friendId
+//         })
+//         res.status(200).json({
+//             isFriend: true
+//         })
+//     }
         
         
         // let { userId } = req.session
@@ -133,82 +130,82 @@ const addFriend = async (req, res) => {
     
     //   res.json(friends)
 
-}
+// }
 
-const deleteFriend = async (req, res) => {
-    let { userId } = req.session
-    let { friendUserId } = req.params
-    const friendlist = await FriendList.findOne({
-        where: {
-            userId: userId,
-        }
-    })
-    const deletingFriend = await Friend.findOne({
-        where: {
-            userId: friendUserId,
-            friendListId: friendlist.friendListId
-        }
-    })
-    console.log(deletingFriend)
-    deletingFriend.destroy()
+// const deleteFriend = async (req, res) => {
+//     let { userId } = req.session
+//     let { friendUserId } = req.params
+//     const friendlist = await FriendList.findOne({
+//         where: {
+//             userId: userId,
+//         }
+//     })
+//     const deletingFriend = await Friend.findOne({
+//         where: {
+//             userId: friendUserId,
+//             friendListId: friendlist.friendListId
+//         }
+//     })
+//     console.log(deletingFriend)
+//     deletingFriend.destroy()
 
-    const friends = await Friend.findAll({
-        where: {
-            friendListId: friendlist.friendListId,
-        },
-        include: {
-            model: User,
-            attributes: ["userId", "username"],
-        },
-    })
-    console.log(friends)
+//     const friends = await Friend.findAll({
+//         where: {
+//             friendListId: friendlist.friendListId,
+//         },
+//         include: {
+//             model: User,
+//             attributes: ["userId", "username"],
+//         },
+//     })
+//     console.log(friends)
 
-    friends = friends.map(friend => friend.user)
-    console.log(friends)
-    res.status(200).json(friends)
-}
-
-
+//     friends = friends.map(friend => friend.user)
+//     console.log(friends)
+//     res.status(200).json(friends)
+// }
 
 
 
-const getFriendPlaylists = async (req,res) => {
-    let { userId } = req.session
-    console.log("userId:", userId )
 
-    const { friendUserId } = req.params
-    console.log("friendUserId:", friendUserId)
+
+// const getFriendPlaylists = async (req,res) => {
+//     let { userId } = req.session
+//     console.log("userId:", userId )
+
+//     const { friendUserId } = req.params
+//     console.log("friendUserId:", friendUserId)
     
-    const friendPlaylists = await Friend.findOne({
-        where: {
-            userId: friendUserId
-        }
-    })
-    console.log(friendPlaylists)
+//     const friendPlaylists = await Friend.findOne({
+//         where: {
+//             userId: friendUserId
+//         }
+//     })
+//     console.log(friendPlaylists)
 
-    if ( friendUserId ) {
-        const playlists = await Playlist.findAll({
-            where: {
-                userId: friendUserId
-            }
-        })
-        res.status(200).json(playlists)
-        console.log(playlists)
-    } else {
-        res.status(200).json({ success : false, message: 'No Friendlist Found'})
-    }
-}
+//     if ( friendUserId ) {
+//         const playlists = await Playlist.findAll({
+//             where: {
+//                 userId: friendUserId
+//             }
+//         })
+//         res.status(200).json(playlists)
+//         console.log(playlists)
+//     } else {
+//         res.status(200).json({ success : false, message: 'No Friendlist Found'})
+//     }
+// }
 
 
 
-const getFriendPlaylistId = async (req, res) => {
+// const getFriendPlaylistId = async (req, res) => {
 
-}
+// }
 
 export {
     toggleFriendship,
-    addFriend,
-    deleteFriend,
-    getFriendPlaylists,
-    getFriendPlaylistId,
+    // addFriend,
+    // deleteFriend,
+    // getFriendPlaylists,
+    // getFriendPlaylistId,
 }

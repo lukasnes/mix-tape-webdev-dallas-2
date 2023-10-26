@@ -24,7 +24,7 @@ const topPlaylists = await Likes.findAll({
         Sequelize.col('likes.playlist_id')), 'DESC']],
         include: {
             model: Playlist,
-            attributes: ['playlistId','name', 'createdAt']
+            attributes: ['playlistId','name', 'createdAt', 'userId']
         }
       })
     console.log(topPlaylists)
@@ -110,7 +110,7 @@ const getMyLikes = async (req, res) => {
     res.json(myLikes)
 }
 
-const addLike = async (req, res) => {
+const toggleLike = async (req, res) => {
     let { userId, 
         playlistId } = req.params
 
@@ -138,14 +138,14 @@ const addLike = async (req, res) => {
     }
 }
 
-const removeLike = async (req, res) => {
+// const removeLike = async (req, res) => {
 
-}
+// }
 
 
 export {
     getTopLiked,
     getMyLikes,
-    addLike,
-    removeLike
+    toggleLike,
+    // removeLike
 }

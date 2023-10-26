@@ -1,5 +1,6 @@
 import Header from "../../Components/Header/Header";
 import HotList from "../../Components/HotList/HotList";
+import Hero from "../../Components/Hero/Hero";
 import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
 import { useNavigate} from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -19,7 +20,7 @@ const Playlist = () => {
   useEffect(()=>{
       switch (pageState){
         case 'hot':
-          setPageData(<HotList />)
+          setPageData(<Hero />)
           break
         case 'friendsList':
           setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
