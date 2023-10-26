@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 
 const PlaylistRow = ({pl, setPlaylist}) => {
-
     const navigate = useNavigate()
     const isLoggedIn = useSelector(state=>state.loggedIn)
 

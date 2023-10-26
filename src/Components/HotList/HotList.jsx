@@ -29,11 +29,11 @@ useEffect(() => {
 
 let playlistData = playlist.map((pl) => {
 
-    return 
-    <PlaylistRow 
+    return <PlaylistRow 
     pl={pl.playlist} 
     setPlaylist={setPlaylist} 
     key={pl.playlistId} />
+    
   })
 
   return playlistData
