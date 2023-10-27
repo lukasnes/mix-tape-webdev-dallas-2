@@ -7,38 +7,40 @@ User
     const playlistSong = async (req, res) => {
     const playlist = await Playlist.findOne(
         { 
-            where: { playlistId: +req.params.id },
+            where: 
+            { playlistId: +req.params.id },
             include: [
                 { 
-                model: Song, 
-                attributes: 
-                [
-                    'name', 
-                    'artist', 
-                    'album', 
-                    'position', 
-                    'songId', 
-                    'preview', 
-                    'imgUrl'
-                ] 
-            },
-            {
-                model:User,
-            attributes:
-            [
-                'userId',
-                'username',
+                    model: Song, 
+                    attributes: 
+                        [
+                            'name', 
+                            'artist', 
+                            'album', 
+                            'position', 
+                            'songId', 
+                            'preview', 
+                            'imgUrl'
+                        ] 
+                },
+                 {
+                    model:User,
+                    attributes:
+                        [
+                            'userId',
+                            'username',
+                        ]
+                 }
             ]
         }
-        ]
-        }
-        )
+    )
 
         console.log(playlist)
     res.status(200).json(playlist)
 }
 
     const addNewSong = async (req, res) => {
+
     let playlist = await Playlist.findByPk(+req.params.id)
     const createSong = await playlist.createSong( req.body )
         playlist = await Playlist.findOne(
@@ -56,7 +58,15 @@ User
                     'preview', 
                     'imgUrl'
                 ] 
-            }
+            },
+                 {
+                    model:User,
+                    attributes:
+                        [
+                            'userId',
+                            'username',
+                        ]
+                 }
         }
         )
     res.status(201).json(playlist);
