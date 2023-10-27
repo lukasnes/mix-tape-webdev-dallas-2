@@ -113,7 +113,7 @@ app.get("/api/friendlist", authRequired, getFriendList)
 ////Friend Endpoints
 
 //Toggle Friendship
-app.post("/api/friend/toggle/:userId/:friendId", authRequired, toggleFriendship)
+app.post("/api/friend/toggle/:friendId", authRequired, toggleFriendship)
 
 
 //Likes Endpoints
@@ -125,7 +125,7 @@ app.get("/api/likes/top", getTopLiked)
 app.get("/api/likes/:userId", authRequired, getMyLikes)
 
 //Toggle Like Playlist
-app.post("api/:userId/like/:playlistId", authRequired, toggleLike)
+app.post("/api/:userId/like/:playlistId", authRequired, toggleLike)
 
 
 
