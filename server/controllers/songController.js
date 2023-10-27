@@ -7,40 +7,73 @@ User
     const playlistSong = async (req, res) => {
     const playlist = await Playlist.findOne(
         { 
-            where: { playlistId: +req.params.id },
+            where: 
+            { playlistId: +req.params.id },
             include: [
                 { 
-                model: Song, 
-                attributes: 
-                [
-                    'name', 
-                    'artist', 
-                    'album', 
-                    'position', 
-                    'songId', 
-                    'preview', 
-                    'imgUrl'
-                ] 
-            },
-            {
-                model:User,
-            attributes:
-            [
-                'userId',
-                'username',
+                    model: Song, 
+                    attributes: 
+                        [
+                            'name', 
+                            'artist', 
+                            'album', 
+                            'position', 
+                            'songId', 
+                            'preview', 
+                            'imgUrl'
+                        ] 
+                },
+                 {
+                    model:User,
+                    attributes:
+                        [
+                            'userId',
+                            'username',
+                        ]
+                 }
             ]
         }
-        ]
-        }
-        )
+    )
 
         console.log(playlist)
     res.status(200).json(playlist)
 }
 
     const addNewSong = async (req, res) => {
-    const playlist = await Playlist.findByPk(+req.params.id)
+    const playlist = await Playlist.findByPk(
+        { 
+            where: 
+            { playlistId: +req.params.id },
+            include: [
+                { 
+                    model: Song, 
+                    attributes: 
+                        [
+                            'name', 
+                            'artist', 
+                            'album', 
+                            'position', 
+                            'songId', 
+                            'preview', 
+                            'imgUrl'
+                        ] 
+                },
+                 {
+                    model:User,
+                    attributes:
+                        [
+                            'userId',
+                            'username',
+                        ]
+                 }
+            ]
+        }
+    )
+
+
     const createdSong = await playlist.createdSong( req.body )
+    console.log(playlist)
+    console.log(createdSong)
     // const newSong = req.body;
     // const createdSong = await Song.findByPk({ where: { songId }});
     res.status(201).json(playlist);
