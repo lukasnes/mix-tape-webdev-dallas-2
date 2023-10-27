@@ -12,7 +12,16 @@ const getPlaylistByUser = async (req, res) => {
         const playlists = await Playlist.findAll({
             where: {
                 userId: +userId
+            },
+            include: {
+                model: User,
+                attributes:
+                [
+                    'username',
+                ]
             }
+
+
         })
         res.status(200).json(playlists)
         console.log(playlists)
