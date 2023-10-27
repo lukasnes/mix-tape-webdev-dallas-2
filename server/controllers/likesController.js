@@ -6,6 +6,7 @@ import {
 import{
     Likes, 
     Playlist,
+    User,
 } from "../../database/model.js"
 
 
@@ -19,20 +20,27 @@ const topPlaylists = await Likes.findAll({
             [Sequelize.fn('COUNT', 
                 Sequelize.col('likes.playlist_id')), 'likeCount'],
         ],
-        group: ['likes.playlist_id','playlist.playlist_id'],
+        group: ['likes.playlist_id','playlist.playlist_id', 'user.user_id'],
         order: [[Sequelize.fn('COUNT', 
         Sequelize.col('likes.playlist_id')), 'DESC']],
-        include: {
+        include: [{
             model: Playlist,
             attributes: [
                 'playlistId',
             'name', 
             'createdAt', 
             'userId',]
-        }
+        },
+        {
+            model: User,
+            attributes: [
+                'userId',
+                'username',
+            ]
+        }]
       })
     console.log(topPlaylists)
-      
+      console.log(topPlaylists[0].user)
       res.json(topPlaylists)
 }
 

@@ -101,7 +101,9 @@ const Songs = () => {
                 Edit
               </button> */}
             </h1>
-
+              <h1 className="text-white">
+                {playlist.user.username}
+              </h1>
           <div id='buttonRow'>
             <button className='button' onClick={()=>{
             navigate("/")
