@@ -27,10 +27,26 @@ import {
 }
 
     const addNewSong = async (req, res) => {
-    const playlist = await Playlist.findByPk(+req.params.id)
-    const createdSong = await playlist.createdSong( req.body )
-    // const newSong = req.body;
-    // const createdSong = await Song.findByPk({ where: { songId }});
+    let playlist = await Playlist.findByPk(+req.params.id)
+    const createSong = await playlist.createSong( req.body )
+        playlist = await Playlist.findOne(
+        { 
+            where: { playlistId: +req.params.id },
+            include: { 
+                model: Song, 
+                attributes: 
+                [
+                    'name', 
+                    'artist', 
+                    'album', 
+                    'position', 
+                    'songId', 
+                    'preview', 
+                    'imgUrl'
+                ] 
+            }
+        }
+        )
     res.status(201).json(playlist);
 };
 
