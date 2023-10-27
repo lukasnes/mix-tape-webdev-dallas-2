@@ -1,19 +1,12 @@
 
 .songProps{
-    display: flex;
-    width: 100vw;
-    margin: 5px 10px 5px 10px;
-    /* flex-direction: column; */
-    align-items: center;
+    margin: 10px 20px 10px 20px;
     justify-content: space-between;
-    /* overflow: auto; */
 }
 
 .row {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
-    margin-bottom: 10px;
     border-radius: 7px;
     border: 2px solid #fff;
     box-shadow: 0 0 .2rem #fff,
@@ -24,47 +17,35 @@
               inset 0 0 1.3rem #174DB1;
 }
 
+#albumCover {
+    padding-left: 30px;
+}
+
+#audioPreview {
+    justify-content: center;
+}
+
 .container {
+    display: flex;
     height: 110px;
-    width: 300px;
+    width: 400px;
     overflow: auto;
 }
 
 .songImage{
     height: 100px;
-    /* width: 10vw; */
     border-radius: 35%;
-    margin-bottom: 10px;
+    
 }
 
-#songInfo {
-    height: 100px;
-    width: 300px;
-}
-
-.deleteButton{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.deleteButton {
+#deleteButton {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width:125px;
-    min-height: 45px;
-    font-family: calibri;
+    margin-right: 30px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 400;
-    text-decoration: none;
-    position: relative;
-}
-
-
-.deleteButton {
-    background-color: #dc3545;
     color: #fff;
 }
 
@@ -74,41 +55,4 @@
 
 .deleteButton:active {
     box-shadow: 0 0 0 0.25rem rgba(49,132,253,.5);
-}
-
-span {
-    font-size: 15px;
-    padding: 0 10px;
-    position: absolute;
-    left:0.5em;
-     transition: all 500ms ease;
-}
-
-[name="remove-outline"] {
-    position: absolute;
-    transform: rotate(90deg);
-    font-size: 1em;
-    left: 1.7em;
-    right: 40px;
-    color: #941e2a;
-     transition: all 500ms ease;
-}
-
-[name="close"] {
-    position:absolute;
-    transform: rotate(90deg);
-    font-size: 1em;
-    top: 15px;
-    right: 8px;
-    color: #fff;
-    transition: all 500ms ease;
-}
-
-.deleteButton:hover [name="close"] {
-    transform: translateX(-45px);
-}
-
-.deleteButton:hover [name="remove-outline"],  
-.deleteButton:hover span{
-    transform: translateX(-6000px);
 }

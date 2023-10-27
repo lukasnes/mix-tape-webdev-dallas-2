@@ -32,6 +32,7 @@ const PlaylistRow = ({pl, setPlaylist}) => {
             return pl.name
         }
     }
+    // fucntion name is not working
 
     console.log(pl)
     
@@ -48,14 +49,15 @@ const PlaylistRow = ({pl, setPlaylist}) => {
             </div>
         </div>
       ) : (
-        <div className="displayRow" >
+        <div id='playlistRow' className="displayRow" >
             <div id='timeStampDiv'>
                 <p id='timeStamp'> {time(pl)} </p> 
             </div>
-            <div id='playlistNameDiv' onClick={(e) => editPlaylist()}>
+            <div id='playlistNameDiv' className='displayRow' onClick={(e) => editPlaylist()}>
                 <p id='playlistName'> {name(pl)} </p>
             </div>
-            <div id='deleteButtonDiv'>  
+            <div id='deleteButtonDiv'> 
+                <DelOrLike pl={pl} setPlaylist={setPlaylist} /> 
             </div>
         </div>
       )    

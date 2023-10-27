@@ -59,9 +59,9 @@ function AddSong({plId, setSongs}) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <button className='button' onClick={handleShow}>
                 Add New Song
-            </Button>
+            </button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Dialog>
