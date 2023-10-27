@@ -46,7 +46,8 @@ User
         playlist = await Playlist.findOne(
         { 
             where: { playlistId: +req.params.id },
-            include: { 
+            include: [
+                { 
                 model: Song, 
                 attributes: 
                 [
@@ -59,7 +60,7 @@ User
                     'imgUrl'
                 ] 
             },
-                 {
+                {
                     model:User,
                     attributes:
                         [
@@ -67,6 +68,7 @@ User
                             'username',
                         ]
                  }
+                ]
         }
         )
     res.status(201).json(playlist);
