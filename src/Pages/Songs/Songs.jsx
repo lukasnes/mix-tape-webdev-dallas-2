@@ -102,6 +102,8 @@ const Songs = () => {
           <div className="songsDisplay">
             {songsDisplay}
             <AddSong 
+              plId = {playlist.playlistId}
+              setSongs = {setSongs}
             // onPlaylistDataUpdate = {updatePlaylistData}
             />
           </div>

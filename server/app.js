@@ -98,7 +98,7 @@ app.get("/api/playlistsongs", playlistSong)
 app.get("/api/playlistsongs/:id", playlistSong)
 
 //Add new Song
-app.post("/api/addnewsong", addNewSong)
+app.post("/api/addnewsong/:id", addNewSong)
 
 //Delete Song
 app.post("/api/deletesong/:songId", deleteSong)
