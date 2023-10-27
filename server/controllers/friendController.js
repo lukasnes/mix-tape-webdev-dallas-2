@@ -7,52 +7,56 @@ import{
 
 
 const toggleFriendship = async (req, res) => {
+    const userId = req.session
 
     const { 
-        userId,
         friendId,
      } = req.params
-    
-    const friendList = await FriendList.findOne({
-        where: {
-            userId,
-        }
+    if(userId){
+
+        const friendList = await FriendList.findOne({
+            where: {
+                userId,
+            }
     })
     
     console.log(friendList)
-
+    
     const friend = await Friend.findOne({
         where: {
             friendListId: friendList.friendListId,
             userId: friendId
         }
     })
-
+    
     console.log(friend)
-
+    
     if (friend) {
         friend.destroy()
     } else {
         await friendList.createFriend({
             userId: friendId
         })
-
+        
     }
     let friends = await Friend.findAll({
         where: {
-          friendListId: friendList.friendListId,
+            friendListId: friendList.friendListId,
         },
         include: {
-          model: User,
-          attributes: ["userId", "username"],
+            model: User,
+            attributes: ["userId", "username"],
         },
-      })
-      console.log(friends)
+    })
+    console.log(friends)
     
-      friends = friends.map(friend => friend.user)
-      console.log(friends)
+    friends = friends.map(friend => friend.user)
+    console.log(friends)
     
-      res.json(friends)
+    res.json(friends)
+    } else {
+        res.status(401)
+    }
 }
 
 

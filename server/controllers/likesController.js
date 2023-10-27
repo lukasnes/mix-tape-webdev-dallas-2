@@ -24,7 +24,11 @@ const topPlaylists = await Likes.findAll({
         Sequelize.col('likes.playlist_id')), 'DESC']],
         include: {
             model: Playlist,
-            attributes: ['playlistId','name', 'createdAt', 'userId']
+            attributes: [
+                'playlistId',
+            'name', 
+            'createdAt', 
+            'userId',]
         }
       })
     console.log(topPlaylists)

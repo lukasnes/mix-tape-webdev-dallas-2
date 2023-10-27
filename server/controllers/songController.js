@@ -1,12 +1,15 @@
 import { 
     Playlist, 
-    Song } from "../../database/model.js"
+    Song, 
+User
+} from "../../database/model.js"
 
     const playlistSong = async (req, res) => {
     const playlist = await Playlist.findOne(
         { 
             where: { playlistId: +req.params.id },
-            include: { 
+            include: [
+                { 
                 model: Song, 
                 attributes: 
                 [
@@ -18,7 +21,16 @@ import {
                     'preview', 
                     'imgUrl'
                 ] 
-            }
+            },
+            {
+                model:User,
+            attributes:
+            [
+                'userId',
+                'username',
+            ]
+        }
+        ]
         }
         )
 
