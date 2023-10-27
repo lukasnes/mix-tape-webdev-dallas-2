@@ -16,12 +16,15 @@ const Songs = () => {
   const navigate = useNavigate();
   const [songs, setSongs] = useState(playlist.songs);
   console.log(songs);
-  const [playlistName, setPlaylistname] = useState(playlist.name);
+  const [playlistName, setPlaylistname] = useState(playlist.name)
+  // const [username, setUsername] = useState(playlist.username)
   const [isEditing, setEditing] = useState(false);
 
   let songsDisplay = songs.map((item) => {
+
     return (
       <SongsRow
+
         song={item}
         songs={songs}
         setSongs={setSongs}
