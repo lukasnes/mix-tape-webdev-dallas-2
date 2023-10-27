@@ -3,7 +3,7 @@ body {
     background-color: black;
 }
 
-p {
+p, a {
     color: white;
     font-family: 'DotGothic16', sans-serif;
 }

@@ -64,7 +64,7 @@ const Songs = () => {
   return (
     <div>
       {isEditing ? (
-        <div id="logo">
+        <div id="logo" className="title">
           <input 
             value={playlistName}
             onChange={(e) => setPlaylistname(e.target.value)}

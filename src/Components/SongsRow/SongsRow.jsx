@@ -38,7 +38,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
 
         <div id='audioPreview' className="row container">
           <audio
-            className="audioPreview"
+            id="audioPreview"
             ref={useRef()}
             src={song.preview}
             controls
