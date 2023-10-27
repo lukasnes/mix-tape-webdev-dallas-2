@@ -7,6 +7,7 @@ const DelOrLike = ({pl, setPlaylist}) => {
 
     const userId = useSelector(state=>state.userId)
     const isLoggedIn = useSelector(state=>state.loggedIn)
+    const [likedPlaylists, setLikedPlaylists] = useState([])
 
     const deletePlaylist = async () => {
         if( isLoggedIn === true && userId === pl.userId ) {
@@ -17,7 +18,9 @@ const DelOrLike = ({pl, setPlaylist}) => {
     }  
 
     const likePlaylist = () => {
-
+        // if (isLoggedIn === true && !hasLikedPlayList(userId, pl.playlistId)){
+        //     setLikedPlaylists([...likedPlaylists, { playlistId: pl.playlistId, userId: userId }])
+        // }
     }
 
     return userId === pl.userId ? (
