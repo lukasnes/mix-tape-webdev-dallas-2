@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { BsHeartFill } from 'react-icons/bs'
+
 import axios from "axios"
 
 
@@ -16,14 +17,15 @@ const DelOrLike = ({pl, setPlaylist}) => {
         }
     }  
 
-    const likePlaylist = () => {
-
+    const likePlaylist = async () => {
+        await axios.post(`/api/${userId}/like/${pl.playlistId}`)
     }
+
 
     return userId === pl.userId ? (
         <button id='deletePlaylistButton' className="button roundButton" onClick={(e)=> deletePlaylist()} > X </button>
     ):(
-        <button id='likePlaylistButton' className="button roundButton" onClick={(e)=> likePlaylist}> <BsHeartFill/> </button>
+        <button id='likePlaylistButton' className="button roundButton" onClick={(e)=> likePlaylist()}> <BsHeartFill/> </button>
     )
 }
 

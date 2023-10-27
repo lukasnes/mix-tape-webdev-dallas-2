@@ -111,7 +111,6 @@ const Songs = () => {
           </div>
           <div className="songsDisplay">
             {songsDisplay}
-            
           </div>
         </section>
       )}
