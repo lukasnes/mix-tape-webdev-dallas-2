@@ -2,21 +2,21 @@ import "../Friend/Friend.css";
 import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 
-const Friends = ({ friend, index, setPageState, setFriendId }) => {
+const Friends = ({ pl, index, setPageState, setFriendId }) => {
   return (
     <div>
       <div id='frindsWrapper'>
         <div className="friendsContainer" key={index}>
           <div
             onClick={() => {
-              setFriendId(friend.userId);
+              setFriendId(pl.userId);
               setPageState("friendsPlaylist");
             }}
             className="friendDisplay"
           >
-            {friend.username}
+            {pl.user.username}
           </div>
-          <div className="userId">{friend.userId}</div>
+          <div className="userId">{pl.userId}</div>
         </div>
       </div>
       <div id='playlistWrapper'>

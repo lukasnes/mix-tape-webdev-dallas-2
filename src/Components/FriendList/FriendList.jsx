@@ -24,8 +24,8 @@ const FriendList = ({setPageState, setFriendId, pl, setPlaylist}) => {
   return (
     <div>
       <div>
-        {pl.map((friend, index) => (
-          <Friends friend={friend} key={index} setPageState= {setPageState} setFriendId= {setFriendId} setPlaylist={setPlaylist} pl={pl} />
+        {pl.map((pl, index) => (
+          <Friends pl={pl} key={index} setPageState= {setPageState} setFriendId= {setFriendId} setPlaylist={setPlaylist}/>
         ))}
       </div>
     </div>
