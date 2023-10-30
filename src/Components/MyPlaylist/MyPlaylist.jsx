@@ -8,7 +8,7 @@ const MyPlaylist = ({ pl, setPlaylist }) => {
 
   let playlistData = pl.map((pl) => {
     return (
-      <PlaylistRow pl={pl.playlist} setPlaylist={setPlaylist} key={pl.playlistId} />
+      <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
     );
   });
   return playlistData;

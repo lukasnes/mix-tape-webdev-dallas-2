@@ -15,7 +15,7 @@ const Playlist = () => {
   const loaderData = useLoaderData();
   const navigate = useNavigate();
   const userId = useSelector((state) => state.userId);
-  const friendsId = useSelector((state) => state.friendId)
+  const friendsId = useSelector((state) => state.friendId);
   const [pageState, setPageState] = useState("hot");
   const [pageData, setPageData] = useState();
   const [friendId, setFriendId] = useState(null);
@@ -28,7 +28,8 @@ const Playlist = () => {
       case "hot":
         const getPlaylist = async () => {
           let res = await axios.get("/api/likes/top");
-          console.log(res.data)
+          console.log(res.data);
+
           setPlaylist(res.data);
         };
         getPlaylist();
@@ -38,10 +39,17 @@ const Playlist = () => {
       case "friendsList":
         const getFriendList = async () => {
           let res = await axios.get("/api/friendlist");
+          console.log(res);
           setFriendList(res.data);
         };
         getFriendList();
 
+        const getMyLikeList = async () => {
+          let res = await axios.get(`/api/likes`);
+
+          setPlaylist(res.data);
+        };
+        getMyLikeList();
         setPageData(
           <FriendList
             setPageState={setPageState}
