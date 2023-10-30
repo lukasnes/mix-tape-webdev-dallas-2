@@ -43,32 +43,9 @@ User
 
     let playlist = await Playlist.findByPk(+req.params.id)
     const createSong = await playlist.createSong( req.body )
-        playlist = await Playlist.findOne(
+        playlist = await Song.findAll(
         { 
-            where: { playlistId: +req.params.id },
-            include: [
-                { 
-                model: Song, 
-                attributes: 
-                [
-                    'name', 
-                    'artist', 
-                    'album', 
-                    'position', 
-                    'songId', 
-                    'preview', 
-                    'imgUrl'
-                ] 
-            },
-                {
-                    model:User,
-                    attributes:
-                        [
-                            'userId',
-                            'username',
-                        ]
-                 }
-                ]
+            where: { playlistId: +req.params.id }
         }
         )
     res.status(201).json(playlist);
