@@ -10,23 +10,23 @@ import {
   useState } from "react"
 import axios from "axios"
 
-const HotList = () => {
+const HotList = ({pl, setPlaylist}) => {
 
 let {playlists} = useLoaderData()
 
-const [playlist, setPlaylist] = useState(playlists)
+// const [playlist, setPlaylist] = useState(playlists)
 
-useEffect(() => {
-  const getPlaylist = async () => {
-    let res
-    res = await axios.get('/api/likes/top')
-    // console.log(res.data)
-    setPlaylist(res.data)
-  }
-  getPlaylist()
-}, [])
+// useEffect(() => {
+//   const getPlaylist = async () => {
+//     let res
+//     res = await axios.get('/api/likes/top')
+//     // console.log(res.data)
+//     setPlaylist(res.data)
+//   }
+//   getPlaylist()
+// }, [])
 
-let playlistData = playlist.map((pl) => {
+let playlistData = pl.map((pl) => {
 console.log(pl)
 
     return <PlaylistRow 

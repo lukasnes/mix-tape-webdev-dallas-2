@@ -2,29 +2,30 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "../Header/header.css";
 import Friends from "../Friend/Friends";
+import Playlist from "../../Pages/Playlist/Playlist";
 
 
-const FriendList = ({setPageState, setFriendId}) => {
-  const [friendList, setFriendList] = useState([]);
+const FriendList = ({setPageState, setFriendId, pl, setPlaylist}) => {
+  // const [friendList, setFriendList] = useState([]);
 
-  useEffect(() => {
-    getFriendList();
-  }, []);
+  // useEffect(() => {
+  //   getFriendList();
+  // }, []);
 
-  const getFriendList = async () => {
-    try {
-      const res = await axios.get("/api/friendlist");
-      setFriendList(res.data);
-    } catch (error) {
-      console.error("Error", error);
-    }
-  };
+  // const getFriendList = async () => {
+  //   try {
+  //     const res = await axios.get("/api/friendlist");
+  //     setFriendList(res.data);
+  //   } catch (error) {
+  //     console.error("Error", error);
+  //   }
+  // };
 
   return (
     <div>
       <div>
-        {friendList.map((friend, index) => (
-          <Friends friend={friend} key={index} setPageState= {setPageState} setFriendId= {setFriendId} />
+        {pl.map((friend, index) => (
+          <Friends friend={friend} key={index} setPageState= {setPageState} setFriendId= {setFriendId} setPlaylist={setPlaylist} pl={pl} />
         ))}
       </div>
     </div>

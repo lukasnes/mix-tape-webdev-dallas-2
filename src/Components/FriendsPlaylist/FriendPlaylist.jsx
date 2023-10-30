@@ -3,21 +3,22 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 
 
-const FriendsPlaylist = ({friendId}) => {
+const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {
+    const friendsId = useSelector((state) => state.friendId);
 
-    const [playlist, setPlaylist] = useState([])
+    // const [playlist, setPlaylist] = useState([])
 
-    useEffect(() => {
-        const getMyList = async () => {
-            let res 
-            if(friendId !== null){
-                res = await axios.get(`/api/playlists/${friendId}`)  
-            }
-            setPlaylist(res.data)
-    }
-        getMyList()}, [])
+    // useEffect(() => {
+    //     const getMyList = async () => {
+    //         let res 
+    //         if(friendId !== null){
+    //             res = await axios.get(`/api/playlists/${friendId}`)  
+    //         }
+    //         setPlaylist(res.data)
+    // }
+    //     getMyList()}, [])
 
-    let playlistData = playlist.map((pl) => {
+    let playlistData = pl.map((pl) => {
         return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
       })
       return playlistData

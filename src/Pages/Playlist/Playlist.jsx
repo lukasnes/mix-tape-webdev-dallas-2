@@ -2,60 +2,116 @@ import Header from "../../Components/Header/Header";
 import HotList from "../../Components/HotList/HotList";
 import Hero from "../../Components/Hero/Hero";
 import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
-import { useNavigate} from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import './playlist.css'
+import "./playlist.css";
 import FriendList from "../../Components/FriendList/FriendList";
 import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist";
-
+import { useSelector } from "react-redux";
+import { set } from "lodash";
 
 const Playlist = () => {
+  const loaderData = useLoaderData();
+  const navigate = useNavigate();
+  const userId = useSelector((state) => state.userId);
+  const friendsId = useSelector((state) => state.friendId)
+  const [pageState, setPageState] = useState("hot");
+  const [pageData, setPageData] = useState();
+  const [friendId, setFriendId] = useState(null);
+  const [playlist, setPlaylist] = useState(loaderData.playlists);
+  const [friendlist, setFriendList] = useState();
+  const [friendplaylist, setfriendPlayList] = useState();
 
-  const navigate = useNavigate()
-  const [pageState, setPageState] = useState('hot')
-  const [pageData, setPageData] = useState()
-  const [friendId, setFriendId] = useState(null)
+  useEffect(() => {
+    switch (pageState) {
+      case "hot":
+        const getPlaylist = async () => {
+          let res = await axios.get("/api/likes/top");
+          console.log(res.data)
+          setPlaylist(res.data);
+        };
+        getPlaylist();
+        setPageData(<Hero pl={playlist} setPlaylist={setPlaylist} />);
+        break;
 
-  useEffect(()=>{
-      switch (pageState){
-        case 'hot':
-          setPageData(<Hero />)
-          break
-        case 'friendsList':
-          setPageData(<FriendList setPageState= {setPageState} setFriendId= {setFriendId} />)
-          break
-        case 'friendsPlaylist':
-          setPageData(<FriendsPlaylist friendId={friendId} />)
-          break
-        case 'myPlaylist':
-          setFriendId(null)
-          setPageData(<MyPlaylist />)
-          break
-      }
-  }, [pageState])
+      case "friendsList":
+        const getFriendList = async () => {
+          let res = await axios.get("/api/friendlist");
+          setFriendList(res.data);
+        };
+        getFriendList();
+
+        setPageData(
+          <FriendList
+            setPageState={setPageState}
+            setFriendId={setFriendId}
+            pl={playlist}
+            setPlaylist={setPlaylist}
+          />
+        );
+        break;
+
+      case "friendsPlaylist":
+        const getMyFriendPlayList = async () => {
+          let res;
+          if (friendId !== null) {
+            res = await axios.get(`/api/playlists/${friendsId}`);
+          }
+          setPlaylist(res.data);
+        };
+        getMyFriendPlayList();
+
+        setPageData(
+          <FriendsPlaylist
+            friendId={friendId}
+            pl={playlist}
+            setPlaylist={setPlaylist}
+          />
+        );
+        break;
+
+      case "myPlaylist":
+        const getMyList = async () => {
+          let res = await axios.get(`/api/playlists/${userId}`);
+
+          setPlaylist(res.data);
+        };
+        getMyList();
+        setFriendId(null);
+        setPageData(<MyPlaylist pl={playlist} setPlaylist={setPlaylist} />);
+        break;
+    }
+  }, [pageState]);
 
   const createPlaylist = async () => {
-      const res = await axios.post('/api/playlist/add')
-      let newId = res.data.playlistId
-      navigate(`/playlist/${newId}`) 
-  }
+    const res = await axios.post("/api/playlist/add");
+    let newId = res.data.playlistId;
+    navigate(`/playlist/${newId}`);
+  };
 
-  return  <>
-            <header>
-              <Header setPageState={setPageState} />
-            </header>
-            <main>
-              <div id='playlistContainer'>
-                {pageData}
-              </div>
-              <div id='createPlaylistDiv'>
-                <button id='createPlaylistButton' className="button" onClick={()=> createPlaylist()}> Create Playlist </button>
-              </div>
-            </main>
+  return (
+    <>
+      <header>
+        <Header setPageState={setPageState} />
+      </header>
+      <main>
+        <div id="playlistContainer">{pageData}</div>
+        <div id="createPlaylistDiv">
+          <button
+            id="createPlaylistButton"
+            className="button"
+            onClick={() => createPlaylist()}
+          >
+            {" "}
+            Create Playlist{" "}
+          </button>
+        </div>
+      </main>
 
-            <footer></footer>
-          </>;
+      <footer></footer>
+    </>
+  );
 };
 
 export default Playlist;

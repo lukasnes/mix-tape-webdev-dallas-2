@@ -25,6 +25,7 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
     }
 
     const time = (pl) => {
+        console.log(pl)
         if(pl.createdAt !== null) {
            let isoDate = (pl.createdAt).split("T", 1)[0] 
            return isoDate
