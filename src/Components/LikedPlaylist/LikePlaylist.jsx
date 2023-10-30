@@ -3,21 +3,10 @@ import { useState, useEffect } from "react";
 import PlaylistRow from "../PlaylistRow/PlaylistRow";
 import { useSelector } from "react-redux"
 
-const LikePlaylist = () => {
+const LikePlaylist = ({ pl }) => {
   const userId = useSelector(state=>state.userId)
-  console.log(userId)
 
-  const [likedPlaylist, setLikedPlaylist] = useState([]);
-  const playlistData = likedPlaylist.map(pl => <PlaylistRow pl={pl} key={pl.playlistId}/> )
-
-  useEffect(() => {
-    getLikedPlaylist();
-  }, []);
-
-  const getLikedPlaylist = async () => {
-    const res = await axios.get(`/api/likes/${userId}`);
-    setLikedPlaylist(res.data);
-  };
+  const playlistData = pl.map(pl => <PlaylistRow pl={pl} key={pl.playlistId}/> )
 
   return (
     <div>
