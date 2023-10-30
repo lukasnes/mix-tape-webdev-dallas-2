@@ -6,6 +6,7 @@ import {
 import{
     Likes, 
     Playlist,
+    User,
 } from "../../database/model.js"
 
 
@@ -13,22 +14,70 @@ import{
 const getTopLiked = async (req, res) => {
 
 console.log('hit')
-const topPlaylists = await Likes.findAll({
-        attributes: [
-            'playlistId',
-            [Sequelize.fn('COUNT', 
-                Sequelize.col('likes.playlist_id')), 'likeCount'],
-        ],
-        group: ['likes.playlist_id','playlist.playlist_id'],
-        order: [[Sequelize.fn('COUNT', 
+
+const topPlaylists = await Playlist.findAll({
+    attributes:
+    [
+        'playlistId',
+        'name',
+        'createdAt',
+
+        [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+    ],
+    include: [
+        {
+        model: Likes,
+        attributes: []
+    },
+    {
+        model: User,
+        attributes: 
+        [
+            'userId',
+            'username',
+        ]
+    }
+],
+
+    group: ['playlistId', 
+    'user.user_id'],
+    order: [[Sequelize.fn('COUNT', 
         Sequelize.col('likes.playlist_id')), 'DESC']],
-        include: {
-            model: Playlist,
-            attributes: ['playlistId','name', 'createdAt', 'userId']
-        }
-      })
+
+
+})
+
+// const topPlaylists = await Likes.findAll({
+//         attributes: [
+//             'playlistId',
+//             [Sequelize.fn('COUNT', 
+//                 Sequelize.col('likes.playlist_id')), 'likeCount'],
+//         ],
+//         group: ['likes.playlist_id','playlist.playlist_id', 'user.user_id'],
+//         order: [[Sequelize.fn('COUNT', 
+//         Sequelize.col('likes.playlist_id')), 'DESC']],
+//         include: [{
+//             model: Playlist,
+//             attributes: [
+//             'playlistId',
+//             'name', 
+//             'createdAt', 
+//             'userId',
+//         ]
+//         },
+//         {
+//             model: User,
+//             attributes: [
+//                 'userId',
+//                 'username',
+//             ]
+//         }],
+//         required: true
+
+//       })
+
     console.log(topPlaylists)
-      
+      console.log(topPlaylists[0].user)
       res.json(topPlaylists)
 }
 

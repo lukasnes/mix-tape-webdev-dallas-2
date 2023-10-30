@@ -73,7 +73,7 @@ const Header = ({setPageState}) => {
           </div>
           <div id='tapeBottom' className="">
             <div id='signUpDiv' className="tape">
-              <a href='#' id='signUpLink' onClick={handleSignUpOpen} >signup</a>
+              <a href='#' id='signUpLink' onClick={handleSignUpOpen} >Sign-up</a>
             </div>
           </div>
         </div>

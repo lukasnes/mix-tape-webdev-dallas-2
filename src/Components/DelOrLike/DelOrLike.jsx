@@ -1,52 +1,32 @@
-import { useSelector } from "react-redux";
-import { BsHeartFill } from "react-icons/bs";
-import axios from "axios";
+import { useSelector } from "react-redux"
+import { BsHeartFill } from 'react-icons/bs'
 
-const DelOrLike = ({ pl, setPlaylist }) => {
-  const userId = useSelector((state) => state.userId);
-  const isLoggedIn = useSelector((state) => state.loggedIn);
+import axios from "axios"
 
-  const deletePlaylist = async () => {
-    if (isLoggedIn === true && userId === pl.userId) {
-      const res = await axios.post("/api/playlist/delete", {
-        playlistId: pl.playlistId,
-      });
-      setPlaylist(res.data);
-      // todo: setPlayList isnt working, needs to be put inot redux possibly
+
+const DelOrLike = ({pl, setPlaylist}) => {
+
+    const userId = useSelector(state=>state.userId)
+    const isLoggedIn = useSelector(state=>state.loggedIn)
+
+    const deletePlaylist = async () => {
+        if( isLoggedIn === true && userId === pl.userId ) {
+           const res = await axios.post("/api/playlist/delete", {playlistId: pl.playlistId}) 
+            setPlaylist(res.data)
+            // todo: setPlayList isnt working, needs to be put inot redux possibly
+        }
+    }  
+
+    const likePlaylist = async () => {
+        await axios.post(`/api/${userId}/like/${pl.playlistId}`)
     }
-  };
 
-  const likePlaylist = async () => {
-    if (isLoggedIn) {
-      try {
-        const res = await axios.post(`/api/${userId}/like/${pl.playlistId}`);
-        // setPlaylist(res.data);
-      } catch (error) {
-        console.error("Error", error);
-      }
-    } else {
-    }
-  };
 
-  return userId === pl.userId ? (
-    <button
-      id="deletePlaylistButton"
-      className="button roundButton"
-      onClick={(e) => deletePlaylist()}
-    >
-      {" "}
-      X{" "}
-    </button>
-  ) : (
-    <button
-      id="likePlaylistButton"
-      className="button roundButton"
-      onClick={(e) => likePlaylist()}
-    >
-      {" "}
-      <BsHeartFill />{" "}
-    </button>
-  );
-};
+    return userId === pl.userId ? (
+        <button id='deletePlaylistButton' className="button roundButton" onClick={(e)=> deletePlaylist()} > X </button>
+    ):(
+        <button id='likePlaylistButton' className="button roundButton" onClick={(e)=> likePlaylist()}> <BsHeartFill/> </button>
+    )
+}
 
-export default DelOrLike;
+export default DelOrLike
