@@ -55,6 +55,7 @@ function AddSong({plId, setSongs}) {
         } = selectedSong;
         let res = await axios.post(`/api/addnewsong/${plId}`, { name, preview, artist, album, imgUrl })
         console.log(res.data)
+        setSongs(res.data)
     };
 
     return (
