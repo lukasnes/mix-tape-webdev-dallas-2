@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 
 
 const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {
-    const friendsId = useSelector((state) => state.friendId);
+    // const friendsId = useSelector((state) => state.friendId);
 
     // const [playlist, setPlaylist] = useState([])
 
