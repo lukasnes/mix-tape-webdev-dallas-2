@@ -20,7 +20,7 @@ const MyPlaylist = () => {
         getMyList()}, [])
 
     let playlistData = playlist.map((pl) => {
-        return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
+        return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} user={pl.user} />
       })
       return playlistData
     }

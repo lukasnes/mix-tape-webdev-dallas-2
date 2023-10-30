@@ -9,7 +9,6 @@ import {
   useEffect, 
   useState } from "react"
 import axios from "axios"
-import Hero from "../Hero/Hero"
 
 const HotList = () => {
 
@@ -31,6 +30,7 @@ let playlistData = playlist.map((pl) => {
 console.log(pl)
 
     return <PlaylistRow 
+    user={pl.user}
     pl={pl.playlist} 
     setPlaylist={setPlaylist} 
     key={pl.playlistId} />

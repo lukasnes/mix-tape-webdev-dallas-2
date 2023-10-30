@@ -17,6 +17,16 @@
     animation: pulsate 0.11s ease-in-out infinite alternate
 }
 
+h4 {
+    text-align: center;
+    font-family: 'Rock Salt', cursive;
+    color: #fff;
+    margin-bottom: 25px;
+    /* font-size: 15px; */
+    animation: pulsate 0.11s ease-in-out infinite alternate
+} 
+
+
 @keyframes pulsate {
     100% {
       /* Larger blur radius */

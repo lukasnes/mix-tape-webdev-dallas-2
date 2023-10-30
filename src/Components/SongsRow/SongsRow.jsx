@@ -24,7 +24,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
 
   return (
     <div className="songProps row">
-      <div id="albumCover">
+      <div className="" id="albumCover">
         <img className="songImage" src={song.imgUrl} />
       </div>
 
@@ -38,7 +38,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
 
         <div id='audioPreview' className="row container">
           <audio
-            className="audioPreview"
+            id="audioPreview"
             ref={useRef()}
             src={song.preview}
             controls
@@ -47,11 +47,11 @@ const SongsRow = ({ song, songs, setSongs }) => {
         
         {isLoggedIn ? (
           <div id='deleteButton'>
-            < button className="button roundButton" onClick={()=>{}} > Add </button>
+            < button className="button roundButton" onClick={()=>{}} > + </button>
           </div>
         ):(
           <div id='deleteButton'>
-            < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>       
+            < button className="button roundButton" onClick={()=>{deleteSongs(song.songId);}} > X </button>
           </div> 
           
         )}
