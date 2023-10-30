@@ -4,7 +4,6 @@ import SongsRow from "../../Components/SongsRow/SongsRow";
 import { useState } from "react";
 import "../Songs/Songs.css";
 // import AddSong from "../../Components/Modal/AddSong/AddSong.jsx";
-import SongsModal from "./SongsModal";
 import SearchBar from "../../Components/Modal/AddSong/AddSong.jsx";
 import AddSong from "../../Components/Modal/AddSong/AddSong.jsx";
 import { useNavigate } from "react-router-dom";
