@@ -6,17 +6,23 @@ import Playlist from "../../Pages/Playlist/Playlist";
 import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 
-const FriendList = ({setPageState, setFriendId, pl, setPlaylist}) => {
-
+const FriendList = ({setPageState, setFriendId, pl, setPlaylist, friends}) => {
+  console.log(pl)
   return (
     <div>
       <div>
-        {pl.map((pl, index) => (
+        {friends.map((friend, index) => (
           <>
-            <Friends pl={pl} key={index} setPageState={setPageState} setFriendId={setFriendId} setPlaylist={setPlaylist}/>
-            <LikePlaylist pl={pl} />
+            <Friends friend={friend} key={index} setPageState={setPageState} setFriendId={setFriendId} setPlaylist={setPlaylist}/>
           </>
         ))}
+        <div id='playlistWrapper'>
+          <div id='playlists'>
+            <div className="likes">
+              <LikePlaylist pl={pl}/>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

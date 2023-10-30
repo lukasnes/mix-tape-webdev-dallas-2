@@ -122,7 +122,7 @@ app.post("/api/friend/toggle/:friendId", authRequired, toggleFriendship)
 app.get("/api/likes/top", getTopLiked)
 
 //get all liked playlist by user
-app.get("/api/likes/:userId", authRequired, getMyLikes)
+app.get("/api/likes", authRequired, getMyLikes)
 
 //Toggle Like Playlist
 app.post("/api/:userId/like/:playlistId", authRequired, toggleLike)

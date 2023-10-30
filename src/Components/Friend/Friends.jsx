@@ -2,28 +2,22 @@ import "../Friend/Friend.css";
 import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 
-const Friends = ({ pl, index, setPageState, setFriendId }) => {
+const Friends = ({ friend, index, setPageState, setFriendId }) => {
+  console.log(friend)
   return (
     <div>
-      <div id='frindsWrapper'>
+      <div id='friendsWrapper'>
         <div className="friendsContainer" key={index}>
           <div
             onClick={() => {
-              setFriendId(pl.userId);
+              setFriendId(friend.userId);
               setPageState("friendsPlaylist");
             }}
             className="friendDisplay"
           >
-            {pl.user.username}
+            {friend.username}
           </div>
-          <div className="userId">{pl.userId}</div>
-        </div>
-      </div>
-      <div id='playlistWrapper'>
-        <div id='playlists'>
-              <div className="likes">
-                <LikePlaylist/>
-              </div>
+          <div className="userId">{friend.userId}</div>
         </div>
       </div>
     </div>

@@ -25,7 +25,6 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
     }
 
     const time = (pl) => {
-        console.log(pl)
         if(pl.createdAt !== null) {
            let isoDate = (pl.createdAt).split("T", 1)[0] 
            return isoDate
@@ -39,7 +38,6 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
     }
     // fucntion name is not working
 
-    console.log(pl)
     
     return isLoggedIn ? (
         <div id='playlistRow' className="displayRow" >

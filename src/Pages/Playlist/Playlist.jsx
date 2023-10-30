@@ -20,76 +20,75 @@ const Playlist = () => {
   const [pageData, setPageData] = useState();
   const [friendId, setFriendId] = useState(null);
   const [playlist, setPlaylist] = useState(loaderData.playlists);
-  const [friendlist, setFriendList] = useState();
-  const [friendplaylist, setfriendPlayList] = useState();
+  const [friendlist, setFriendList] = useState([])
 
   useEffect(() => {
-    switch (pageState) {
-      case "hot":
-        const getPlaylist = async () => {
-          let res = await axios.get("/api/likes/top");
-          console.log(res.data);
-
-          setPlaylist(res.data);
-        };
-        getPlaylist();
-        setPageData(<Hero pl={playlist} setPlaylist={setPlaylist} />);
-        break;
-
-      case "friendsList":
-        const getFriendList = async () => {
-          let res = await axios.get("/api/friendlist");
-          console.log(res);
-          setFriendList(res.data);
-        };
-        getFriendList();
-
-        const getMyLikeList = async () => {
-          let res = await axios.get(`/api/likes`);
-
-          setPlaylist(res.data);
-        };
-        getMyLikeList();
-        setPageData(
-          <FriendList
-            setPageState={setPageState}
-            setFriendId={setFriendId}
-            pl={playlist}
-            setPlaylist={setPlaylist}
-          />
-        );
-        break;
-
-      case "friendsPlaylist":
-        const getMyFriendPlayList = async () => {
-          let res;
-          if (friendId !== null) {
-            res = await axios.get(`/api/playlists/${friendsId}`);
-          }
-          setPlaylist(res.data);
-        };
-        getMyFriendPlayList();
-
-        setPageData(
-          <FriendsPlaylist
-            friendId={friendId}
-            pl={playlist}
-            setPlaylist={setPlaylist}
-          />
-        );
-        break;
-
-      case "myPlaylist":
-        const getMyList = async () => {
-          let res = await axios.get(`/api/playlists/${userId}`);
-
-          setPlaylist(res.data);
-        };
-        getMyList();
-        setFriendId(null);
-        setPageData(<MyPlaylist pl={playlist} setPlaylist={setPlaylist} />);
-        break;
-    }
+      switch (pageState) {
+        case "hot":
+          const getPlaylist = async () => {
+            let res = await axios.get("/api/likes/top");
+            console.log(res.data);
+  
+            setPlaylist(res.data);
+          };
+          getPlaylist();
+          setPageData(<Hero pl={playlist} setPlaylist={setPlaylist} />);
+          break;
+  
+        case "friendsList":
+          const getFriendList = async () => {
+            let res = await axios.get("/api/friendlist");
+            setFriendList(res.data);
+          };
+          getFriendList();
+  
+          const getMyLikeList = async () => {
+            let res = await axios.get(`/api/likes`);
+            console.log(res.data)
+            setPlaylist(res.data);
+          };
+          getMyLikeList();
+          setPageData(
+            <FriendList
+              setPageState={setPageState}
+              setFriendId={setFriendId}
+              friends={friendlist}
+              pl={playlist}
+              setPlaylist={setPlaylist}
+            />
+          );
+          break;
+  
+        case "friendsPlaylist":
+          const getMyFriendPlayList = async () => {
+            let res;
+            if (friendId !== null) {
+              res = await axios.get(`/api/playlists/${friendsId}`);
+            }
+            setPlaylist(res.data);
+          };
+          getMyFriendPlayList();
+  
+          setPageData(
+            <FriendsPlaylist
+              friendId={friendId}
+              pl={playlist}
+              setPlaylist={setPlaylist}
+            />
+          );
+          break;
+  
+        case "myPlaylist":
+          const getMyList = async () => {
+            let res = await axios.get(`/api/playlists/${userId}`);
+  
+            setPlaylist(res.data);
+          };
+          getMyList();
+          setFriendId(null);
+          setPageData(<MyPlaylist pl={playlist} setPlaylist={setPlaylist} />);
+          break;
+      }
   }, [pageState]);
 
   const createPlaylist = async () => {

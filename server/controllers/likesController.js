@@ -142,20 +142,20 @@ const getMyLikes = async (req, res) => {
     let { userId } = req.session
 
     let myLikes = await Playlist.findAll({
-        where: {
-            userId: userId
-        },
         attributes:[
             'playlistId',
             'name',
             'createdAt',
-
+            
             [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
-         ],
+        ],
         include: [
             {
-            model: Likes,
-            attributes: []
+                model: Likes,
+                attributes: [],
+                where: {
+                    userId: userId
+                },
         },
         {
             model:User,

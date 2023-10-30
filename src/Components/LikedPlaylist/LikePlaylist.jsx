@@ -5,7 +5,7 @@ import { useSelector } from "react-redux"
 
 const LikePlaylist = ({ pl }) => {
   const userId = useSelector(state=>state.userId)
-
+  console.log(pl)
   const playlistData = pl.map(pl => <PlaylistRow pl={pl} key={pl.playlistId}/> )
 
   return (
