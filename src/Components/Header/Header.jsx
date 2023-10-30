@@ -9,7 +9,7 @@ import { BsHeartFill, BsHeart, BsFire } from "react-icons/bs";
 
 
 
-const Header = ({setPageState}) => {
+const Header = ({setPageState, setLoadingState}) => {
 
   const [loginShow, setLoginShow] = useState(false)
   const [signUpShow, setSignUpShow] = useState(false)
@@ -33,15 +33,18 @@ const Header = ({setPageState}) => {
   }
 
   const handleMyPlaylist = () => {
-    setPageState('myPlaylist')
+    setLoadingState('me')
+    setPageState('loading')
   }
 
   const handleTopPlaylist = () => {
-    setPageState('hot')
+    setLoadingState('hot')
+    setPageState('loading')
   }
 
   const handleFreindsList = () => {
-    setPageState('friendsList')
+    setLoadingState('friends')
+    setPageState('loading')
   }
 
     return isLoggedIn ? (

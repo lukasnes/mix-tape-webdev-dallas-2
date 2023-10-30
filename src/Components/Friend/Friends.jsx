@@ -2,7 +2,7 @@ import "../Friend/Friend.css";
 import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 
-const Friends = ({ friend, index, setPageState, setFriendId }) => {
+const Friends = ({ friend, index, setPageState, setFriendId, setLoadingState }) => {
   console.log(friend)
   return (
     <div>
@@ -11,7 +11,8 @@ const Friends = ({ friend, index, setPageState, setFriendId }) => {
           <div
             onClick={() => {
               setFriendId(friend.userId);
-              setPageState("friendsPlaylist");
+              setLoadingState("friendsPlayList")
+              setPageState("loading");
             }}
             className="friendDisplay"
           >
