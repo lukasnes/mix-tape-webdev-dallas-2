@@ -53,6 +53,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
           <div id='deleteButton'>
             < button className="button roundButton" onClick={()=>{deleteSongs(song.songId);}} > X </button>
           </div> 
+          
         )}
       </div>
   );
