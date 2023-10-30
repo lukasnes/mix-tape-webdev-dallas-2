@@ -24,23 +24,28 @@ const topPlaylists = await Playlist.findAll({
 
         [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
     ],
-    include: [
+    include: 
+    [
         {
-        model: Likes,
-        attributes: []
-    },
-    {
-        model: User,
-        attributes: 
-        [
-            'userId',
-            'username',
-        ]
-    }
-],
+            model: Likes,
+            attributes: []
+        },
+        {
+            model: User,
+            attributes: 
+            [
+                'userId',
+                'username',
+            ]
+        }
+    ],
 
-    group: ['playlistId', 
-    'user.user_id'],
+    group: 
+        [
+            'playlistId', 
+            'user.user_id'
+        ],
+
     order: [[Sequelize.fn('COUNT', 
         Sequelize.col('likes.playlist_id')), 'DESC']],
 
@@ -132,32 +137,76 @@ const topPlaylists = await Playlist.findAll({
 
 
 
-
 const getMyLikes = async (req, res) => {
     
-    let { userId } = req.params
+    let { userId } = req.session
 
-    let myLikes = await Likes.findAll({
+    let myLikes = await Playlist.findAll({
         where: {
             userId: userId
         },
-        include: {
-            model: Playlist,
-            attributes: [
-                'playlistId',
-                'name',
-                'createdAt'
+        attributes:[
+            'playlistId',
+            'name',
+            'createdAt',
+
+            [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+         ],
+        include: [
+            {
+            model: Likes,
+            attributes: []
+        },
+        {
+            model:User,
+            attributes:
+            [
+                'userId',
+                'username',
             ]
         }
+        ],
+        group:
+        [
+            'playlistId',
+            'user.user_id'
+        ],
     })
     console.log(myLikes)
+    console.log('test, test')
 
 
-
-    myLikes = myLikes.map(like => like.playlist)
+    console.log('name', myLikes[0].user)
+    // myLikes = myLikes.map(like => like.playlist)
 
     res.json(myLikes)
 }
+
+// const getMyLikes = async (req, res) => {
+    
+//     let { userId } = req.params
+
+//     let myLikes = await Likes.findAll({
+//         where: {
+//             userId: userId
+//         },
+//         include: {
+//             model: Playlist,
+//             attributes: [
+//                 'playlistId',
+//                 'name',
+//                 'createdAt'
+//             ]
+//         }
+//     })
+//     console.log(myLikes)
+
+
+
+//     myLikes = myLikes.map(like => like.playlist)
+
+//     res.json(myLikes)
+// }
 
 const toggleLike = async (req, res) => {
     let { userId, 
