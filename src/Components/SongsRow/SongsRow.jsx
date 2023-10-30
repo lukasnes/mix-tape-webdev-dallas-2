@@ -51,8 +51,9 @@ const SongsRow = ({ song, songs, setSongs }) => {
           </div>
         ):(
           <div id='deleteButton'>
-            < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>
+            < button onClick={()=>{deleteSongs(song.songId);}} > Remove </button>       
           </div> 
+          
         )}
       </div>
   );

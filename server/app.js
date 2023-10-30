@@ -125,7 +125,7 @@ app.get("/api/likes/top", getTopLiked)
 app.get("/api/likes/:userId", authRequired, getMyLikes)
 
 //Toggle Like Playlist
-app.post("api/:userId/like/:playlistId", authRequired, toggleLike)
+app.post("/api/:userId/like/:playlistId", authRequired, toggleLike)
 
 
 
