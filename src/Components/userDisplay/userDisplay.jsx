@@ -10,8 +10,11 @@ const userDisplay = (User) => {
     return (
         <div>
             <button 
-            className= "follow_button" 
-            onClick= {}
+            id = "followButton"
+            className= "button" 
+            // onClick= {() => {
+
+            // }}
             > Follow 
             </button>
         </div>
