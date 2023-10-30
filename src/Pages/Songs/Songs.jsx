@@ -108,6 +108,8 @@ const Songs = () => {
             navigate("/")
           }} >Home</button>
           <AddSong 
+             plId = {playlist.playlistId}
+             setSongs = {setSongs}
             // onPlaylistDataUpdate = {updatePlaylistData}
             />
           </div>
