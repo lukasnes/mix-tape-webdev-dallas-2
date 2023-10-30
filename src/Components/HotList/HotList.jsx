@@ -27,9 +27,10 @@ useEffect(() => {
 }, [])
 
 let playlistData = playlist.map((pl) => {
-// console.log(pl)
+console.log(pl)
 
     return <PlaylistRow 
+    user={pl.user}
     pl={pl.playlist} 
     setPlaylist={setPlaylist} 
     key={pl.playlistId} />

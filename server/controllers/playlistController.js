@@ -15,8 +15,7 @@ const getPlaylistByUser = async (req, res) => {
             },
             include: {
                 model: User,
-                attributes:
-                [
+                attributes:[
                     'username',
                 ]
             }

@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import './playlistRow.css';
-// import axios from "axios";
+import axios from "axios";
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 
-const PlaylistRow = ({pl, setPlaylist}) => {
+const PlaylistRow = ({pl, setPlaylist, user}) => {
     const navigate = useNavigate()
     const isLoggedIn = useSelector(state=>state.loggedIn)
 
@@ -15,7 +15,11 @@ const PlaylistRow = ({pl, setPlaylist}) => {
     //     }
     // }  
 
-        
+    const followUserHandler = async () => {
+        await axios.post(`/api/friend/toggle/${user.userId}`)
+
+    }
+       
     const editPlaylist = async () => {
         navigate(`/playlist/${pl.playlistId}`)
     }
@@ -45,6 +49,11 @@ const PlaylistRow = ({pl, setPlaylist}) => {
                 <p id='playlistName'> {name(pl)} </p>
             </div>
             <div id='deleteButtonDiv'>
+            <button
+                onClick={followUserHandler}
+                >
+                {user.username}
+            </button>
                 <DelOrLike pl={pl} setPlaylist={setPlaylist} />
             </div>
         </div>
@@ -57,6 +66,9 @@ const PlaylistRow = ({pl, setPlaylist}) => {
                 <p id='playlistName'> {name(pl)} </p>
             </div>
             <div id='deleteButtonDiv'> 
+            <button>
+                {user.username}
+            </button>
                 <DelOrLike pl={pl} setPlaylist={setPlaylist} /> 
             </div>
         </div>

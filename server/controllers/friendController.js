@@ -7,11 +7,12 @@ import{
 
 
 const toggleFriendship = async (req, res) => {
-    const userId = req.session
-
+    const { userId }= req.session
+    console.log(req.session)
     const { 
         friendId,
      } = req.params
+console.log(req.params)
     if(userId){
 
         const friendList = await FriendList.findOne({
@@ -20,7 +21,7 @@ const toggleFriendship = async (req, res) => {
             }
     })
     
-    console.log(friendList)
+    console.log('this friendlist',friendList)
     
     const friend = await Friend.findOne({
         where: {
