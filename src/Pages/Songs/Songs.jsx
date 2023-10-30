@@ -7,6 +7,7 @@ import "../Songs/Songs.css";
 import SearchBar from "../../Components/Modal/AddSong/AddSong.jsx";
 import AddSong from "../../Components/Modal/AddSong/AddSong.jsx";
 import { useNavigate } from "react-router-dom";
+// import userDisplay from "../../Components/userDisplay/userDisplay";
 
 const Songs = () => {
   let { playlist } = useLoaderData();
@@ -112,6 +113,8 @@ const Songs = () => {
              setSongs = {setSongs}
             // onPlaylistDataUpdate = {updatePlaylistData}
             />
+          {/* <userDisplay /> */}
+          <button className="button" onClick={()=>{}}>Follow</button>
           </div>
 
           </div>
