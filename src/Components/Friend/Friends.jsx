@@ -1,4 +1,8 @@
+import axios from "axios";
 import "../Friend/Friend.css";
+import { useState } from "react";
+import FollowButton from "../Follow/Follow";
+
 // import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 const Friends = ({
@@ -7,14 +11,15 @@ const Friends = ({
   setPageState,
   setFriendId,
   setLoadingState,
+  friendId
 }) => {
   console.log(friend);
+
   return (
     <div>
       <div id="friendsWrapper">
         <div className="friendsContainer" key={index}>
           <div
-
             onClick={() => {
               setFriendId(friend.userId);
               setLoadingState("friendsPlayList");
@@ -22,11 +27,11 @@ const Friends = ({
             }}
           >
             {friend.username}
+            <FollowButton friendId={friendId} />
           </div>
-          
+
           <div className="userId">{friend.userId}</div>
         </div>
-        <button className="follow-button">+ Follow</button>
       </div>
     </div>
   );

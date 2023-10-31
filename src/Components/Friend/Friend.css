@@ -21,22 +21,6 @@
 
 }
 
-.follow-button{
-    color: #3399FF;
-    font-family: "Helvetica";
-    font-size: 10pt;
-    background-color: #ffffff;
-    border: 1px solid;
-    border-color: #3399FF;
-    border-radius: 3px;
-    width: 85px;
-    height: 30px;
-    position: absolute;	 
-    cursor: hand;
-    left: 120px;
-    top: 300px;		    
-  
-
 #info {
     width: 100px;
 }
