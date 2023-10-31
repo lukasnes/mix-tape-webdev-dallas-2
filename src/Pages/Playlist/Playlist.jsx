@@ -1,5 +1,5 @@
 import Header from "../../Components/Header/Header";
-import HotList from "../../Components/HotList/HotList";
+// import HotList from "../../Components/HotList/HotList";
 import Hero from "../../Components/Hero/Hero";
 import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import "./playlist.css";
 import FriendList from "../../Components/FriendList/FriendList";
 import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist";
 import { useSelector } from "react-redux";
-import { set } from "lodash";
+// import { set } from "lodash";
 import Loading from "../../Components/Loading/Loading";
 
 const Playlist = () => {

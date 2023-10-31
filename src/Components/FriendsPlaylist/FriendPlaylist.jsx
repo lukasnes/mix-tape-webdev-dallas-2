@@ -1,6 +1,6 @@
 import PlaylistRow from "../PlaylistRow/PlaylistRow"
-import axios from "axios"
-import { useState, useEffect } from "react"
+// import axios from "axios"
+// import { useState, useEffect } from "react"
 
 
 const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {

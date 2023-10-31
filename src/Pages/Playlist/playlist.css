@@ -1,9 +1,9 @@
 body {
-    /* background-color: #311a46; */
+    
     background-color: black;
 }
 
-p, a {
+p, a, .text {
     color: white;
     font-family: 'DotGothic16', sans-serif;
 }
@@ -27,6 +27,7 @@ main {
     height: 500px;
     width: 100vw;
     padding-top: 10px;
+
 }
 
 #createPlaylistDiv {
