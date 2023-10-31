@@ -3,6 +3,8 @@ import './playlistRow.css';
 import axios from "axios";
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
+import FollowButton from '../Follow/Follow';
+import { useEffect } from 'react';
 
 const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
     const navigate = useNavigate()
@@ -40,7 +42,8 @@ const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
     }
     // fucntion name is not working
 
-    
+   
+
     return isLoggedIn ? (
         <div id='playlistRow' className="displayRow" >
             <div id='timeStampDiv'>
@@ -51,12 +54,13 @@ const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
                 <p id='playlistName'> {pl.name} </p>                
 
             </div>
-            <div id='deleteButtonDiv'>            
-            <button id='userNameButton' className='button'
+            <div id='deleteButtonDiv'>  
+                <FollowButton friendId={pl.user.userId} user={pl.user.username}/>
+            {/* <button id='userNameButton' className='button'
                 onClick={followUserHandler}
                 >
                 {pl.user.username}
-            </button>
+            </button> */}
             <div id='likeCountDiv'>
                 <p id='likeCount'>likes:{pl.likeCount}</p>
             </div>
