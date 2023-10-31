@@ -60,7 +60,37 @@ console.log(req.params)
     }
 }
 
+const checkFollowing = async (req,res) => {
+    const {friendId} = req.params
 
+    const friendList = await FriendList.findOne({
+        where: {
+            userId: req.session.userId
+        },
+        include: {
+            model: Friend,
+            attributes: [
+                'friendId',
+
+            ],
+            where: {
+                userId: friendId,
+            }
+        }
+    })
+console.log(friendList)
+
+if(friendList) {
+    res.json({
+        following: true,
+    })
+} else {
+    res.json({
+        following: false,
+    })
+}
+res.json(friendList)
+}
 
 // const addFriend = async (req, res) => {
     
@@ -209,6 +239,7 @@ console.log(req.params)
 
 export {
     toggleFriendship,
+    checkFollowing,
     // addFriend,
     // deleteFriend,
     // getFriendPlaylists,
