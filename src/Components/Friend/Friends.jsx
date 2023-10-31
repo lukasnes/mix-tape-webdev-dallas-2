@@ -8,11 +8,11 @@ const Friends = ({
   setFriendId,
   setLoadingState,
 }) => {
-  console.log(friend);
+  // console.log(friend);
   return (
     <div>
-      <div id="friendsWrapper">
-        <div className="friendsContainer" key={index}>
+      <div id="friendWrapper">
+        <div className="friendContainer" key={index}>
           <div
 
             onClick={() => {
@@ -24,9 +24,12 @@ const Friends = ({
             {friend.username}
           </div>
           
-          <div className="userId">{friend.userId}</div>
+          <div id='userId'>{friend.userId}</div>
+
+
+          <button className="button">+ Follow</button>
         </div>
-        <button className="follow-button">+ Follow</button>
+        
       </div>
     </div>
   );

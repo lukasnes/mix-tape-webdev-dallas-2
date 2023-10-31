@@ -11,13 +11,15 @@ const FriendList = ({setPageState, setFriendId, pl, setPlaylist, friends, setLoa
   return (
       <div className="friendDisplay">
         <div className="friendName">
-        {friends.map((friend, index) => (
+          <div className="friendInfo text">
+          {friends.map((friend, index) => (
          
-          <Friends friend={friend} key={index} setPageState={setPageState} setFriendId={setFriendId} setPlaylist={setPlaylist} setLoadingState={setLoadingState}/>
+          <Friends id='friend' friend={friend} key={index} setPageState={setPageState} setFriendId={setFriendId} setPlaylist={setPlaylist} setLoadingState={setLoadingState}/>
         
-        ))}
+          ))}
         </div>
 
+        </div>
         <div>
           <LikePlaylist pl={pl}/>
         </div>
