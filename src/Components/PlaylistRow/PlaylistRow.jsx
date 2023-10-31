@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import "./playlistRow.css";
 import axios from "axios";
-import { useSelector } from "react-redux";
-import DelOrLike from "../DelOrLike/DelOrLike";
-import FollowButton from "../Follow/Follow";
-import { useEffect } from "react";
+
+import { useSelector } from 'react-redux';
+import DelOrLike from '../DelOrLike/DelOrLike';
+import FollowButton from '../Follow/Follow';
+
 
 const PlaylistRow = ({ pl, setPlaylist, user }) => {
   const navigate = useNavigate();
@@ -38,8 +39,7 @@ const PlaylistRow = ({ pl, setPlaylist, user }) => {
       let name = pl.name;
       return name;
     }
-  };
-  console.log(pl);
+
 
   return isLoggedIn ? (
     <div id="playlistRow" className="displayRow">
