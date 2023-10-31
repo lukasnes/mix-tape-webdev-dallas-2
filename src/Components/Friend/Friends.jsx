@@ -42,7 +42,6 @@ const Friends = ({
         </div>
         
       </div>
-    </div>
   );
 };
 
