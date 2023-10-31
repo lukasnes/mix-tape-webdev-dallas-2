@@ -36,6 +36,7 @@ const Friends = ({
 
         <FollowButton friendId={friend.userId} />
       </div>
+      </div>
   );
 };
 
