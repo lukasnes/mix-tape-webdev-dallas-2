@@ -88,7 +88,6 @@ const deletePlayList = async (req, res) => {
             }
         })
 
-
     const playlist = await Playlist.findOne(
         {
             where:
@@ -96,8 +95,6 @@ const deletePlayList = async (req, res) => {
         }
     )
     await playlist.destroy()
-
-
 
     const playlists = await Playlist.findAll(
         {

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import PlaylistRow from "../PlaylistRow/PlaylistRow";
-import axios from "axios";
+// import axios from "axios";
 
 const MyPlaylist = ({ pl, setPlaylist }) => {
   const userId = useSelector((state) => state.userId);

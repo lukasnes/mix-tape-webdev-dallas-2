@@ -35,8 +35,8 @@ const Friends = ({
         <div id="userId">{friend.userId}</div>
 
         <FollowButton friendId={friend.userId} />
+
       </div>
-    </div>
   );
 };
 

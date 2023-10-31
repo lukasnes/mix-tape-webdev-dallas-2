@@ -27,6 +27,7 @@
 
 .container {
     display: flex;
+    align-items: center;
     height: 110px;
     width: 400px;
     overflow: auto;

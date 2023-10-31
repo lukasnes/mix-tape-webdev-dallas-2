@@ -6,8 +6,9 @@ import axios from "axios"
 const HotList = ({pl, setPlaylist}) => {
 
 
-console.log(pl)
-let playlistData = pl.slice(0,4).map((pl) => {
+// console.log(pl)
+let playlistData = pl.map((pl) => {
+
 
     return <PlaylistRow 
     user={pl.user}
