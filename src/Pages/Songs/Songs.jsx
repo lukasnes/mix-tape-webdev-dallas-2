@@ -22,6 +22,11 @@ const Songs = () => {
 
   let songsDisplay = songs.map((item) => {
 
+  const followUserHandler = async () => {
+    await axios.post(`/api/friend/toggle/${user.userId}`)
+
+  }
+
     return (
       <SongsRow
 

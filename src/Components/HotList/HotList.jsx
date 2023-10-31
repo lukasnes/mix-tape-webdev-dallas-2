@@ -9,6 +9,7 @@ const HotList = ({pl, setPlaylist}) => {
 // console.log(pl)
 let playlistData = pl.map((pl) => {
 
+
     return <PlaylistRow 
     user={pl.user}
     pl={pl} 

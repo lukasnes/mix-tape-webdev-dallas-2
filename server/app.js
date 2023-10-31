@@ -32,6 +32,7 @@ import {
 
 
 import{
+  checkFollowing,
   toggleFriendship,
 } from "../server/controllers/friendController.js"
 
@@ -115,6 +116,7 @@ app.get("/api/friendlist", authRequired, getFriendList)
 //Toggle Friendship
 app.post("/api/friend/toggle/:friendId", authRequired, toggleFriendship)
 
+app.get('/api/friend/:friendId', authRequired, checkFollowing)
 
 //Likes Endpoints
 
