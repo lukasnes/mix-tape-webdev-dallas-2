@@ -1,5 +1,5 @@
 import "../Friend/Friend.css";
-import LikePlaylist from "../LikedPlaylist/LikePlaylist";
+// import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
 const Friends = ({
   friend,
@@ -14,12 +14,12 @@ const Friends = ({
       <div id="friendsWrapper">
         <div className="friendsContainer" key={index}>
           <div
+
             onClick={() => {
               setFriendId(friend.userId);
               setLoadingState("friendsPlayList");
               setPageState("loading");
             }}
-            className="friendDisplay"
           >
             {friend.username}
           </div>

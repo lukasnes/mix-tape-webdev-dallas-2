@@ -47,6 +47,6 @@
     justify-content: right;
 }
 
-#deletePlaylistButton, #likePlaylistButton {
+#deletePlaylistButton, #likePlaylistButton, #userNameButton {
     margin-right: 10px;
 }
