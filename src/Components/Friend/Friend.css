@@ -39,6 +39,10 @@
     margin-top: -50px;
 }
 
+
+#info {
+    width: 100px;
+
 #userId {
     display: flex;
     justify-content: center;
