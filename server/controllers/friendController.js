@@ -89,7 +89,7 @@ if(friendList) {
         following: false,
     })
 }
-res.json(friendList)
+
 }
 
 // const addFriend = async (req, res) => {
