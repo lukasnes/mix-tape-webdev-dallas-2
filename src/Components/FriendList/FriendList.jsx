@@ -27,6 +27,7 @@ const FriendList = ({
             setLoadingState={setLoadingState}
           />
         ))}
+
       </div>
 
       <div>

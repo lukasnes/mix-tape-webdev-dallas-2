@@ -15,10 +15,11 @@ const Friends = ({
 }) => {
   console.log(friend);
 
+
   return (
     <div>
-      <div id="friendsWrapper">
-        <div className="friendsContainer" key={index}>
+      <div id="friendWrapper">
+        <div className="friendContainer" key={index}>
           <div
             onClick={() => {
               setFriendId(friend.userId);
@@ -30,8 +31,16 @@ const Friends = ({
             <FollowButton friendId={friendId} />
           </div>
 
-          <div className="userId">{friend.userId}</div>
+//           <div className="userId">{friend.userId}</div>
+//         </div>
+
+          
+          <div id='userId'>{friend.userId}</div>
+
+
+          <button className="button">+ Follow</button>
         </div>
+        
       </div>
     </div>
   );
