@@ -78,18 +78,17 @@ const checkFollowing = async (req,res) => {
             }
         }
     })
-console.log(friendList)
+    console.log(friendList)
 
-if(friendList) {
-    res.json({
-        following: true,
-    })
-} else {
-    res.json({
-        following: false,
-    })
-}
-
+    if(friendList) {
+        res.json({
+            following: true,
+        })
+    } else {
+        res.json({
+            following: false,
+        })
+    }
 }
 
 // const addFriend = async (req, res) => {
