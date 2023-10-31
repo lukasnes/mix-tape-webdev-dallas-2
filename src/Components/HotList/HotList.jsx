@@ -7,7 +7,7 @@ const HotList = ({pl, setPlaylist}) => {
 
 
 console.log(pl)
-let playlistData = pl.map((pl) => {
+let playlistData = pl.slice(0,4).map((pl) => {
 
     return <PlaylistRow 
     user={pl.user}
