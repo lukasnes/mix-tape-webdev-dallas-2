@@ -6,7 +6,7 @@ import axios from "axios"
 const HotList = ({pl, setPlaylist}) => {
 
 
-console.log(pl)
+// console.log(pl)
 let playlistData = pl.map((pl) => {
 
     return <PlaylistRow 

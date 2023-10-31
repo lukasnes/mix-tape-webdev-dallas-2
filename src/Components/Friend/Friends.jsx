@@ -31,18 +31,16 @@ const Friends = ({
             <FollowButton friendId={friendId} />
           </div>
 
-//           <div className="userId">{friend.userId}</div>
-//         </div>
+           <div className="userId">{friend.userId}</div>
+         </div>
 
           
           <div id='userId'>{friend.userId}</div>
 
 
           <button className="button">+ Follow</button>
-        </div>
-        
+        </div> 
       </div>
-    </div>
   );
 };
 

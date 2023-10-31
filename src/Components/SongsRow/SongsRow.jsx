@@ -28,7 +28,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
         <img className="songImage" src={song.imgUrl} />
       </div>
 
-        <div id='songInfo' className="row container">
+        <div id='songInfo' className="container">
           <p>
             Song name: {song.name} <br />
             Artist: {song.artist} <br />
@@ -36,7 +36,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
           </p>
         </div>
 
-        <div id='audioPreview' className="row container">
+        <div id='audioPreview' className="container">
           <audio
             id="audioPreview"
             ref={useRef()}

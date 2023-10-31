@@ -11,11 +11,11 @@ import { useNavigate } from "react-router-dom";
 
 const Songs = () => {
   let { playlist } = useLoaderData();
-  console.log(playlist);
+  // console.log(playlist);
 
   const navigate = useNavigate();
   const [songs, setSongs] = useState(playlist.songs);
-  console.log(songs);
+  // console.log(songs);
   const [playlistName, setPlaylistname] = useState(playlist.name)
   // const [username, setUsername] = useState(playlist.username)
   const [isEditing, setEditing] = useState(false);
@@ -41,7 +41,7 @@ const Songs = () => {
 
   const EditPlaylistName = async () => {
     setEditing(false);
-    await axios.post("/api/editplaylist", {
+    await axios.post("/api/playlist/edit", {
       playlistId: playlist.playlistId,
       playlistname: playlistName,
     });
@@ -101,9 +101,9 @@ const Songs = () => {
                 Edit
               </button> */}
             </h1>
-              <h1 className="text-white">
+              <h4 >
                 {playlist.user.username}
-              </h1>
+              </h4>
           <div id='buttonRow'>
             <button className='button' onClick={()=>{
             navigate("/")

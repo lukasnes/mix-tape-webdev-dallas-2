@@ -16,15 +16,24 @@
               inset 0 0 1.3rem #174DB1;
 }
 
-#timeStampDiv {
+#timeStamp {
     display: flex;
-    width: 33vw;
     justify-content: left;
     text-align: center;
     margin-left: 10px;
     padding-top: 12px;
- 
-    
+}
+
+#timeStampDiv {
+    display: flex;
+    width: 33vw;
+    text-align: center;
+    align-items: center;
+}
+
+#userNameButton {
+    height: 30px;
+    margin-left: 20px;
 }
 
 #playlistNameDiv {
@@ -39,6 +48,15 @@
     height: 40px;
     position: relative;
     top: 5px
+}
+
+#likeCountDiv {
+    display: flex;
+    height: 40px;
+    align-items: center ;
+    text-align: center;
+    padding-top: 12px;
+    padding-right: 10px;
 }
 
 #deleteButtonDiv {

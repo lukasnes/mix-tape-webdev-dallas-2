@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 
-const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
+const PlaylistRow = ({pl, setPlaylist, user}) => {
     const navigate = useNavigate()
     const isLoggedIn = useSelector(state=>state.loggedIn)
 
@@ -17,7 +17,6 @@ const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
 
     const followUserHandler = async () => {
         await axios.post(`/api/friend/toggle/${user.userId}`)
-
     }
        
     const editPlaylist = async () => {
@@ -30,55 +29,55 @@ const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
            return isoDate
         }    
     }
-    
 
-
-    const name = (pl) => {
+    const plName = (pl) => {
         if(pl.name !== null) {
-            return pl.name
+            let name = (pl.name)
+            return name
         }
     }
-    // fucntion name is not working
-
-    
+    console.log(pl)
     return isLoggedIn ? (
         <div id='playlistRow' className="displayRow" >
             <div id='timeStampDiv'>
                 <p id='timeStamp'> {time(pl)} </p> 
+                <button id='userNameButton' className='button'
+                    onClick={followUserHandler}
+                    >
+                    {pl.user.username}
+                </button>
             </div>
 
             <div id='playlistNameDiv' className='displayRow' onClick={(e) => editPlaylist()}>
-                <p id='playlistName'> {pl.name} </p>                
+                <p id='playlistName'> {plName(pl)} </p>                
+            </div>
 
-            </div>
             <div id='deleteButtonDiv'>            
-            <button id='userNameButton' className='button'
-                onClick={followUserHandler}
-                >
-                {pl.user.username}
-            </button>
-            <div id='likeCountDiv'>
-                <p id='likeCount'>likes:{pl.likeCount}</p>
-            </div>
-                <DelOrLike pl={pl} setPlaylist={setPlaylist} />
+                <div id='likeCountDiv'>
+                    <p id='likeCount' >Likes:{pl.likeCount}</p>
+                </div>
+                    <DelOrLike pl={pl} setPlaylist={setPlaylist} />
             </div>
         </div>
       ) : (
         <div id='playlistRow' className="displayRow" >
             <div id='timeStampDiv'>
-                <p id='timeStamp'> {time(pl)} </p> 
+                <p id='timeStamp'> {time(pl)} </p>  
+                <button id='userNameButton' className='button'> 
+                    {pl.user.username}
+                </button>
             </div>
+
             <div id='playlistNameDiv' className='displayRow' onClick={(e) => editPlaylist()}>
-                <p id='playlistName'> {name(pl)} </p>
+                <p id='playlistName'> {plName(pl)} </p>
             </div>
+
             <div id='deleteButtonDiv'> 
-            <button id='userNameButton' className='button'>
-                {pl.user.username}
-            </button>
+            
             <div id='likeCountDiv'>
                 <p id='likeCount'>likes:{pl.likeCount}</p>
             </div>
-                <DelOrLike pl={pl} setPlaylist={setPlaylist} /> 
+                {/* <DelOrLike pl={pl} setPlaylist={setPlaylist} />  */}
             </div>
         </div>
       )    
