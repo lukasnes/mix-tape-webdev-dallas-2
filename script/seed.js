@@ -12,12 +12,30 @@ await db.sync ({force: true})
 console.log('Seeding database...')
     
     
+const usernames = [
+    'RockStar92',
+    'FunkyGroover73',
+    'MusicMike3',
+    'JazzyJeff44',
+    'RhythmQu33n',
+    // 'S0ulS1nger22',
+    // 'BluesCrazeBob',
+    // 'Country1Chords',
+    // 'EDMBeatGuy45',
+    // 'PopHarmonyPrince',
+    // 'RaveDancer4U',
+    // '22ReggaeVibes',
+    // 'RapRhymes4Life',
+    // 'GuitarHero2002',
+    // '99PianoKeys',
+    // 'DrumBeatsRUs',
+  ]
     
     
-for(let i = 1; i < 5; i++){
+for(let i = 1; i < usernames.length; i++){
     const user = await User.create(
         {
-            username: `username${i}`,
+            username: usernames[i],
             email: `test${i}@email.com`,
             password: `test`
         })
