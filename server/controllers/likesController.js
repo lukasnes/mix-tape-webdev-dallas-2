@@ -28,7 +28,10 @@ const topPlaylists = await Playlist.findAll({
     [
         {
             model: Likes,
-            attributes: []
+            attributes: [
+
+            ],
+
         },
         {
             model: User,
