@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 
-const PlaylistRow = ({pl, setPlaylist, user}) => {
+const PlaylistRow = ({pl, setPlaylist, user, likeCount}) => {
     const navigate = useNavigate()
     const isLoggedIn = useSelector(state=>state.loggedIn)
 
@@ -30,6 +30,8 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
            return isoDate
         }    
     }
+    
+
 
     const name = (pl) => {
         if(pl.name !== null) {
@@ -44,15 +46,20 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
             <div id='timeStampDiv'>
                 <p id='timeStamp'> {time(pl)} </p> 
             </div>
+
             <div id='playlistNameDiv' className='displayRow' onClick={(e) => editPlaylist()}>
-                <p id='playlistName'> {name(pl)} </p>
+                <p id='playlistName'> {pl.name} </p>                
+
             </div>
-            <div id='deleteButtonDiv'>
+            <div id='deleteButtonDiv'>            
             <button id='userNameButton' className='button'
                 onClick={followUserHandler}
                 >
                 {pl.user.username}
             </button>
+            <div id='likeCountDiv'>
+                <p id='likeCount'>likes:{pl.likeCount}</p>
+            </div>
                 <DelOrLike pl={pl} setPlaylist={setPlaylist} />
             </div>
         </div>
@@ -68,6 +75,9 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
             <button id='userNameButton' className='button'>
                 {pl.user.username}
             </button>
+            <div id='likeCountDiv'>
+                <p id='likeCount'>likes:{pl.likeCount}</p>
+            </div>
                 <DelOrLike pl={pl} setPlaylist={setPlaylist} /> 
             </div>
         </div>
