@@ -4,7 +4,7 @@ import axios from "axios";
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 import FollowButton from '../Follow/Follow';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
 const PlaylistRow = ({pl, setPlaylist, user}) => {
     const navigate = useNavigate()
@@ -38,7 +38,7 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
             return name
         }
     }
-    console.log(pl)
+    // console.log(pl)
 
     return isLoggedIn ? (
         <div id='playlistRow' className="displayRow" >
