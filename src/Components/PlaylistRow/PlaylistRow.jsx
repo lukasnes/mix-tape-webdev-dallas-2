@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./playlistRow.css";
 import axios from "axios";
-
 import { useSelector } from 'react-redux';
 import DelOrLike from '../DelOrLike/DelOrLike';
 import FollowButton from '../Follow/Follow';
@@ -38,7 +37,7 @@ const PlaylistRow = ({ pl, setPlaylist, user }) => {
     if (pl.name !== null) {
       let name = pl.name;
       return name;
-    }
+    }}
 
 
   return isLoggedIn ? (
@@ -102,4 +101,4 @@ const PlaylistRow = ({ pl, setPlaylist, user }) => {
   );
 };
 
-export default PlaylistRow;
+export default PlaylistRow
