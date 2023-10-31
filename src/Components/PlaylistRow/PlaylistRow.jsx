@@ -48,7 +48,7 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
                 <p id='playlistName'> {name(pl)} </p>
             </div>
             <div id='deleteButtonDiv'>
-            <button
+            <button id='userNameButton' className='button'
                 onClick={followUserHandler}
                 >
                 {pl.user.username}
@@ -65,7 +65,7 @@ const PlaylistRow = ({pl, setPlaylist, user}) => {
                 <p id='playlistName'> {name(pl)} </p>
             </div>
             <div id='deleteButtonDiv'> 
-            <button>
+            <button id='userNameButton' className='button'>
                 {pl.user.username}
             </button>
                 <DelOrLike pl={pl} setPlaylist={setPlaylist} /> 
