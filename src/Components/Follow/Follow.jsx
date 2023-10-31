@@ -25,18 +25,12 @@ const FollowButton = ({ friendId, user }) => {
 
   return loggedIn && !isLoading ? (
     <div>
-      <p>{user}</p>
-
       <button className="button" onClick={toggleFollow}>
         {isFollowing ? "Unfollow" : "Follow"}
       </button>
     </div>
   ) : (
-    <div>
-        <p>
-            {user}
-        </p>
-    </div>
+    <></>
   );
 };
 
