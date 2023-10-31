@@ -11,10 +11,9 @@ const Friends = ({
   setPageState,
   setFriendId,
   setLoadingState,
-  friendId
+  friendId,
 }) => {
   console.log(friend);
-
 
   return (
     <div>
@@ -28,19 +27,14 @@ const Friends = ({
             }}
           >
             {friend.username}
-            <FollowButton friendId={friendId} />
           </div>
 
-//           <div className="userId">{friend.userId}</div>
-//         </div>
-
-          
-          <div id='userId'>{friend.userId}</div>
-
-
-          <button className="button">+ Follow</button>
+          <div className="userId">{friend.userId}</div>
         </div>
-        
+
+        <div id="userId">{friend.userId}</div>
+
+        <FollowButton friendId={friend.userId} />
       </div>
     </div>
   );
