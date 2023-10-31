@@ -1,26 +1,34 @@
 import "../Friend/Friend.css";
 // import LikePlaylist from "../LikedPlaylist/LikePlaylist";
 
-
-const Friends = ({ friend, index, setPageState, setFriendId, setLoadingState }) => {
-  // console.log(friend)
+const Friends = ({
+  friend,
+  index,
+  setPageState,
+  setFriendId,
+  setLoadingState,
+}) => {
+  console.log(friend);
   return (
-        <div key={index}>
-          
-          <div id="userId">{friend.userId}</div>
-          
+    <div>
+      <div id="friendsWrapper">
+        <div className="friendsContainer" key={index}>
+          <div
 
-          <div id='info'
             onClick={() => {
               setFriendId(friend.userId);
-              setLoadingState("friendsPlayList")
+              setLoadingState("friendsPlayList");
               setPageState("loading");
             }}
           >
             {friend.username}
-        </div>
+          </div>
           
+          <div className="userId">{friend.userId}</div>
         </div>
+        <button className="follow-button">+ Follow</button>
+      </div>
+    </div>
   );
 };
 
