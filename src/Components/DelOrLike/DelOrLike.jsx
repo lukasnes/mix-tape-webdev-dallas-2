@@ -5,7 +5,7 @@ import LikeButton from "../LikeButton/LikeButton"
 import axios from "axios"
 
 
-const DelOrLike = ({pl, setPlaylist, liked}) => {
+const DelOrLike = ({pl, setPlaylist, liked, likesCount, setLikesCount}) => {
 
     const userId = useSelector(state=>state.userId)
     const isLoggedIn = useSelector(state=>state.loggedIn)
@@ -27,7 +27,7 @@ const DelOrLike = ({pl, setPlaylist, liked}) => {
         
         <button id='deletePlaylistButton' className="button roundButton" onClick={(e)=> deletePlaylist()} > X </button>
     ):(
-         <LikeButton  userId={pl.user.userId} setPlaylist={pl.playlistId} pl={pl} liked={liked}/>
+         <LikeButton  userId={pl.user.userId} setPlaylist={pl.playlistId} pl={pl} liked={liked} likesCount={likesCount} setLikesCount={setLikesCount}/>
     )
 }
 

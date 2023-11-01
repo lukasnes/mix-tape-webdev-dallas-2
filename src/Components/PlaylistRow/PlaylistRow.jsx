@@ -1,15 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import "./playlistRow.css";
 import axios from "axios";
-import { useSelector } from 'react-redux';
-import DelOrLike from '../DelOrLike/DelOrLike';
-import FollowButton from '../Follow/Follow';
-
+import { useSelector } from "react-redux";
+import DelOrLike from "../DelOrLike/DelOrLike";
+import FollowButton from "../Follow/Follow";
+import { useState } from "react";
+import LikeButton from "../LikeButton/LikeButton";
 
 const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.loggedIn);
   const userId = useSelector((state) => state.userId);
+  const [likesCount, setLikesCount] = useState(+pl.likeCount);
 
   // const deletePlaylist = async () => {
   //     if( isLoggedIn === true && userId === pl.userId ) {
@@ -37,8 +39,8 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
     if (pl.name !== null) {
       let name = pl.name;
       return name;
-    }}
-
+    }
+  };
 
   return isLoggedIn ? (
     <div id="playlistRow" className="displayRow">
@@ -62,17 +64,22 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
       </div>
 
       <div id="deleteButtonDiv">
-        <div id='followButtonDiv'>
-        {userId === pl.userId ? (
-          <></>
-        ) : (
-          <FollowButton id='followButton' friendId={pl.user.userId} user={pl.user.username} following={isFollowing} />
-        )}
+        <div id="followButtonDiv">
+          {userId === pl.userId ? (
+            <></>
+          ) : (
+            <FollowButton
+              id="followButton"
+              friendId={pl.user.userId}
+              user={pl.user.username}
+              following={isFollowing}
+            />
+          )}
         </div>
         <div id="likeCountDiv">
-          <p id="likeCount">Likes:{pl.likeCount}</p>
+          <p id="likeCount">Likes:{likesCount}</p>
         </div>
-        <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} />
+        <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} setLikesCount={setLikesCount} likesCount={likesCount} />
       </div>
     </div>
   ) : (
@@ -94,12 +101,12 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
 
       <div id="deleteButtonDiv">
         <div id="likeCountDiv">
-          <p id="likeCount">Likes:{pl.likeCount}</p>
+          <p id="likeCount">Likes:{likesCount}</p>
         </div>
-        {/* <DelOrLike pl={pl} setPlaylist={setPlaylist} />  */}
+        `{/* <DelOrLike pl={pl} setPlaylist={setPlaylist} />  */}
       </div>
     </div>
   );
 };
 
-export default PlaylistRow
+export default PlaylistRow;
