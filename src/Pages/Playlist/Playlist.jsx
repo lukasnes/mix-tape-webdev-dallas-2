@@ -13,16 +13,16 @@ import { useSelector } from "react-redux";
 import Loading from "../../Components/Loading/Loading";
 
 const Playlist = () => {
-  const loaderData = useLoaderData();
+ 
   const navigate = useNavigate();
   const userId = useSelector((state) => state.userId);
   const friendsId = useSelector((state) => state.friendId);
-  const [pageState, setPageState] = useState("hot");
+  const [pageState, setPageState] = useState("loading");
   const [pageData, setPageData] = useState();
   const [friendId, setFriendId] = useState(null);
-  const [playlist, setPlaylist] = useState(loaderData.playlists);
+  const [playlist, setPlaylist] = useState([]);
   const [friendlist, setFriendList] = useState([])
-  const [loadingState, setLoadingState]= useState("")
+  const [loadingState, setLoadingState]= useState("hot")
   
 
   useEffect(() => {

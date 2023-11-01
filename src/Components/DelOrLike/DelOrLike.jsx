@@ -1,9 +1,11 @@
 import { useSelector } from "react-redux"
 import { BsHeartFill } from 'react-icons/bs'
+import LikeButton from "../LikeButton/LikeButton"
+
 import axios from "axios"
 
 
-const DelOrLike = ({pl, setPlaylist}) => {
+const DelOrLike = ({pl, setPlaylist, liked}) => {
 
     const userId = useSelector(state=>state.userId)
     const isLoggedIn = useSelector(state=>state.loggedIn)
@@ -25,7 +27,7 @@ const DelOrLike = ({pl, setPlaylist}) => {
         
         <button id='deletePlaylistButton' className="button roundButton" onClick={(e)=> deletePlaylist()} > X </button>
     ):(
-        <button id='likePlaylistButton' className="button roundButton" onClick={(e)=> likePlaylist()}> <BsHeartFill/> </button>
+         <LikeButton  userId={pl.user.userId} setPlaylist={pl.playlistId} pl={pl} liked={liked}/>
     )
 }
 
