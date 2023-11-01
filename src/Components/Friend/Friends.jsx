@@ -12,6 +12,7 @@ const Friends = ({
   setFriendId,
   setLoadingState,
   friendId,
+  following
 }) => {
   console.log(friend);
 
@@ -28,7 +29,7 @@ const Friends = ({
             {friend.username}
           </div>
         </div>
-        <FollowButton friendId={friend.userId} />
+        <FollowButton friendId={friend.userId} following={following} />
       </div>
   );
 };

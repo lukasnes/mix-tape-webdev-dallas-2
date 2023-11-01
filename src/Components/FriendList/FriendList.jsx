@@ -25,6 +25,7 @@ const FriendList = ({
             setFriendId={setFriendId}
             setPlaylist={setPlaylist}
             setLoadingState={setLoadingState}
+            following={true}
           />
         ))}
 
