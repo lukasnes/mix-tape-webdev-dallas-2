@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-import { BsHeartFill } from 'react-icons/bs'
 import LikeButton from "../LikeButton/LikeButton"
 
 import axios from "axios"
