@@ -39,8 +39,18 @@ main {
     font-family: 'DotGothic16', sans-serif;
     text-align: center;
     border: 1px solid white;
+    border-radius: 3px;
     background-color: transparent;
-    box-shadow: 0 0 5px #ef97e8;
+    box-shadow: 0 0 5px #B058C6;
+    color: #fff;
+}
+
+.buttonVar {
+    font-family: 'DotGothic16', sans-serif;
+    text-align: center;
+    border: 1px solid white;
+    background-color: transparent;
+    box-shadow: 0 0 5px #B058C6;
     color: #fff;
 }
 
@@ -52,6 +62,9 @@ main {
 }
 
 .button:hover {
-    box-shadow: 0 0 10px #ef97e8, 0 0 20px #ef97e8, 0 0 20px #fff inset;
-    
+    box-shadow: 0 0 10px #B058C6, 0 0 20px #B058C6, 0 0 20px #95BAE7 inset;
+}
+
+.buttonVar:hover {
+    box-shadow: 0 0 10px #B058C6, 0 0 20px #B058C6, 0 0 20px #95BAE7 inset;
 }
