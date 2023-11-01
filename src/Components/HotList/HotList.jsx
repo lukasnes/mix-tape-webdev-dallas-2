@@ -4,17 +4,19 @@ import {  useEffect,   useState } from "react"
 import axios from "axios"
 
 const HotList = ({pl, setPlaylist}) => {
+  
+  // console.log(pl)
+  let playlistData = pl.map((pl) => {
+    
+  let {playlist, isFollowing, hasLiked} = pl
 
-
-// console.log(pl)
-let playlistData = pl.map((pl) => {
-
-
-    return <PlaylistRow 
-    user={pl.user}
-    pl={pl} 
+    return <PlaylistRow
+    isFollowing = { isFollowing }
+    hasLiked = { hasLiked } 
+    user={playlist.user}
+    pl={playlist} 
     setPlaylist={setPlaylist} 
-    key={pl.playlistId} />
+    key={playlist.playlistId} />
     
   })
 

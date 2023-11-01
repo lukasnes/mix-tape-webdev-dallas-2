@@ -6,6 +6,8 @@ import {
 import{
     Likes, 
     Playlist,
+    Friend,
+    FriendList,
     User,
 } from "../../database/model.js"
 
@@ -55,38 +57,54 @@ const topPlaylists = await Playlist.findAll({
 
 })
 
-// const topPlaylists = await Likes.findAll({
-//         attributes: [
-//             'playlistId',
-//             [Sequelize.fn('COUNT', 
-//                 Sequelize.col('likes.playlist_id')), 'likeCount'],
-//         ],
-//         group: ['likes.playlist_id','playlist.playlist_id', 'user.user_id'],
-//         order: [[Sequelize.fn('COUNT', 
-//         Sequelize.col('likes.playlist_id')), 'DESC']],
-//         include: [{
-//             model: Playlist,
-//             attributes: [
-//             'playlistId',
-//             'name', 
-//             'createdAt', 
-//             'userId',
-//         ]
-//         },
-//         {
-//             model: User,
-//             attributes: [
-//                 'userId',
-//                 'username',
-//             ]
-//         }],
-//         required: true
+let playlistData = await Promise.all(topPlaylists.map( async (pl)=>{
+    let plObj = {
+        playlist: pl,
 
-//       })
+    }
+    if(req.session.userId){
+        const friendList = await FriendList.findOne({
+            where: {
+                userId: req.session.userId
+            },
+            include: {
+                model: Friend,
+                attributes: [
+                    'friendId',
+    
+                ],
+                where: {
+                    userId: pl.user.userId
+                }
+            }
+        })
+        if(friendList){
+            plObj.isFollowing = true
+        } else {
+            plObj.isFollowing = false
+        }
+        const liked = await Likes.findOne({
+            where: {
+                playlistId: pl.playlistId,
+                userId: req.session.userId,
+            }
+        })
 
-    console.log(topPlaylists)
-      console.log(topPlaylists[0].user)
-      res.json(topPlaylists)
+        if(liked){
+            plObj.hasLiked = true
+        } else {
+            plObj.hasLiked = false
+        }
+
+        console.log(friendList)
+    }
+    return plObj
+
+}))
+
+console.log(playlistData)
+res.status(200).json(playlistData)
+
 }
 
 // SELECT CountQueuingStrategy(*) FROM Likes;
@@ -175,14 +193,54 @@ const getMyLikes = async (req, res) => {
             'user.user_id'
         ],
     })
-    console.log(myLikes)
-    console.log('test, test')
 
+    let playlistData = await Promise.all(myLikes.map( async (pl)=>{
+        let plObj = {
+            playlist: pl,
 
-    console.log('name', myLikes[0].user)
-    // myLikes = myLikes.map(like => like.playlist)
+        }
+        if(req.session.userId){
+            const friendList = await FriendList.findOne({
+                where: {
+                    userId: req.session.userId
+                },
+                include: {
+                    model: Friend,
+                    attributes: [
+                        'friendId',
+        
+                    ],
+                    where: {
+                        userId: pl.user.userId
+                    }
+                }
+            })
+            if(friendList){
+                plObj.isFollowing = true
+            } else {
+                plObj.isFollowing = false
+            }
+            const liked = await Likes.findOne({
+                where: {
+                    playlistId: pl.playlistId,
+                    userId: req.session.userId,
+                }
+            })
 
-    res.json(myLikes)
+            if(liked){
+                plObj.hasLiked = true
+            } else {
+                plObj.hasLiked = false
+            }
+
+            console.log(friendList)
+        }
+        return plObj
+
+    }))
+
+    console.log(playlistData)
+    res.status(200).json(playlistData)
 }
 
 // const getMyLikes = async (req, res) => {

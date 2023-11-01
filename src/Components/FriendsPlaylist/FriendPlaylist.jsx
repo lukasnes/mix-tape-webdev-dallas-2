@@ -19,7 +19,13 @@ const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {
     //     getMyList()}, [])
 
     let playlistData = pl.map((pl) => {
-        return <PlaylistRow pl={pl} setPlaylist={setPlaylist} key={pl.playlistId} />
+        let {playlist, isFollowing, hasLiked} = pl
+        return <PlaylistRow 
+        pl={playlist}
+        hasLiked={hasLiked}
+        isFollowing={isFollowing} 
+        setPlaylist={setPlaylist} 
+        key={playlist.playlistId} />
       })
       return playlistData
     }
