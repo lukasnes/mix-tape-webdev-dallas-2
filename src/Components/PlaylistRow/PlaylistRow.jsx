@@ -46,7 +46,7 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
         <p id="timeStamp"> {time(pl)} </p>
         <button
           id="userNameButton"
-          className="button"
+          className="buttonVar"
           onClick={followUserHandler}
         >
           {pl.user.username}
@@ -62,14 +62,15 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
       </div>
 
       <div id="deleteButtonDiv">
+        <div id='followButtonDiv'>
         {userId === pl.userId ? (
           <></>
         ) : (
-          <FollowButton friendId={pl.user.userId} user={pl.user.username} following={isFollowing} />
+          <FollowButton id='followButton' friendId={pl.user.userId} user={pl.user.username} following={isFollowing} />
         )}
-
+        </div>
         <div id="likeCountDiv">
-          <p id="likeCount">likes:{pl.likeCount}</p>
+          <p id="likeCount">Likes:{pl.likeCount}</p>
         </div>
         <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} />
       </div>
@@ -78,7 +79,7 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
     <div id="playlistRow" className="displayRow">
       <div id="timeStampDiv">
         <p id="timeStamp"> {time(pl)} </p>
-        <button id="userNameButton" className="button">
+        <button id="userNameButton" className="buttonVar">
           {pl.user.username}
         </button>
       </div>
@@ -93,7 +94,7 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
 
       <div id="deleteButtonDiv">
         <div id="likeCountDiv">
-          <p id="likeCount">likes:{pl.likeCount}</p>
+          <p id="likeCount">Likes:{pl.likeCount}</p>
         </div>
         {/* <DelOrLike pl={pl} setPlaylist={setPlaylist} />  */}
       </div>

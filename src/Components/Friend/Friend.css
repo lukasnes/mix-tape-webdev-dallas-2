@@ -1,49 +1,14 @@
 
-.friendDisplay {
-    color: white;
-    /* border: 1px solid white; */
-
-    
-}
-
-.friendInfo {
+#friendContainer {
+    width: 120px;
     display: flex;
-    justify-content: center;
-    flex-direction: row;
-    width: 100vwpx;
-    /* border: 1px solid white; */
-}
-
-#friendWrapper {
-    border: 1p solid white;
-    width: 100px;
-    display: flex;
-    justify-content: center;
-
-}
-
-.friendWrapper {
-    height: 50px;
-    border: 1px soiid white;
+    flex-direction: column;
+    align-items: center;
 }
 
 .friendName {
     margin-bottom: 20px;
-}
-
-.userId{
-    width: 50px;
-    display: flex;
-    align-items: left;
-    justify-content: left;
-    margin-top: -50px;
-}
-
-
-#info {
-    width: 100px;
-
-#userId {
     display: flex;
     justify-content: center;
+    color: white;
 }

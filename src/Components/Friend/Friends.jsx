@@ -16,9 +16,8 @@ const Friends = ({
   console.log(friend);
 
   return (
-    <div>
-      <div id="friendWrapper">
-        <div className="friendContainer" key={index}>
+      <div id="friendContainer">
+        <div key={index}>
           <div
             onClick={() => {
               setFriendId(friend.userId);
@@ -28,18 +27,9 @@ const Friends = ({
           >
             {friend.username}
           </div>
-
-          <div className="userId">{friend.userId}</div>
         </div>
-
-        <div id="userId">{friend.userId}</div>
-
         <FollowButton friendId={friend.userId} />
-
       </div>
-
-    </div>
-
   );
 };
 
