@@ -3,7 +3,7 @@ import PlaylistRow from "../PlaylistRow/PlaylistRow"
 // import { useState, useEffect } from "react"
 
 
-const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {
+const FriendsPlaylist = ({friendId, allPlaylist, setPlaylist}) => {
     // const friendsId = useSelector((state) => state.friendId);
 
     // const [playlist, setPlaylist] = useState([])
@@ -25,7 +25,8 @@ const FriendsPlaylist = ({friendId, pl, setPlaylist}) => {
         hasLiked={hasLiked}
         isFollowing={isFollowing} 
         setPlaylist={setPlaylist} 
-        key={playlist.playlistId} />
+        key={playlist.playlistId}
+        allPlaylist={allPlaylist} />
       })
       return playlistData
     }
