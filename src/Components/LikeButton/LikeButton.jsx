@@ -2,6 +2,9 @@ import { BsHeartFill, BsHeart } from "react-icons/bs";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import '../../Pages/Playlist/playlist.css'
+import '../PlaylistRow/playlistRow.css'
+
 
 const LikeButton = ({ setPlaylist, pl, liked }) => {
   const [like, setLike] = useState(liked);
