@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import PlaylistRow from "../PlaylistRow/PlaylistRow";
 // import axios from "axios";
 
-const MyPlaylist = ({ allPlaylist, setPlaylist }) => {
+const MyPlaylist = ({ allPlaylist, setPageState }) => {
   const userId = useSelector((state) => state.userId);
 
   let playlistData = allPlaylist.map((pl) => {
@@ -14,8 +14,8 @@ const MyPlaylist = ({ allPlaylist, setPlaylist }) => {
       pl={playlist} 
       isFollowing={isFollowing}
       hasLiked={hasLiked}
-      setPlaylist={setPlaylist} key={playlist.playlistId}
-      allPlaylist={allPlaylist} />
+      setPageState={setPageState} key={playlist.playlistId}
+       />
     );
   });
   return playlistData;

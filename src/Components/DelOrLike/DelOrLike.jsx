@@ -6,15 +6,13 @@ import { useState } from "react";
 
 const DelOrLike = ({
   pl,
-  setPlaylist,
+  setPageState,
   liked,
   likesCount,
-  setLikesCount,
-  allPlaylist,
+  setLikesCount
 }) => {
   const userId = useSelector((state) => state.userId);
   const isLoggedIn = useSelector((state) => state.loggedIn);
-  const [delPlaylist, setDelPlaylist] = useState();
 
   const deletePlaylist = async () => {
     if (isLoggedIn === true && userId === pl.user.userId) {
@@ -22,16 +20,7 @@ const DelOrLike = ({
         playlistId: pl.playlistId,
       });
 
-      console.log(pl);
-      console.log(allPlaylist);
-      let tmp = [...allPlaylist];
-      const indexPlaylist = tmp.findIndex(
-        (playlist) => playlist.playlist.playlistId === pl.playlistId
-      );
-      console.log(indexPlaylist);
-      tmp.splice(indexPlaylist, 1);
-      console.log(tmp)
-      setPlaylist(tmp);
+      setPageState('loading')
 
       // setPlaylist(res.data.playlists)
       // todo: setPlayList isnt working, needs to be put inot redux possibly

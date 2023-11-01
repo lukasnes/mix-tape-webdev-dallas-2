@@ -13,7 +13,7 @@ const LikePlaylist = ({ allPlaylist }) => {
   isFollowing={isFollowing}
   hasLiked={hasLiked}
   key={playlist.playlistId}
-  allPlaylist={allPlaylist}/>
+  setPageState={setPageState}/>
 } )
 
   return (

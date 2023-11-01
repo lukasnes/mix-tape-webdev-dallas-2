@@ -35,7 +35,7 @@ const Playlist = () => {
           //   setPlaylist(res.data);
           // };
           // getPlaylist();
-          setPageData(<Hero allPlaylist={playlist} setPlaylist={setPlaylist} />);
+          setPageData(<Hero allPlaylist={playlist} setPageState={setPageState} />);
           break;
   
         case "friendsList":
@@ -77,7 +77,7 @@ const Playlist = () => {
             <FriendsPlaylist
               friendId={friendId}
               allPlaylist={playlist}
-              setPlaylist={setPlaylist}
+              setPageState={setPageState}
             />
           );
           break;
@@ -85,7 +85,7 @@ const Playlist = () => {
         case "myPlaylist":
          
           setFriendId(null);
-          setPageData(<MyPlaylist allPlaylist={playlist} setPlaylist={setPlaylist} />);
+          setPageData(<MyPlaylist allPlaylist={playlist} setPageState={setPageState} />);
           break;
 
           case "loading":
