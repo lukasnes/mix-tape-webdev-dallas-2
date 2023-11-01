@@ -275,13 +275,13 @@ const toggleLike = async (req, res) => {
 
     const liked = await Likes.findOne({
         where: {
-            userId, 
-            playlistId
+            userId: +userId, 
+            playlistId: +playlistId
         }
     })
     console.log(liked)
 
-    if ( liked ) {
+    if ( liked !== null ) {
         liked.destroy()
         res.json({
             liked: false,

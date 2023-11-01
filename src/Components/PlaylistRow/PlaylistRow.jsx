@@ -6,7 +6,7 @@ import DelOrLike from '../DelOrLike/DelOrLike';
 import FollowButton from '../Follow/Follow';
 
 
-const PlaylistRow = ({ pl, setPlaylist, user }) => {
+const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.loggedIn);
   const userId = useSelector((state) => state.userId);
@@ -65,13 +65,13 @@ const PlaylistRow = ({ pl, setPlaylist, user }) => {
         {userId === pl.userId ? (
           <></>
         ) : (
-          <FollowButton friendId={pl.user.userId} user={pl.user.username} />
+          <FollowButton friendId={pl.user.userId} user={pl.user.username} following={isFollowing} />
         )}
 
         <div id="likeCountDiv">
           <p id="likeCount">likes:{pl.likeCount}</p>
         </div>
-        <DelOrLike pl={pl} setPlaylist={setPlaylist} />
+        <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} />
       </div>
     </div>
   ) : (
