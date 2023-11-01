@@ -115,7 +115,91 @@ const addPlaylist = async (req, res) => {
          name: 'New Playlist'
         }
     )
-    res.status(201).json(newPlaylist)
+
+    const playlists = await Playlist.findAll({
+        where: {
+            userId: +userId
+        },
+        attributes:[
+            'playlistId',
+            'name',
+            'createdAt',
+
+            [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+         ],
+        include: [                
+            {
+                model: Likes,
+                attributes: [
+
+                ],
+            },
+            {
+            model: User,
+            attributes:[
+                'userId',
+                'username',
+            ]
+        },
+        ],
+        
+        group: 
+        [
+            'playlistId', 
+            'user.user_id'
+        ],
+
+
+    })    
+    
+    let playlistData = await Promise.all(playlists.map( async (pl)=>{
+        let plObj = {
+            playlist: pl,
+
+        }
+        if(req.session.userId){
+            const friendList = await FriendList.findOne({
+                where: {
+                    userId: req.session.userId
+                },
+                include: {
+                    model: Friend,
+                    attributes: [
+                        'friendId',
+        
+                    ],
+                    where: {
+                        userId: pl.user.userId
+                    }
+                }
+            })
+            if(friendList){
+                plObj.isFollowing = true
+            } else {
+                plObj.isFollowing = false
+            }
+            const liked = await Likes.findOne({
+                where: {
+                    playlistId: pl.playlistId,
+                    userId: req.session.userId,
+                }
+            })
+
+            if(liked){
+                plObj.hasLiked = true
+            } else {
+                plObj.hasLiked = false
+            }
+
+            console.log(friendList)
+        }
+        return plObj
+
+    }))
+
+    console.log(playlistData)
+    res.status(200).json(playlistData)
+    // res.status(201).json(newPlaylist)
 };
 
 
@@ -169,14 +253,90 @@ const deletePlayList = async (req, res) => {
     )
     await playlist.destroy()
 
-    const playlists = await Playlist.findAll(
-        {
-            where: {
-                userId : userId
-            }
+    const playlists = await Playlist.findAll({
+        where: {
+            userId: +userId
+        },
+        attributes:[
+            'playlistId',
+            'name',
+            'createdAt',
+
+            [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+         ],
+        include: [                
+            {
+                model: Likes,
+                attributes: [
+
+                ],
+            },
+            {
+            model: User,
+            attributes:[
+                'userId',
+                'username',
+            ]
+        },
+        ],
+        
+        group: 
+        [
+            'playlistId', 
+            'user.user_id'
+        ],
+
+
+    })    
+    
+    let playlistData = await Promise.all(playlists.map( async (pl)=>{
+        let plObj = {
+            playlist: pl,
+
         }
-    )
-    res.status(200).json(playlists)
+        if(req.session.userId){
+            const friendList = await FriendList.findOne({
+                where: {
+                    userId: req.session.userId
+                },
+                include: {
+                    model: Friend,
+                    attributes: [
+                        'friendId',
+        
+                    ],
+                    where: {
+                        userId: pl.user.userId
+                    }
+                }
+            })
+            if(friendList){
+                plObj.isFollowing = true
+            } else {
+                plObj.isFollowing = false
+            }
+            const liked = await Likes.findOne({
+                where: {
+                    playlistId: pl.playlistId,
+                    userId: req.session.userId,
+                }
+            })
+
+            if(liked){
+                plObj.hasLiked = true
+            } else {
+                plObj.hasLiked = false
+            }
+
+            console.log(friendList)
+        }
+        return plObj
+
+    }))
+
+    console.log(playlistData)
+    res.status(200).json(playlistData)
+    // res.status(200).json(playlists)
 
 }
 
