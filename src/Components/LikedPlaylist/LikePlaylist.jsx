@@ -3,16 +3,17 @@
 import PlaylistRow from "../PlaylistRow/PlaylistRow";
 import { useSelector } from "react-redux"
 
-const LikePlaylist = ({ pl }) => {
+const LikePlaylist = ({ allPlaylist }) => {
   const userId = useSelector(state=>state.userId)
 
-  const playlistData = pl.map(pl => {
+  const playlistData = allPlaylist.map(pl => {
     let {playlist, isFollowing, hasLiked} = pl
   return <PlaylistRow 
   pl={playlist} 
   isFollowing={isFollowing}
   hasLiked={hasLiked}
-  key={playlist.playlistId}/>
+  key={playlist.playlistId}
+  allPlaylist={allPlaylist}/>
 } )
 
   return (

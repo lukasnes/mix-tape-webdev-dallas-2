@@ -35,7 +35,7 @@ const Playlist = () => {
           //   setPlaylist(res.data);
           // };
           // getPlaylist();
-          setPageData(<Hero pl={playlist} setPlaylist={setPlaylist} />);
+          setPageData(<Hero allPlaylist={playlist} setPlaylist={setPlaylist} />);
           break;
   
         case "friendsList":
@@ -56,7 +56,7 @@ const Playlist = () => {
               setPageState={setPageState}
               setFriendId={setFriendId}
               friends={friendlist}
-              pl={playlist}
+              allPlaylist={playlist}
               setPlaylist={setPlaylist}
               setLoadingState={setLoadingState}
             />
@@ -76,7 +76,7 @@ const Playlist = () => {
           setPageData(
             <FriendsPlaylist
               friendId={friendId}
-              pl={playlist}
+              allPlaylist={playlist}
               setPlaylist={setPlaylist}
             />
           );
@@ -85,7 +85,7 @@ const Playlist = () => {
         case "myPlaylist":
          
           setFriendId(null);
-          setPageData(<MyPlaylist pl={playlist} setPlaylist={setPlaylist} />);
+          setPageData(<MyPlaylist allPlaylist={playlist} setPlaylist={setPlaylist} />);
           break;
 
           case "loading":
@@ -96,6 +96,7 @@ const Playlist = () => {
 
   const createPlaylist = async () => {
     const res = await axios.post("/api/playlist/add");
+    console.log(res.data.playlistId)
     let newId = res.data.playlistId;
     navigate(`/playlist/${newId}`);
   };
