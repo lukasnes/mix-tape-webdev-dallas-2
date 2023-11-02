@@ -10,6 +10,7 @@ const FriendList = ({
   setPlaylist,
   friends,
   setLoadingState,
+  allPlaylist
 }) => {
   // console.log(pl)
   return (
@@ -30,7 +31,7 @@ const FriendList = ({
       </div>
 
       <div>
-        <LikePlaylist pl={pl} />
+        <LikePlaylist allPlaylist={allPlaylist} />
       </div>
     </div>
   );
