@@ -1,4 +1,3 @@
-
 import DelOrLike from "../DelOrLike/DelOrLike"
 import FollowButton from "../Follow/Follow"
 import { useNavigate } from "react-router-dom"
