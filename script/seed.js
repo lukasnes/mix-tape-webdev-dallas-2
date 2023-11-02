@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { User, 
     FriendList,
+    Playlist,
     Likes, db } from '../database/model.js'
     
 
@@ -13,20 +14,20 @@ console.log('Seeding database...')
     
     
 const usernames = [
-    'RockStar92',
+    'RockStar82',
+    'MusicFan99',
+    'BluesBob5',
+    'GuitarGuy2002',
+    'PunxPop09',
     'FunkyGroover73',
-    'MusicMike3',
     'JazzyJeff44',
-    'RhythmQu33n',
+    // 'RhythmQu33n',
     // 'S0ulS1nger22',
-    // 'BluesCrazeBob',
     // 'Country1Chords',
     // 'EDMBeatGuy45',
     // 'PopHarmonyPrince',
     // 'RaveDancer4U',
     // '22ReggaeVibes',
-    // 'RapRhymes4Life',
-    // 'GuitarHero2002',
     // '99PianoKeys',
     // 'DrumBeatsRUs',
   ]
@@ -49,22 +50,23 @@ for(let i = 1; i < usernames.length; i++){
 
     for(let i = 1; i < 3; i++){
         const playlist = await user.createPlaylist({
-            name:`Sample Playlist ${i}`
+            name:`Sample Playlist ${i}`,
+            likeCount:0,
         })
         
         
     const sampleSongs = [
         {
-            album: "Hotel California",
-            artist: "Eagles",
-            track: "Hotel California",
+            album: "The Roaring Silence",
+            artist: "Manfred Mann Earth Band",
+            track: "Blinded by the Light",
 
         },
         
         {
-            album: "Believe",
-            artist: "Cher",
-            track: "Believe",
+            album: "Uptown Special",
+            artist: "Bruno Mars",
+            track: "Uptown Funk",
 
         },
         {
@@ -73,17 +75,8 @@ for(let i = 1; i < usernames.length; i++){
             track: "Mambo No. 5",
 
         },
-        {
-            album: "Sunshine on Leith",
-            artist: "The Proclaimers",
-            track: "500 Miles",
 
-        },
-        {
-            album: "Bark at the Moon",
-            artist: "Ozzy Osbourne",
-            track: "Bark at the Moon"
-        },
+
         {
             album: "Whenever You Need Somebody",
             artist: "Rick Astley",
@@ -104,7 +97,8 @@ for(let i = 1; i < usernames.length; i++){
                     }
                 }
                 let {data} = await axios.get(queryString)
-                // console.log(data.data[0])
+                console.log(data)
+                console.log(song)
                 let { 
                     title: name, 
                     preview, 
@@ -146,6 +140,17 @@ for ( let i = 1; i < 5; i++){
         playlistId: playlistId
     })
     console.log(like)   
+
+    const playlist = await Playlist.findOne({
+        where:{
+            playlistId: playlistId,
+        },
+
+    })
+
+    playlist.likeCount++
+    playlist.save()
+    console.log(playlist)
 }
 
 

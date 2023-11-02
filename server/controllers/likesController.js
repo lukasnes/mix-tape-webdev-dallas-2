@@ -23,8 +23,7 @@ const topPlaylists = await Playlist.findAll({
         'playlistId',
         'name',
         'createdAt',
-
-        [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+        'likeCount'
     ],
     include: 
     [
@@ -51,8 +50,7 @@ const topPlaylists = await Playlist.findAll({
             'user.user_id'
         ],
 
-    order: [[Sequelize.fn('COUNT', 
-        Sequelize.col('likes.playlist_id')), 'DESC']],
+    order: [['likeCount', 'DESC']],
 
 
 })
@@ -163,12 +161,12 @@ const getMyLikes = async (req, res) => {
     let { userId } = req.session
 
     let myLikes = await Playlist.findAll({
+
         attributes:[
             'playlistId',
             'name',
             'createdAt',
-            
-            [Sequelize.fn('COUNT', Sequelize.col('likes.playlist_id')), 'likeCount']
+            'likeCount',
         ],
         include: [
             {
@@ -176,8 +174,9 @@ const getMyLikes = async (req, res) => {
                 attributes: [],
                 where: {
                     userId: userId
-                },
+                }        
         },
+
         {
             model:User,
             attributes:
@@ -281,8 +280,18 @@ const toggleLike = async (req, res) => {
     })
     console.log(liked)
 
+    const playlist = await Playlist.findOne({
+        where: {
+            playlistId: +playlistId
+        },
+    })
+
+
     if ( liked !== null ) {
         liked.destroy()
+        playlist.likeCount--
+        playlist.save()
+
         res.json({
             liked: false,
         })
@@ -291,6 +300,10 @@ const toggleLike = async (req, res) => {
             userId, 
             playlistId
         }) 
+
+        playlist.likeCount++
+        playlist.save()
+
         res.status(200).json({
         liked: true
     })

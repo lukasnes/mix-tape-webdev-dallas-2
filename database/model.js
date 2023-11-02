@@ -81,6 +81,10 @@ Playlist.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
+    likeCount: {
+      type: DataTypes.INTEGER,
+      
+    },
   },
   {
     modelName: "playlist",
