@@ -1,110 +1,97 @@
-import Header from "../../Components/Header/Header";
-// import HotList from "../../Components/HotList/HotList";
-import Hero from "../../Components/Hero/Hero";
-import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import "./playlist.css";
-import FriendList from "../../Components/FriendList/FriendList";
-import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist";
-import { useSelector } from "react-redux";
-// import { set } from "lodash";
-import Loading from "../../Components/Loading/Loading";
+import Header from "../../Components/Header/Header"
+import Hero from "../../Components/Hero/Hero"
+import MyPlaylist from "../../Components/MyPlaylist/MyPlaylist"
+import FriendList from "../../Components/FriendList/FriendList"
+import FriendsPlaylist from "../../Components/FriendsPlaylist/FriendPlaylist"
+import Loading from "../../Components/Loading/Loading"
+import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import axios from "axios"
+import "./playlist.css"
 
 const Playlist = () => {
  
-  const navigate = useNavigate();
-  const userId = useSelector((state) => state.userId);
-  const friendsId = useSelector((state) => state.friendId);
-  const [pageState, setPageState] = useState("loading");
-  const [pageData, setPageData] = useState();
-  const [friendId, setFriendId] = useState(null);
-  const [playlist, setPlaylist] = useState([]);
+  const navigate = useNavigate()
+  const userId = useSelector((state) => state.userId)
+  const friendsId = useSelector((state) => state.friendId)
+  const [pageState, setPageState] = useState("loading")
+  const [pageData, setPageData] = useState()
+  const [friendId, setFriendId] = useState(null)
+  const [playlist, setPlaylist] = useState([])
   const [friendlist, setFriendList] = useState([])
   const [loadingState, setLoadingState]= useState("hot")
   
 
   useEffect(() => {
       switch (pageState) {
+        
         case "hot":
-          // const getPlaylist = async () => {
-          //   let res = await axios.get("/api/likes/top");
-          //   console.log(res.data);
-  
-          //   setPlaylist(res.data);
-          // };
-          // getPlaylist();
-          setPageData(<Hero allPlaylist={playlist} setPageState={setPageState} />);
-          break;
+          setPageData(<Hero 
+            setFriendId={setFriendId}
+            setLoadingState={setLoadingState}
+            allPlaylist={playlist} 
+            setPageState={setPageState} />)
+          break
   
         case "friendsList":
-          // const getFriendList = async () => {
-          //   let res = await axios.get("/api/friendlist");
-          //   setFriendList(res.data);
-          // };
-          // getFriendList();
-  
-          // const getMyLikeList = async () => {
-          //   let res = await axios.get(`/api/likes`);
-          //   console.log(res.data)
-          //   setPlaylist(res.data);
-          // };
-          // getMyLikeList();
           setPageData(
             <FriendList
               setPageState={setPageState}
+              setLoadingState={setLoadingState}
               setFriendId={setFriendId}
               friends={friendlist}
               allPlaylist={playlist}
               setPlaylist={setPlaylist}
-              setLoadingState={setLoadingState}
             />
-          );
-          break;
+          )
+          break
   
         case "friendsPlaylist":
-          // const getMyFriendPlayList = async () => {
-          //   let res;
-          //   if (friendId !== null) {
-          //     res = await axios.get(`/api/playlists/${friendsId}`);
-          //   }
-          //   setPlaylist(res.data);
-          // };
-          // getMyFriendPlayList();
-  
           setPageData(
             <FriendsPlaylist
+              setFriendId={setFriendId}
+              pl={playlist}
+              setLoadingState={setLoadingState}
               friendId={friendId}
               allPlaylist={playlist}
               setPageState={setPageState}
             />
-          );
-          break;
+          )
+          break
   
         case "myPlaylist":
-         
-          setFriendId(null);
-          setPageData(<MyPlaylist allPlaylist={playlist} setPageState={setPageState} />);
-          break;
+          setFriendId(null)
+          setPageData( <MyPlaylist 
+            setFriendId={setFriendId}
+            setLoadingState={setLoadingState}
+            allPlaylist={playlist} 
+            setPageState={setPageState} />)
+          break
 
           case "loading":
-            setPageData(<Loading loadingState={loadingState} setPageState={setPageState} setPlaylist={setPlaylist} friendId={friendId} setFriendList={setFriendList} />)
-
+            setPageData(<Loading 
+              loadingState={loadingState} 
+              setPageState={setPageState} 
+              setPlaylist={setPlaylist} 
+              friendId={friendId} 
+              setFriendList={setFriendList} />)
       }
-  }, [pageState]);
+  }, [pageState])
 
   const createPlaylist = async () => {
-    const res = await axios.post("/api/playlist/add");
+    const res = await axios.post("/api/playlist/add")
     console.log(res.data.playlistId)
-    let newId = res.data.playlistId;
-    navigate(`/playlist/${newId}`);
-  };
+    let newId = res.data.playlistId
+    navigate(`/playlist/${newId}`)
+  }
 
   return (
     <>
       <header>
-        <Header setPageState={setPageState} setLoadingState ={setLoadingState} />
+        <Header 
+        setPageState={setPageState} 
+        setLoadingState ={setLoadingState} />
       </header>
       <main>
         <div id="playlistContainer">{pageData}</div>

@@ -1,24 +1,27 @@
-import { useNavigate } from "react-router-dom";
-import "./playlistRow.css";
-import axios from "axios";
-import { useSelector } from "react-redux";
-import DelOrLike from "../DelOrLike/DelOrLike";
-import FollowButton from "../Follow/Follow";
-import { useState } from "react";
-import LikeButton from "../LikeButton/LikeButton";
+import DelOrLike from "../DelOrLike/DelOrLike"
+import FollowButton from "../Follow/Follow"
+import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
+import { useState } from "react"
+import "./playlistRow.css"
+import axios from "axios"
 
-const PlaylistRow = ({ pl, setPageState, user, isFollowing, hasLiked }) => {
-  const navigate = useNavigate();
-  const isLoggedIn = useSelector((state) => state.loggedIn);
-  const userId = useSelector((state) => state.userId);
-  const [likesCount, setLikesCount] = useState(+pl.likeCount);
 
-  // const deletePlaylist = async () => {
-  //     if( isLoggedIn === true && userId === pl.userId ) {
-  //        const res = await axios.post("/api/playlist/delete", {playlistId: pl.playlistId})
-  //         setPlaylist(res.data)
-  //     }
-  // }
+const PlaylistRow = ({ 
+      pl, 
+      setPageState, 
+      setFriendId,
+      setLoadingState,
+      user, 
+      isFollowing, 
+      hasLiked }) => {
+
+            const navigate = useNavigate()
+            const isLoggedIn = useSelector((state) => state.loggedIn)
+            const userId = useSelector((state) => state.userId)
+            const [likesCount, setLikesCount] = useState(+pl.likeCount)
+
+
 
   const followUserHandler = async () => {
     await axios.post(`/api/friend/toggle/${user.userId}`);
@@ -49,7 +52,12 @@ const PlaylistRow = ({ pl, setPageState, user, isFollowing, hasLiked }) => {
         <button
           id="userNameButton"
           className="buttonVar"
-          onClick={followUserHandler}
+          onClick={() => {
+            setFriendId(pl.user.userId)
+            setLoadingState("friendsPlayList")
+            setPageState("loading")
+                }}
+
         >
           {pl.user.username}
         </button>
@@ -79,14 +87,26 @@ const PlaylistRow = ({ pl, setPageState, user, isFollowing, hasLiked }) => {
         <div id="likeCountDiv">
           <p id="likeCount">Likes:{likesCount}</p>
         </div>
-        <DelOrLike pl={pl} setPageState={setPageState} liked={hasLiked} setLikesCount={setLikesCount} likesCount={likesCount} />
-      </div>
+          <DelOrLike 
+              pl={pl} 
+              setPageState={setPageState} 
+              liked={hasLiked} 
+              setLikesCount={setLikesCount} 
+              likesCount={likesCount} />
+        </div>
     </div>
   ) : (
     <div id="playlistRow" className="displayRow">
       <div id="timeStampDiv">
         <p id="timeStamp"> {time(pl)} </p>
-        <button id="userNameButton" className="buttonVar">
+        <button 
+            id="userNameButton" 
+            className="buttonVar"
+            onClick={() => {
+                setFriendId(pl.user.userId)
+                setLoadingState("friendsPlayList")
+                setPageState("loading")
+                    }}>
           {pl.user.username}
         </button>
       </div>
@@ -103,10 +123,10 @@ const PlaylistRow = ({ pl, setPageState, user, isFollowing, hasLiked }) => {
         <div id="likeCountDiv">
           <p id="likeCount">Likes:{likesCount}</p>
         </div>
-        `{/* <DelOrLike pl={pl} setPlaylist={setPlaylist} />  */}
+
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default PlaylistRow;
