@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
-import '../AddSong/AddSong.css';
 
 function AddSong({plId, setSongs}) {
     const [show, setShow] = useState(false);
@@ -54,7 +53,7 @@ function AddSong({plId, setSongs}) {
             album: { title: album, cover_medium: imgUrl} 
         } = selectedSong;
         let res = await axios.post(`/api/addnewsong/${plId}`, { name, preview, artist, album, imgUrl })
-        console.log(res.data)
+        // console.log(res.data)
         setSongs(res.data)
     };
 
@@ -66,7 +65,7 @@ function AddSong({plId, setSongs}) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Dialog>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Add Songs</Modal.Title>
                     </Modal.Header>
 

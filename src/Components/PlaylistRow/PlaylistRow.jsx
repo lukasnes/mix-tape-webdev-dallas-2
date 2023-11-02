@@ -21,8 +21,6 @@ const PlaylistRow = ({
             const userId = useSelector((state) => state.userId)
             const [likesCount, setLikesCount] = useState(+pl.likeCount)
 
-
-
   const followUserHandler = async () => {
     await axios.post(`/api/friend/toggle/${user.userId}`);
   };

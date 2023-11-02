@@ -14,7 +14,7 @@ const Friends = ({
   friendId,
   following
 }) => {
-  console.log(friend);
+  // console.log(friend);
 
   return (
       <div id="friendContainer">
