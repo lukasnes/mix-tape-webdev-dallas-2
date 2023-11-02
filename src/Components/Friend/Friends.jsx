@@ -21,9 +21,9 @@ const Friends = ({
         <div key={index}>
           <div
             onClick={() => {
-              setFriendId(friend.userId);
-              setLoadingState("friendsPlayList");
-              setPageState("loading");
+              setFriendId(friend.userId)
+              setLoadingState("friendsPlayList")
+              setPageState("loading")
             }}
           >
             {friend.username}
