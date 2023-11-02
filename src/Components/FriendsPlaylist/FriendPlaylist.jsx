@@ -2,7 +2,11 @@ import PlaylistRow from "../PlaylistRow/PlaylistRow"
 
 
 
-const FriendsPlaylist = ({ pl, setPlaylist, setFriendId, setPageState, setLoadingState }) => {
+const FriendsPlaylist = ({ pl, 
+          setPlaylist, 
+          setFriendId, 
+          setPageState, 
+          setLoadingState }) => {
 
 
     let playlistData = pl.map((pl) => {
@@ -12,14 +16,14 @@ const FriendsPlaylist = ({ pl, setPlaylist, setFriendId, setPageState, setLoadin
           hasLiked} = pl
         return <PlaylistRow 
         
-        pl={ playlist }
-        hasLiked={ hasLiked }
-        setFriendId={setFriendId}
-        setLoadingState={setLoadingState}
-        isFollowing={ isFollowing } 
-        setPlaylist={ setPlaylist } 
-        key={ playlist.playlistId }
-        setPageState={ setPageState } />
+                  pl={ playlist }
+                  hasLiked={ hasLiked }
+                  setFriendId={setFriendId}
+                  setLoadingState={setLoadingState}
+                  isFollowing={ isFollowing } 
+                  setPlaylist={ setPlaylist } 
+                  key={ playlist.playlistId }
+                  setPageState={ setPageState } />
 
       })
       
