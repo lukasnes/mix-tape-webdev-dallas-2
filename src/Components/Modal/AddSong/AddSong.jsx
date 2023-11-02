@@ -28,20 +28,17 @@ function AddSong({plId, setSongs}) {
                 if (response.status === 200) {
                     setResults(response.data.data);
                 } else {
-                    // Handle errors here
                 }
             } catch (error) {
-                // Handle network or parsing errors
             } finally {
                 setLoading(false);
             }
         }
-
         fetchData();
     }, [search]);
 
     const handleSongSelect = (song, e) => {
-        e.preventDefault(); // Prevent the default form submission behavior
+        e.preventDefault(); 
         setSelectedSong(song);
     };
 
@@ -53,7 +50,6 @@ function AddSong({plId, setSongs}) {
             album: { title: album, cover_medium: imgUrl} 
         } = selectedSong;
         let res = await axios.post(`/api/addnewsong/${plId}`, { name, preview, artist, album, imgUrl })
-        // console.log(res.data)
         setSongs(res.data)
     };
 
