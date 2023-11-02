@@ -21,21 +21,16 @@ const Loading = ({
           setPageState("myPlaylist");
         };
         getMyList();
-        
-
         break;
 
       case "hot":
         const getPlaylist = async () => {
           let res = await axios.get("/api/likes/top");
-          console.log(res.data);
 
           setPlaylist(res.data);
           setPageState("hot");
         };
         getPlaylist();
-        
-
         break;
 
       case "friends":

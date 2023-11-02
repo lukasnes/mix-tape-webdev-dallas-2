@@ -1,8 +1,6 @@
-import { useSelector } from "react-redux";
-import LikeButton from "../LikeButton/LikeButton";
-
-import axios from "axios";
-import { useState } from "react";
+import { useSelector } from "react-redux"
+import LikeButton from "../LikeButton/LikeButton"
+import axios from "axios"
 
 const DelOrLike = ({
   pl,
@@ -21,9 +19,6 @@ const DelOrLike = ({
       });
 
       setPageState('loading')
-
-      // setPlaylist(res.data.playlists)
-      // todo: setPlayList isnt working, needs to be put inot redux possibly
     }
   };
 
