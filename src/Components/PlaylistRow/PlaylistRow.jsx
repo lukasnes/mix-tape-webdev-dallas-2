@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import DelOrLike from "../DelOrLike/DelOrLike"
 import FollowButton from "../Follow/Follow"
 import { useNavigate } from "react-router-dom"
@@ -20,6 +21,16 @@ const PlaylistRow = ({
             const isLoggedIn = useSelector((state) => state.loggedIn)
             const userId = useSelector((state) => state.userId)
             const [likesCount, setLikesCount] = useState(+pl.likeCount)
+=======
+import { useNavigate } from "react-router-dom";
+import "./playlistRow.css";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import DelOrLike from "../DelOrLike/DelOrLike";
+import FollowButton from "../Follow/Follow";
+import { useState } from "react";
+// import LikeButton from "../LikeButton/LikeButton";
+>>>>>>> 6acab3b907f3d13d92a6ba453bb0b74383f67a8b
 
 
 

@@ -47,7 +47,7 @@ const SongsRow = ({ song, songs, setSongs }) => {
         
         {isLoggedIn ? (
           <div id='deleteButton'>
-            < button className="button roundButton" onClick={()=>{}} > + </button>
+            <></>
           </div>
         ):(
           <div id='deleteButton'>
