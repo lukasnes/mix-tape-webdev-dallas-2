@@ -31,11 +31,11 @@ function SignUpModal({signUpShow, handleSignUpClose}) {
       style={ signUpShow ? { display: 'block', height: '360px', position: 'initial', zindex: '3' } : {display: 'none'}}
     >
       <Modal.Dialog>
-        <Modal.Header >
-          <Modal.Title>Sign Up</Modal.Title>
+        <Modal.Header className='head'>
+          <Modal.Title className='text'>Sign Up</Modal.Title>
         </Modal.Header>
 
-        <Modal.Body>
+        <Modal.Body className='body'>
             <Form>
                 <Form.Control
                     id='username'
@@ -43,34 +43,38 @@ function SignUpModal({signUpShow, handleSignUpClose}) {
                     value={username}
                     onChange={(e)=>setUsername(e.target.value)}
                     placeholder='please enter a username'
-                    required />
+                    required
+                    className='form text' />
                 <Form.Control
                     id='email'
                     type='text'
                     value={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     placeholder='please enter a valid email'
-                    required />
+                    required
+                    className='form text' />
                 <Form.Control
                     id='password'
                     type='text'
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     placeholder='please enter a password'
-                    required />
+                    required
+                    className='form text' />
                 <Form.Control
                     id='passwordConfirm'
                     type='text'
                     value={passwordConfirm}
                     onChange={(e)=>setConfirm(e.target.value)}
                     placeholder='please renter password'
-                    required />
+                    required
+                    className='form text' />
             </Form>
         </Modal.Body>
 
-        <Modal.Footer>
+        <Modal.Footer className='foot'>
           <Button variant="secondary" onClick={handleSignUpClose}>Close</Button>
-          <Button type='submit' variant="primary" onClick={handleSignUp}>Submit</Button>
+          <Button type='submit' variant="info" onClick={handleSignUp}>Submit</Button>
         </Modal.Footer>
       </Modal.Dialog>
     </div>

@@ -2,6 +2,31 @@ body {
     background-color: black;
 }
 
+.body, .head, .foot {
+    background-color: black;
+    border: 1px solid #B058C6;
+}
+
+.form {
+    background-color: #95bae7;
+    border: 1px solid #B058C6;
+}
+
+.modal-content {
+    background-color: black;
+}
+
+
+.mButton {
+    font-family: 'DotGothic16', sans-serif;
+    border: 1px solid white;
+    border-radius: 3px;
+    background-color: transparent;
+    box-shadow: 0 0 5px #B058C6;
+    color: #fff;
+}
+
+
 p, a, .text {
     color: white;
     font-family: 'DotGothic16', sans-serif;
