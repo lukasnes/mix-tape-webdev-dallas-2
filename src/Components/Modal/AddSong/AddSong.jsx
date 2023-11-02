@@ -3,7 +3,6 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import axios from 'axios';
-import '../AddSong/AddSong.css';
 
 function AddSong({plId, setSongs}) {
     const [show, setShow] = useState(false);
@@ -66,7 +65,7 @@ function AddSong({plId, setSongs}) {
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Dialog>
-                    <Modal.Header closeButton>
+                    <Modal.Header>
                         <Modal.Title>Add Songs</Modal.Title>
                     </Modal.Header>
 
