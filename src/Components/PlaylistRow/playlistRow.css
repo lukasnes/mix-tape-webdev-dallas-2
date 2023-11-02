@@ -73,6 +73,10 @@
     height: 40px;
 }
 
+#likePlaylistButton {
+    font-size: 10px;
+}
+
 #deletePlaylistButton, #likePlaylistButton, #userNameButton {
     margin-right: 10px;
 }
