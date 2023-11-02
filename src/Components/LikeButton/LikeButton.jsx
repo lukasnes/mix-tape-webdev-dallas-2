@@ -23,7 +23,7 @@ const LikeButton = ({ setPlaylist, pl, liked, likesCount, setLikesCount }) => {
   };
 
   return loggedIn ? (
-    <div>
+    <div >
       {like ? (
         <BsHeartFill
           id="likePlaylistButton"
@@ -31,7 +31,7 @@ const LikeButton = ({ setPlaylist, pl, liked, likesCount, setLikesCount }) => {
           onClick={() => likePlaylist()}
         />
       ) : (
-        <BsHeart
+        <BsHeart 
           id="likePlaylistButton"
           className="button roundButton"
           onClick={() => likePlaylist()}
