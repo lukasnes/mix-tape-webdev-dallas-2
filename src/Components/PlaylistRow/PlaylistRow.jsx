@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 21dee31717993e369a84601fde2a193e2b27ab13
 import DelOrLike from "../DelOrLike/DelOrLike"
 import FollowButton from "../Follow/Follow"
 import { useNavigate } from "react-router-dom"
@@ -21,6 +24,7 @@ const PlaylistRow = ({
             const isLoggedIn = useSelector((state) => state.loggedIn)
             const userId = useSelector((state) => state.userId)
             const [likesCount, setLikesCount] = useState(+pl.likeCount)
+<<<<<<< HEAD
 =======
 import { useNavigate } from "react-router-dom";
 import "./playlistRow.css";
@@ -33,6 +37,8 @@ import { useState } from "react";
 >>>>>>> 6acab3b907f3d13d92a6ba453bb0b74383f67a8b
 
 
+=======
+>>>>>>> 21dee31717993e369a84601fde2a193e2b27ab13
 
   const followUserHandler = async () => {
     await axios.post(`/api/friend/toggle/${user.userId}`);
