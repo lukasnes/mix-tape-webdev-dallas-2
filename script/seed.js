@@ -19,8 +19,8 @@ const usernames = [
     'BluesBob5',
     'GuitarGuy2002',
     'PunxPop09',
-    'FunkyGroover73',
-    'JazzyJeff44',
+    // 'FunkyGroover73',
+    // 'JazzyJeff44',
     // 'RhythmQu33n',
     // 'S0ulS1nger22',
     // 'Country1Chords',
@@ -133,24 +133,28 @@ const randomNumber = () => {
 }
 console.log(randomNumber())
 
-for ( let i = 1; i < 5; i++){
-    const playlistId = randomNumber()
-    const like = await Likes.create({
-        userId: i,
-        playlistId: playlistId
-    })
-    console.log(like)   
+for ( let i = 1; i < usernames.length; i++){
+    for(let j = 0; j < 5; j++) {
 
-    const playlist = await Playlist.findOne({
-        where:{
-            playlistId: playlistId,
-        },
-
-    })
-
-    playlist.likeCount++
-    playlist.save()
-    console.log(playlist)
+        const playlistId = randomNumber()
+        
+        const like = await Likes.create({
+            userId: i,
+            playlistId: playlistId
+        })
+        console.log(like)   
+        
+        const playlist = await Playlist.findOne({
+            where:{
+                playlistId: playlistId,
+            },
+            
+        })
+        
+        playlist.likeCount++
+        playlist.save()
+        console.log(playlist)
+    }
 }
 
 
