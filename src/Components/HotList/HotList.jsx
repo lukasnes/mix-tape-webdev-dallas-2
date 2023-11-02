@@ -3,10 +3,10 @@ import PlaylistRow from "../PlaylistRow/PlaylistRow"
 import {  useEffect,   useState } from "react"
 import axios from "axios"
 
-const HotList = ({pl, setPlaylist, setPageState}) => {
+const HotList = ({allPlaylist, setPageState}) => {
   
   // console.log(pl)
-  let playlistData = pl.map((pl) => {
+  let playlistData = allPlaylist.map((pl) => {
     
   let {playlist, isFollowing, hasLiked} = pl
 
@@ -14,8 +14,7 @@ const HotList = ({pl, setPlaylist, setPageState}) => {
     isFollowing = { isFollowing }
     hasLiked = { hasLiked } 
     user={playlist.user}
-    pl={playlist} 
-    setPlaylist={setPlaylist} 
+    pl={playlist}  
     key={playlist.playlistId}
     setPageState={setPageState} />
     
