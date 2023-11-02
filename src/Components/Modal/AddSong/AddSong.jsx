@@ -59,27 +59,28 @@ function AddSong({plId, setSongs}) {
                 Add New Song
             </button>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Dialog>
-                    <Modal.Header>
-                        <Modal.Title>Add Songs</Modal.Title>
+            <Modal show={show} onHide={handleClose} >
+                <Modal.Dialog className='body'>
+                    <Modal.Header className='head'>
+                        <Modal.Title className='text'>Add Songs</Modal.Title>
                     </Modal.Header>
 
-                    <Modal.Body>
+                    <Modal.Body className='body'>
                         <Form>
-                            <Form.Label>Search Song</Form.Label>
+                            <Form.Label className='text'>Search Song</Form.Label>
                             <Form.Control
                                 type="text"
                                 placeholder="Enter song here"
                                 onChange={(e) => setSearch(e.target.value)}
                                 autoFocus
+                                className='form text'
                             />
-                            <Form.Label>Results</Form.Label>
+                            <Form.Label className='text'>Results</Form.Label>
                             {results && results.length > 0 ? (
-                                <ul>
+                                <ul className='mButton'>
                                     {results.map((song) => (
                                         <li key={song.id}>
-                                            <button
+                                            <button className='mButton'
                                                 onClick={(e) => handleSongSelect(song, e)}
                                             >
                                                 {song.title}
@@ -104,11 +105,11 @@ function AddSong({plId, setSongs}) {
                         )}
                     </Modal.Body>
 
-                    <Modal.Footer>
+                    <Modal.Footer className='foot'>
                         <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
-                        <Button variant="primary" onClick={handleAdd}>
+                        <Button variant="info" onClick={handleAdd}>
                             Add
                         </Button>
                     </Modal.Footer>
