@@ -26,7 +26,9 @@ main {
     height: 500px;
     width: 100vw;
     padding-top: 10px;
-
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto
 }
 
 #createPlaylistDiv {

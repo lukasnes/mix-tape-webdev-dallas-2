@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import DelOrLike from "../DelOrLike/DelOrLike";
 import FollowButton from "../Follow/Follow";
 import { useState } from "react";
-import LikeButton from "../LikeButton/LikeButton";
+// import LikeButton from "../LikeButton/LikeButton";
 
-const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
+const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked, setPageState }) => {
   const navigate = useNavigate();
   const isLoggedIn = useSelector((state) => state.loggedIn);
   const userId = useSelector((state) => state.userId);
@@ -79,7 +79,7 @@ const PlaylistRow = ({ pl, setPlaylist, user, isFollowing, hasLiked }) => {
         <div id="likeCountDiv">
           <p id="likeCount">Likes:{likesCount}</p>
         </div>
-        <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} setLikesCount={setLikesCount} likesCount={likesCount} />
+        <DelOrLike pl={pl} setPlaylist={setPlaylist} liked={hasLiked} setLikesCount={setLikesCount} likesCount={likesCount} setPageState={setPageState} />
       </div>
     </div>
   ) : (

@@ -13,10 +13,11 @@ const LikeButton = ({ setPlaylist, pl, liked, likesCount, setLikesCount }) => {
 
   const likePlaylist = async () => {
     const res = await axios.post(`/api/${userId}/like/${pl.playlistId}`);
+    let numlikes = likesCount
     if(!like){
-      setLikesCount(likesCount +1)
+      setLikesCount(numlikes +1)
     }else{
-      setLikesCount(likesCount -1)
+      setLikesCount(numlikes -1)
     }
     setLike(!like);
   };
