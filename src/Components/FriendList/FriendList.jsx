@@ -31,7 +31,7 @@ const FriendList = ({
       </div>
 
       <div>
-        <LikePlaylist allPlaylist={allPlaylist} />
+        <LikePlaylist allPlaylist={allPlaylist} setPageState={setPageState} />
       </div>
     </div>
   );

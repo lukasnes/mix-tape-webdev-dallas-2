@@ -3,7 +3,7 @@
 import PlaylistRow from "../PlaylistRow/PlaylistRow";
 import { useSelector } from "react-redux"
 
-const LikePlaylist = ({ allPlaylist }) => {
+const LikePlaylist = ({ allPlaylist, setPageState }) => {
   const userId = useSelector(state=>state.userId)
 
   const playlistData = allPlaylist.map(pl => {
